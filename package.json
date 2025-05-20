@@ -1,0 +1,35 @@
+{
+  "name": "iconpackr",
+  "version": "0.1.0",
+  "description": "Transform SVG icon collections into optimized component libraries for multiple frameworks",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "iconpackr": "./bin/iconpackr.js"
+  },
+  "scripts": {
+    "start": "node bin/iconpackr.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "svg",
+    "icon",
+    "react",
+    "vue",
+    "react-native",
+    "component"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "ora": "^7.0.1",
+    "svgo": "^3.0.5"
+  },
+  "engines": {
+    "node": ">=14.16"
+  }
+} 

@@ -97,117 +97,105 @@ export function analyzeSvgAttributes(svgContent) {
  * @returns {string} Processed SVG content
  */
 export function processSvgForTheming(svgContent, forcedStyle) {
-  // Analyze the SVG to understand its structure
   const analysis = analyzeSvgAttributes(svgContent);
   let result = svgContent;
-  
-  // Determine the icon style based on analysis or use forcedStyle if provided
-  let iconStyle;
-  if (forcedStyle) {
-    iconStyle = forcedStyle;
-    console.log(`SVG processing: Using forced style=${iconStyle}`);
-  } else {
-    if (analysis.hasStroke && analysis.visibleFillCount > 0) {
+  let iconStyle = forcedStyle;
+
+  if (!forcedStyle || forcedStyle === 'auto') {
+    if (analysis.hasStroke && analysis.visibleFillCount > 0 && (analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity)) {
+      iconStyle = 'contrast'; // Or could be a duotone variant if opacity/multiple colors dominate
+    } else if (analysis.hasStroke && analysis.visibleFillCount > 0) {
       iconStyle = 'contrast';
-    } else if (analysis.hasStroke && (analysis.visibleFillCount === 0)) {
-      iconStyle = 'stroke';
-    } else if (analysis.visibleFillCount > 0 && !analysis.hasStroke) {
-      iconStyle = 'solid';
-    } else if ((analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || 
-        analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity) && 
-        analysis.hasStroke) {
+    } else if (analysis.hasStroke && (analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity)) {
       iconStyle = 'duo-stroke';
-    } else if ((analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || 
-        analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity) && 
-        analysis.visibleFillCount > 0) {
-      iconStyle = 'duo-solid';
-    } else {
-      // Default to stroke if we can't determine
+    } else if (analysis.hasStroke) {
       iconStyle = 'stroke';
+    } else if (analysis.visibleFillCount > 0 && (analysis.hasMultipleFillColors || analysis.hasOpacity || analysis.hasFillOpacity)) {
+      iconStyle = 'duo-solid';
+    } else if (analysis.visibleFillCount > 0) {
+      iconStyle = 'solid';
+    } else {
+      iconStyle = 'stroke'; // Default fallback
     }
-    console.log(`SVG processing: Detected style=${iconStyle}, hasFill=${analysis.hasFill}, hasStroke=${analysis.hasStroke}, visibleFillCount=${analysis.visibleFillCount}`);
+    if (forcedStyle === 'auto' && verbose) {
+        console.log(chalk.blue(`Auto-detected style for theming: ${iconStyle} (was '${forcedStyle}')`));
+    }
   }
+  // console.log(`SVG processing: Using style=${iconStyle} (forced: ${forcedStyle}, fill: ${analysis.hasFill}, stroke: ${analysis.hasStroke}, visFill: ${analysis.visibleFillCount}, multiFill: ${analysis.hasMultipleFillColors}, multiStroke: ${analysis.hasMultipleStrokeColors}, opacity: ${analysis.hasOpacity})`);
+
+  // Regex to find elements and their fill/stroke attributes
+  const elementPattern = /<([a-zA-Z0-9:]+)([^>]*)>/g;
   
-  // Apply transformations based on the detected style
-  if (iconStyle === 'stroke') {
-    // Stroke-only icon: Apply currentColor to stroke attributes
-    result = result.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
-    
-    // Ensure all elements with stroke have fill="none"
-    result = result.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)(stroke="[^"]*")([^>]*)(fill="[^"]*")?([^>]*)>/g, 
-      (match, tag, before, stroke, after, fill, end) => {
-        if (!fill) {
-          return `<${tag}${before}${stroke}${after} fill="none"${end}>`;
+  result = result.replace(elementPattern, (match, tagName, attributesString) => {
+    if (tagName.startsWith('svg') || tagName.startsWith('defs') || tagName.startsWith('clipPath') || tagName.startsWith('mask')) return match; // Skip svg, defs, clipPath, mask tags themselves
+
+    let newAttributesString = attributesString;
+    let originalFill = attributesString.match(/fill="([^"]*)"/)?.[1];
+    let originalStroke = attributesString.match(/stroke="([^"]*)"/)?.[1];
+    let hasOpacity = /opacity="([^"]*)"/.test(attributesString) || /fill-opacity="([^"]*)"/.test(attributesString) || /stroke-opacity="([^"]*)"/.test(attributesString);
+
+    const isPrimaryElement = !hasOpacity; // Simplified assumption: elements with opacity are secondary
+
+    switch (iconStyle) {
+      case 'stroke':
+        newAttributesString = newAttributesString.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
+        if (originalFill !== 'none') {
+            newAttributesString = newAttributesString.replace(/fill="([^"]*)"/g, ''); // Remove fill if not none
+            if (!/fill="/.test(newAttributesString)) newAttributesString += ' fill="none"'; // Add fill none if no fill exists
+        } else if (!/fill="/.test(newAttributesString)) {
+            newAttributesString += ' fill="none"'; // Ensure fill none if no fill present
         }
-        return match;
-      });
-    
-    // For any fill that's not already "none", set it to "none"
-    result = result.replace(/fill="(?!none)([^"]*)"/g, 'fill="none"');
-    
-  } else if (iconStyle === 'solid') {
-    // Fill-only icon: Apply currentColor to fill attributes unless explicitly "none"
-    result = result.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
-    
-    // Set strokes to none or remove them
-    result = result.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="none"');
-    
-  } else if (iconStyle === 'contrast') {
-    // Contrast icon (has both strokes and fills)
-    // The 'iconStyle' is forced based on original SVG analysis, so we trust it.
-    
-    // Set strokes to currentColor
-    result = result.replace(/stroke=\"(?!none)([^\"]*)\"/g, 'stroke="currentColor"');
-    
-    // Make all fills (including those inside potentially opaque groups) use currentColor too
-    result = result.replace(/fill=\"(?!none)([^\"]*)\"/g, 'fill="currentColor"');
-    
-  } else if (iconStyle === 'duo-stroke' || iconStyle === 'duo-solid') {
-    // Handle multi-color scenarios by applying currentColor to all attributes
-    // Extract all elements with visual attributes
-    const elementPattern = /<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)>/g;
-    const elements = [];
-    let match;
-    
-    while ((match = elementPattern.exec(result)) !== null) {
-      elements.push({
-        tag: match[1],
-        attrs: match[2],
-        full: match[0],
-        index: match.index
-      });
-    }
-    
-    // Apply currentColor to all elements
-    let lastIndex = 0;
-    let resultParts = [];
-    
-    for (let i = 0; i < elements.length; i++) {
-      const el = elements[i];
-      
-      resultParts.push(result.substring(lastIndex, el.index));
-      
-      let transformed = el.full;
-      
-      if (iconStyle === 'duo-stroke') {
-        transformed = transformed.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
-        // Ensure fill is none for duo-stroke icons
-        if (!transformed.includes('fill="')) {
-          transformed = transformed.replace('>', ' fill="none">');
+        break;
+      case 'solid':
+        newAttributesString = newAttributesString.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
+        if (originalStroke !== 'none') {
+            newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/g, '');
+            if (!/stroke="/.test(newAttributesString)) newAttributesString += ' stroke="none"';
+        } else if (!/stroke="/.test(newAttributesString)) {
+             newAttributesString += ' stroke="none"';
         }
-      } else { // duo-solid
-        transformed = transformed.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
-      }
-      
-      resultParts.push(transformed);
-      
-      lastIndex = el.index + el.full.length;
+        break;
+      case 'contrast':
+        if (originalFill && originalFill !== 'none') {
+          newAttributesString = newAttributesString.replace(/fill="([^"]*)"/, 'fill="currentColor"');
+        }
+        if (originalStroke && originalStroke !== 'none') {
+          newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/, 'stroke="currentColor"');
+        }
+        break;
+      case 'duo-stroke':
+        // Primary stroke: currentColor. Secondary stroke: original color (if different) + opacity.
+        // Fill: always none.
+        if (isPrimaryElement && originalStroke && originalStroke !== 'none') {
+          newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/, 'stroke="currentColor"');
+        }
+        // Ensure fill is none for all parts of a duo-stroke icon
+        newAttributesString = newAttributesString.replace(/fill="([^"]*)"/g, '');
+        if (!/fill="/.test(newAttributesString)) newAttributesString += ' fill="none"';
+        break;
+      case 'duo-solid':
+        // Primary fill: currentColor. Secondary fill: original color (if different) + opacity.
+        // Stroke: always none.
+        if (isPrimaryElement && originalFill && originalFill !== 'none') {
+          newAttributesString = newAttributesString.replace(/fill="([^"]*)"/, 'fill="currentColor"');
+        }
+        // Ensure stroke is none for all parts of a duo-solid icon
+        newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/g, '');
+        if (!/stroke="/.test(newAttributesString)) newAttributesString += ' stroke="none"';
+        break;
+      default:
+        // For any other unknown style, or if logic is incomplete, apply currentColor generally
+        if (originalFill && originalFill !== 'none') {
+          newAttributesString = newAttributesString.replace(/fill="([^"]*)"/, 'fill="currentColor"');
+        }
+        if (originalStroke && originalStroke !== 'none') {
+          newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/, 'stroke="currentColor"');
+        }
+        break;
     }
-    
-    resultParts.push(result.substring(lastIndex));
-    result = resultParts.join('');
-  }
-  
+    return `<${tagName}${newAttributesString}>`;
+  });
+
   return result;
 }
 
@@ -259,80 +247,109 @@ export function getSvgThemingProps(svgContent, format) {
  * @returns {Object} SVGO configuration
  */
 export function getOptimizedSvgoConfig(svgContent) {
-  // Analyze the SVG
   const analysis = analyzeSvgAttributes(svgContent);
-  
-  // Base configuration that preserves visual intent
+  let style = 'auto'; 
+  if (analysis.hasStroke && analysis.visibleFillCount > 0) {
+    style = 'contrast';
+  } else if (analysis.hasStroke && (analysis.visibleFillCount === 0)) {
+    style = 'stroke';
+  } else if (analysis.visibleFillCount > 0 && !analysis.hasStroke) {
+    style = 'solid';
+  } else if ((analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || 
+      analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity)) {
+    style = analysis.hasStroke ? 'duo-stroke' : 'duo-solid';
+  }
+
   const config = {
     multipass: false,
+    js2svg: { indent: 2, pretty: true },
     plugins: [
+      // Manually list plugins instead of using preset-default for fine-grained control
       {
-        name: 'preset-default',
-        params: {
-          floatPrecision: 5,
-          overrides: {
-            // Keep viewBox attribute
-            removeViewBox: false,
-            
-            // Preserve fill/stroke attributes based on analysis
-            removeUselessStrokeAndFill: false,
-            
-            // Convert colors to currentColor for theming, but less aggressively
-            convertColors: {
-              currentColor: true,
-              names2hex: true,
-              rgb2hex: true,
-              shorthex: false,
-              shortname: false
-            },
-            
-            // Preserve path details
-            mergePaths: false,
-            
-            // Don't collapse groups that might be important for visual structure
-            collapseGroups: false,
-            
-            // Don't remove elements that might be needed
-            removeHiddenElems: false,
-            
-            // Be conservative with styles
-            inlineStyles: false,
-            
-            // Disable removeUnknownsAndDefaults to be less harsh
-            removeUnknownsAndDefaults: false,
-          }
-        }
+        name: 'removeDoctype',
+        active: true,
       },
-      // Add accessibility attributes
+      {
+        name: 'removeXMLProcInst',
+        active: true,
+      },
+      {
+        name: 'removeComments',
+        active: true,
+      },
+      {
+        name: 'removeMetadata',
+        active: true,
+      },
+      {
+        name: 'removeEditorsNSData',
+        active: true,
+      },
+      {
+        name: 'removeViewBox',
+        active: false, // Explicitly keep viewBox
+      },
+      {
+        name: 'removeDimensions', // Remove width and height for scalability
+        active: true,
+      },
       {
         name: 'addAttributesToSVGElement',
         params: {
           attributes: [
             { role: 'img' },
-            { 'aria-hidden': 'true' }
-          ]
-        }
+            { 'aria-hidden': 'true' },
+          ],
+        },
+        active: true,
       },
-      // Remove width and height attributes to make SVG scalable
-      {
-        name: 'removeAttrs',
-        params: {
-          attrs: ['width', 'height']
-        }
-      }
+      // Plugins to explicitly keep disabled to preserve structure:
+      { name: 'cleanupAttrs', active: false },
+      { name: 'mergeStyles', active: false },
+      { name: 'inlineStyles', active: false },
+      { name: 'cleanupEnableBackground', active: false },
+      { name: 'convertStyleToAttrs', active: false },
+      { name: 'convertColors', active: false }, 
+      { name: 'convertPathData', active: false },
+      { name: 'convertTransform', active: false },
+      { name: 'removeUnknownsAndDefaults', active: false },
+      { name: 'removeNonInheritableGroupAttrs', active: false },
+      { name: 'removeUselessDefs', active: false },
+      { name: 'removeUselessStrokeAndFill', active: false }, // Keep this disabled to preserve opacity sources
+      { name: 'removeHiddenElems', active: false },
+      { name: 'cleanupNumericValues', active: false },
+      { name: 'cleanupListOfValues', active: false },
+      { name: 'moveElemsAttrsToGroup', active: false },
+      { name: 'moveGroupAttrsToElems', active: false },
+      { name: 'collapseGroups', active: false }, // CRITICAL: Keep false
+      { name: 'mergePaths', active: false },
+      { name: 'sortDefsChildren', active: false },
+      { name: 'sortAttrs', active: true }, // Keep attributes sorted
+      { name: 'prefixIds', active: false } // Disable for now unless explicitly needed by style
     ]
   };
-  
-  // Additional configuration based on analysis
-  if (analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors) {
-    // For multi-color icons, prefix IDs to avoid conflicts
-    config.plugins.push({
-      name: 'prefixIds',
-      params: {
-        prefix: 'icon-',
-        delim: '-'
-      }
-    });
+
+  // Conditionally enable prefixIds only when needed to simplify debugging
+  if (style === 'duo-stroke' || style === 'duo-solid' || analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors) {
+    const prefixIdsPlugin = config.plugins.find(p => p.name === 'prefixIds');
+    if (prefixIdsPlugin) {
+      prefixIdsPlugin.active = true;
+      prefixIdsPlugin.params = {
+        prefix: () => `icon-${Math.random().toString(36).substr(2, 9)}`,
+        delim: '-',
+        overrideIds: true,
+      };
+    } else { // Should not happen if it's in the list above with active:false
+        config.plugins.push({
+            name: 'prefixIds',
+            active: true,
+            params: {
+                prefix: () => `icon-${Math.random().toString(36).substr(2, 9)}`,
+                delim: '-',
+                overrideIds: true,
+            }
+        });
+    }
   }
   
   return config;

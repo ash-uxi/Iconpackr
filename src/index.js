@@ -6,6 +6,8 @@ import ora from 'ora';
 import { optimizeSvg } from './utils/svgo.js';
 import { generateComponent } from './utils/generate-component.js';
 import { detectIconStyle } from './utils/style-handler.js';
+import { processSvgForTheming } from './utils/svg-attribute-handler.js';
+import { toPascalCase } from './utils/text-utils.js';
 
 /**
  * Process SVG icons and generate framework components
@@ -17,6 +19,8 @@ import { detectIconStyle } from './utils/style-handler.js';
  * @param {boolean} options.dryRun - Whether to perform a dry run
  * @param {boolean} options.verbose - Whether to output verbose logs
  * @param {boolean} options.autoDetectStyle - Whether to auto-detect icon styles
+ * @param {boolean} options.includeProcessedSvgs - Whether to include processed SVGs in output
+ * @param {string} options.processedSvgsDir - Directory containing processed SVGs
  * @returns {Promise<void>}
  */
 export async function processIcons(options) {
@@ -27,7 +31,9 @@ export async function processIcons(options) {
     optimize, 
     dryRun, 
     verbose, 
-    autoDetectStyle = false 
+    autoDetectStyle = false,
+    includeProcessedSvgs = false,
+    processedSvgsDir = null
   } = options;
   
   // Validate input directory exists
@@ -125,10 +131,7 @@ export async function processIcons(options) {
       }
       
       // Convert to PascalCase component name
-      componentName = iconName
-        .split(/[-_\s]+/)
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-        .join('');
+      componentName = toPascalCase(iconName);
       
       // Read SVG content for potential style detection
       let svgContent = await fs.readFile(svgFile, 'utf8');
@@ -149,7 +152,11 @@ export async function processIcons(options) {
       }
       
       // Create prefixed component filename with style suffix
-      const styleSuffix = style.charAt(0).toUpperCase() + style.slice(1);
+      let styleSuffix = style.charAt(0).toUpperCase() + style.slice(1);
+      // Replace hyphens with PascalCase (duo-stroke -> DuoStroke)
+      styleSuffix = styleSuffix.split('-').map(part => 
+        part.charAt(0).toUpperCase() + part.slice(1)
+      ).join('');
       prefixedComponentName = `Pi${componentName}${styleSuffix}`;
       
       if (verbose) {
@@ -163,6 +170,13 @@ export async function processIcons(options) {
         } catch (error) {
           console.error(chalk.red(`SVGO optimization error: ${error.message}`));
         }
+      }
+      
+      // Apply theming based on style
+      if (style && style !== 'auto') {
+        svgContent = processSvgForTheming(svgContent, style);
+      } else if (autoDetectStyle) {
+        svgContent = processSvgForTheming(svgContent, style);
       }
       
       // Generate and write components for each format
@@ -199,6 +213,23 @@ export async function processIcons(options) {
       if (verbose) {
         console.error(chalk.red(`Error processing ${svgFile}: ${error.message}`));
       }
+    }
+  }
+
+  // Copy processed SVGs to output if requested
+  if (includeProcessedSvgs && processedSvgsDir && fs.existsSync(processedSvgsDir)) {
+    if (!dryRun) {
+      const svgsOutputDir = path.join(outputDir, 'svgs');
+      console.log(chalk.cyan(`📁 Copying processed SVGs to: ${svgsOutputDir}`));
+      
+      try {
+        await fs.copy(processedSvgsDir, svgsOutputDir);
+        console.log(chalk.green(`✅ Processed SVGs copied successfully`));
+      } catch (error) {
+        console.error(chalk.red(`Error copying processed SVGs: ${error.message}`));
+      }
+    } else {
+      console.log(chalk.yellow(`Would copy processed SVGs from ${processedSvgsDir} to ${path.join(outputDir, 'svgs')}`));
     }
   }
   

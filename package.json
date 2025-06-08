@@ -1,25 +1,33 @@
 {
   "name": "iconpackr",
-  "version": "0.1.0",
-  "description": "Transform SVG icon collections into optimized component libraries for multiple frameworks",
+  "version": "1.0.0",
+  "description": "Personal SVG to component converter",
   "type": "module",
+  "private": true,
   "main": "src/index.js",
   "bin": {
     "iconpackr": "./bin/iconpackr.js"
   },
   "scripts": {
     "start": "node bin/iconpackr.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node simple-test.js",
+    "dev": "node bin/iconpackr.js --help",
+    "clean": "rm -rf dist processed-svgs",
+    "process": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --verbose",
+    "process-dry": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --dry-run",
+    "process-react": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --formats react-jsx,react-tsx",
+    "process-vue": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --formats vue"
   },
   "keywords": [
     "svg",
-    "icon",
+    "icons",
     "react",
     "vue",
     "react-native",
-    "component"
+    "svelte",
+    "personal"
   ],
-  "author": "",
+  "author": "Ash Kashyap",
   "license": "MIT",
   "dependencies": {
     "chalk": "^5.3.0",
@@ -36,6 +44,6 @@
     "prettier": "^3.0.0"
   },
   "engines": {
-    "node": ">=14.16"
+    "node": ">=16.0.0"
   }
 } 

@@ -1,0 +1,54 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piusereditsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piusereditsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "user edit icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M21.3326 11.2676C20.5814 10.788 19.5978 10.8952 18.9676 11.5254L12.9473 17.5456C12.7466 17.7457 12.5445 17.9472 12.392 18.1906C12.2586 18.4036 12.1581 18.6355 12.0938 18.8785C12.0203 19.1561 12.0113 19.4414 12.0024 19.7246C11.993 20.0192 11.9954 20.3149 11.9977 20.61C11.9987 20.7413 11.9998 20.8728 11.9998 21.0039C11.9998 21.5562 12.4475 22.0039 12.9998 22.0039L14.2428 22.0035C14.5367 22.002 14.8327 22.0005 15.1215 21.9298C15.3742 21.8679 15.6157 21.767 15.8373 21.6306C16.0905 21.4747 16.2995 21.2651 16.507 21.057L22.4736 15.0904C23.1231 14.4409 23.2283 13.425 22.7256 12.6562L22.7061 12.6263C22.3497 12.0813 21.8815 11.6181 21.3326 11.2676Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M7 7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7C17 9.76142 14.7614 12 12 12C9.23858 12 7 9.76142 7 7Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M8 14H13.6647L11.5803 16.0844C11.2554 16.4063 10.9413 16.7394 10.6974 17.1288C10.4572 17.5122 10.2762 17.9296 10.1605 18.3669C10.0239 18.8836 10.0102 19.4044 10.0036 19.6567L10.0027 19.6855C10.0014 19.7317 10 19.7778 10 19.8239V21.0039C10 21.3531 10.0597 21.6883 10.1693 22H6C4.34315 22 3 20.6569 3 19C3 16.2386 5.23858 14 8 14Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Piusereditsolid;

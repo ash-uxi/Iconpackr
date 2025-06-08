@@ -1,0 +1,51 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pipeoplefemalestroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pipeoplefemalestroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "people female icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M14.5 4.53467C14.5 5.91538 13.3807 7.03467 12 7.03467C10.6193 7.03467 9.5 5.91538 9.5 4.53467C9.5 3.15396 10.6193 2.03467 12 2.03467C13.3807 2.03467 14.5 3.15396 14.5 4.53467Z"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M8.34971 12.9263C8.72967 11.2165 10.2462 10 11.9976 10C13.7513 10 15.269 11.2194 15.6468 12.9318L16.9856 19H14.8852L14.1289 20.638C13.7455 21.4683 12.9144 21.9999 11.9999 21.9998C11.0855 21.9997 10.2546 21.4681 9.87133 20.6379L9.11517 19L7 18.9999L8.34971 12.9263Z"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pipeoplefemalestroke;

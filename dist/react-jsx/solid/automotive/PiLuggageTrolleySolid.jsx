@@ -1,0 +1,36 @@
+import React from 'react';
+
+/**
+ * PiLuggageTrolleySolid icon from the solid style in automotive category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiLuggageTrolleySolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'luggage-trolley icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M14 4.5V8.5C14 9.05228 14.4477 9.5 15 9.5C15.5523 9.5 16 9.05228 16 8.5V4.5H17.8385C18.3657 4.49998 18.8205 4.49997 19.195 4.53057C19.5904 4.56287 19.9836 4.63419 20.362 4.82698C20.9265 5.1146 21.3854 5.57354 21.673 6.13803C21.8658 6.51641 21.9371 6.90963 21.9694 7.30497C22 7.67953 22 8.13427 22 8.66138V12.3386C22 12.8657 22 13.3205 21.9694 13.695C21.9371 14.0904 21.8658 14.4836 21.673 14.862C21.3854 15.4265 20.9265 15.8854 20.362 16.173C19.9836 16.3658 19.5904 16.4371 19.195 16.4694C18.8205 16.5 18.3657 16.5 17.8386 16.5H12.1615C11.6343 16.5 11.1795 16.5 10.805 16.4694C10.4096 16.4371 10.0164 16.3658 9.63803 16.173C9.07354 15.8854 8.6146 15.4265 8.32698 14.862C8.13419 14.4836 8.06287 14.0904 8.03057 13.695C7.99997 13.3205 7.99998 12.8657 8 12.3386V8.66146C7.99998 8.13433 7.99997 7.67954 8.03057 7.30497C8.06287 6.90963 8.13419 6.51641 8.32698 6.13803C8.6146 5.57354 9.07354 5.1146 9.63803 4.82698C10.0164 4.63419 10.4096 4.56287 10.805 4.53057C11.1795 4.49997 11.6343 4.49998 12.1614 4.5H14Z" fill="currentColor" stroke="none"/>
+  <path d="M3 2C2.44772 2 2 2.44772 2 3C2 3.55228 2.44772 4 3 4C3.55228 4 4 4.44772 4 5V15.126C2.27477 15.5701 1 17.1362 1 19C1 21.2091 2.79086 23 5 23C6.86384 23 8.42994 21.7252 8.87398 20H21C21.5523 20 22 19.5523 22 19C22 18.4477 21.5523 18 21 18H8.87398C8.5122 16.5944 7.40561 15.4878 6 15.126V5C6 3.34315 4.65685 2 3 2ZM3 19C3 17.8954 3.89543 17 5 17C6.10457 17 7 17.8954 7 19C7 20.1046 6.10457 21 5 21C3.89543 21 3 20.1046 3 19Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

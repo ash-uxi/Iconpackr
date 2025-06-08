@@ -1,0 +1,44 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pifloorlampoffsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pifloorlampoffsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "floor lamp off icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M9.82858 2C8.54672 2 7.40648 2.81446 6.99074 4.02703L5.05406 9.67568C4.94932 9.98117 4.99856 10.3184 5.18627 10.5812C5.37398 10.844 5.67706 11 6.00001 11H11V20H9.00001C8.44772 20 8.00001 20.4477 8.00001 21C8.00001 21.5523 8.44772 22 9.00001 22H15C15.5523 22 16 21.5523 16 21C16 20.4477 15.5523 20 15 20H13V11H18C18.323 11 18.626 10.844 18.8137 10.5812C19.0015 10.3184 19.0507 9.98117 18.946 9.67568L17.0093 4.02703C16.5935 2.81446 15.4533 2 14.1714 2H9.82858Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pifloorlampoffsolid;

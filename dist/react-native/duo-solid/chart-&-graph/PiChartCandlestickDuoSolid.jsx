@@ -1,0 +1,50 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pichartcandlestickduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pichartcandlestickduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "chart candlestick icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M12 2C12.5523 2 13 2.44772 13 3V5.05001C14.1411 5.28164 15 6.29052 15 7.5V16.5C15 17.7095 14.1411 18.7184 13 18.95V21C13 21.5523 12.5523 22 12 22C11.4477 22 11 21.5523 11 21V18.95C9.85888 18.7184 9 17.7095 9 16.5V7.5C9 6.29052 9.85888 5.28164 11 5.05001V3C11 2.44772 11.4477 2 12 2Z"
+      fill={color || "#000"}
+    />{" "}
+    <path
+      d="M19 3C19.5523 3 20 3.44772 20 4V6.05001C21.1411 6.28164 22 7.29052 22 8.5V12.5C22 13.7095 21.1411 14.7184 20 14.95V17C20 17.5523 19.5523 18 19 18C18.4477 18 18 17.5523 18 17V14.95C16.8589 14.7184 16 13.7095 16 12.5V8.5C16 7.29052 16.8589 6.28164 18 6.05001V4C18 3.44772 18.4477 3 19 3ZM5 6C5.55228 6 6 6.44772 6 7V9.05001C7.14112 9.28164 8 10.2905 8 11.5V15.5C8 16.7095 7.14112 17.7184 6 17.95V20C6 20.5523 5.55228 21 5 21C4.44772 21 4 20.5523 4 20V17.95C2.85888 17.7184 2 16.7095 2 15.5V11.5C2 10.2905 2.85888 9.28164 4 9.05001V7C4 6.44772 4.44772 6 5 6Z"
+      fill={color || "#000"}
+      opacity={0.28}
+      fillRule="evenodd"
+      clipRule="evenodd"
+    />
+  </Svg>
+);
+
+export default Pichartcandlestickduosolid;

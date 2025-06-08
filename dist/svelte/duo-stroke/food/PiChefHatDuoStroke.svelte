@@ -1,0 +1,25 @@
+<script>
+  /**
+   * PiChefHatDuoStroke icon from the duo-stroke style in food category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'chef-hat icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M10 17H14M10 17V14M10 17H7M14 17V12M14 17H17" stroke={color || "currentColor"} stroke-width="2" fill="none"/>
+  <path d="M15.8845 6.04177C15.4551 4.29539 13.8788 3 12 3C10.1212 3 8.54485 4.29539 8.11551 6.04177C7.91427 6.01424 7.7088 6.00002 7.5 6.00002C5.01472 6.00002 3 8.01474 3 10.5C3 12.8163 4.75002 14.7238 7 14.9726V18.6C7 19.4401 7 19.8601 7.16349 20.181C7.3073 20.4633 7.53677 20.6927 7.81901 20.8365C8.13988 21 8.55992 21 9.4 21H14.6C15.4401 21 15.8601 21 16.181 20.8365C16.4632 20.6927 16.6927 20.4633 16.8365 20.181C17 19.8601 17 19.4401 17 18.6V14.9726C19.25 14.7238 21 12.8163 21 10.5C21 8.01474 18.9853 6.00002 16.5 6.00002C16.2912 6.00002 16.0857 6.01424 15.8845 6.04177Z" stroke={color || "currentColor"} stroke-width="2" opacity="0.28" fill="none"/>
+</svg>

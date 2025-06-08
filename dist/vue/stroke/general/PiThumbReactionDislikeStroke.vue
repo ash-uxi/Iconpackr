@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M16 11.0638V12.5C16 13.8807 17.1193 15 18.5 15C19.8807 15 21 13.8807 21 12.5V6.5C21 5.11929 19.8807 4 18.5 4C17.1193 4 16 5.11929 16 6.5V8.26803M16 11.0638C15.9981 11.8772 15.9848 12.3486 15.9004 12.8057C15.812 13.2848 15.6657 13.7513 15.4645 14.1949C15.2378 14.6948 14.9181 15.154 14.2787 16.0725L11.2669 20.3986C11.1903 20.5085 11.1521 20.5634 11.1167 20.6041C10.764 21.0097 10.1537 21.0639 9.73502 20.7268C9.69309 20.6931 9.64573 20.6457 9.55102 20.551C9.38747 20.3874 9.30569 20.3057 9.23586 20.2251C8.55824 19.4437 8.33094 18.3683 8.63439 17.3796C8.66566 17.2777 8.70737 17.1698 8.79074 16.954L8.83852 16.8304C8.97239 16.484 9.03932 16.3108 9.06475 16.1739C9.21585 15.3603 8.67951 14.578 7.86615 14.4256C7.72925 14.4 7.54357 14.4 7.17222 14.4H4.7857C3.82553 14.4 3.34542 14.4 3.00125 14.2049C2.69915 14.0336 2.46584 13.7628 2.34113 13.4387C2.19905 13.0694 2.27007 12.5946 2.4121 11.645L2.94384 8.08995C3.16087 6.63894 3.26938 5.91343 3.62294 5.36807C3.93452 4.88744 4.3772 4.50605 4.89864 4.26899C5.4903 4 6.22388 4 7.69103 4H11.2C12.8802 4 13.7203 4 14.362 4.32698C14.9265 4.6146 15.3854 5.07354 15.673 5.63803C15.9635 6.20815 15.9964 6.93482 16 8.26803M16 11.0638V8.26803" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiThumbReactionDislikeStroke icon from the stroke style in general category.
+ */
+export default {
+  name: 'PiThumbReactionDislikeStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'thumb-reaction-dislike icon'
+    }
+  }
+}
+</script>

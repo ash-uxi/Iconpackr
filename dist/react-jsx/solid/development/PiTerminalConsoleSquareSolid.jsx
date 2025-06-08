@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiTerminalConsoleSquareSolid icon from the solid style in development category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiTerminalConsoleSquareSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'terminal-console-square icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M13.0438 2H10.9562C9.59321 1.99999 8.50917 1.99999 7.63458 2.07144C6.73898 2.14462 5.97531 2.29768 5.27606 2.65396C4.14709 3.2292 3.2292 4.14709 2.65396 5.27607C2.29768 5.97531 2.14462 6.73898 2.07144 7.63458C1.99999 8.50917 1.99999 9.59319 2 10.9562V13.0438C1.99999 14.4068 1.99999 15.4909 2.07144 16.3654C2.14462 17.2611 2.29768 18.0247 2.65396 18.724C3.22918 19.8529 4.14713 20.7709 5.27611 21.346C5.97534 21.7023 6.739 21.8554 7.63458 21.9286C8.50914 22 9.59314 22 10.9561 22H13.0438C14.4068 22 15.4909 22 16.3654 21.9286C17.2611 21.8554 18.0247 21.7023 18.724 21.346C19.853 20.7708 20.7708 19.853 21.346 18.724C21.7023 18.0247 21.8554 17.2611 21.9286 16.3654C22 15.4909 22 14.4069 22 13.0439V10.9562C22 9.59323 22 8.50914 21.9286 7.63458C21.8554 6.739 21.7023 5.97527 21.346 5.27604C20.7708 4.14706 19.8529 3.22918 18.724 2.65396C18.0247 2.29768 17.2611 2.14462 16.3654 2.07144C15.4909 1.99999 14.4068 1.99999 13.0438 2ZM7.70711 7.29289C7.31658 6.90237 6.68342 6.90237 6.29289 7.29289C5.90237 7.68342 5.90237 8.31658 6.29289 8.70711L7.58579 10L6.29289 11.2929C5.90237 11.6834 5.90237 12.3166 6.29289 12.7071C6.68342 13.0976 7.31658 13.0976 7.70711 12.7071L9.70711 10.7071C10.0976 10.3166 10.0976 9.68342 9.70711 9.29289L7.70711 7.29289ZM12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13H15C15.5523 13 16 12.5523 16 12C16 11.4477 15.5523 11 15 11H12Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

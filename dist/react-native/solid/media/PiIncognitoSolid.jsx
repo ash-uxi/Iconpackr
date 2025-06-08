@@ -1,0 +1,49 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piincognitosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piincognitosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "incognito icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M17.8538 4.35068L20.2423 8.82913C20.9176 8.96695 21.5868 9.12137 22.2495 9.29195C22.7844 9.42961 23.1063 9.97479 22.9687 10.5096C22.831 11.0445 22.2858 11.3665 21.751 11.2288C20.9746 11.029 20.1889 10.8525 19.3946 10.7001C14.5255 9.76574 9.47501 9.76574 4.60587 10.7001C3.81156 10.8525 3.02584 11.029 2.2495 11.2288C1.71465 11.3665 1.16947 11.0445 1.0318 10.5096C0.894143 9.97479 1.21613 9.42961 1.75098 9.29195C2.41372 9.12137 3.08293 8.96695 3.75815 8.82913L6.14666 4.35068C6.9266 2.88828 8.52762 2.05835 10.1722 2.26392C11.4888 2.4285 12.5116 2.4285 13.8283 2.26392C15.4729 2.05835 17.0739 2.88828 17.8538 4.35068Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M6.00024 12.0002C3.23882 12.0002 1.00024 14.2388 1.00024 17.0002C1.00024 19.7616 3.23882 22.0002 6.00024 22.0002C8.4192 22.0002 10.437 20.2825 10.9002 18.0002H13.1003C13.5635 20.2825 15.5813 22.0002 18.0002 22.0002C20.7617 22.0002 23.0002 19.7616 23.0002 17.0002C23.0002 14.2388 20.7617 12.0002 18.0002 12.0002C15.5813 12.0002 13.5635 13.718 13.1003 16.0002H10.9002C10.437 13.718 8.4192 12.0002 6.00024 12.0002Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Piincognitosolid;

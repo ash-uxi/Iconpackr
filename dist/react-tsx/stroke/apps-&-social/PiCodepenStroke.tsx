@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiCodepenStroke icon from the stroke style in apps-&-social category.
+ */
+interface PiCodepenStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiCodepenStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'codepen icon',
+  ...props
+}: PiCodepenStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12 21.422V14.8381M12 2.57818V9.16203M21.6589 15.2613L13.7204 9.70434C12.6874 8.98126 11.3126 8.98126 10.2796 9.70434L2.34108 15.2613M21.6589 15.2613C21.8797 14.8389 22 14.3635 22 13.872V10.1281C22 9.63662 21.8797 9.16127 21.6589 8.73882M21.6589 15.2613C21.4236 15.7116 21.0742 16.1018 20.635 16.3873L13.635 20.9373C12.6408 21.5836 11.3592 21.5836 10.365 20.9373L3.36504 16.3873C2.92575 16.1018 2.57638 15.7116 2.34108 15.2613M21.6589 8.73882L13.7204 14.2958C12.6874 15.0189 11.3126 15.0189 10.2796 14.2958L2.34108 8.73882M21.6589 8.73882C21.4236 8.28851 21.0742 7.89833 20.635 7.61279L13.635 3.06279C12.6408 2.41657 11.3592 2.41657 10.365 3.06279L3.36504 7.61279C2.92575 7.89833 2.57638 8.28851 2.34108 8.73882M2.34108 8.73882C2.12034 9.16127 2 9.63662 2 10.1281V13.872C2 14.3635 2.12034 14.8389 2.34108 15.2613" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M8.03089 3.91602C6.57669 4.97466 5.2706 6.21138 4.14485 7.59488C4.04828 7.71356 4 7.85646 4 7.99935M8.03089 12.0827C6.57669 11.024 5.2706 9.78732 4.14485 8.40382C4.04828 8.28513 4 8.14224 4 7.99935M4 7.99935H15C17.7614 7.99935 20 10.2379 20 12.9993C20 15.7608 17.7614 17.9993 15 17.9993H12" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiUturnLeftStroke icon from the stroke style in arrows-&-chevrons category.
+ */
+export default {
+  name: 'PiUturnLeftStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'uturn-left icon'
+    }
+  }
+}
+</script>

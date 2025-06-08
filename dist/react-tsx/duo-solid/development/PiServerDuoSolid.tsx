@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiServerDuoSolid icon from the duo-solid style in development category.
+ */
+interface PiServerDuoSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiServerDuoSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'server icon',
+  ...props
+}: PiServerDuoSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <g opacity="0.28"><path d="M5.4 3C3.52223 3 2 4.52223 2 6.4V7.6C2 9.47777 3.52223 11 5.4 11H18.6C20.4778 11 22 9.47777 22 7.6V6.4C22 4.52223 20.4778 3 18.6 3H5.4Z" fill={color || "currentColor"} /><path d="M5.4 13C3.52223 13 2 14.5222 2 16.4V17.6C2 19.4778 3.52223 21 5.4 21H18.6C20.4778 21 22 19.4778 22 17.6V16.4C22 14.5222 20.4778 13 18.6 13H5.4Z" fill={color || "currentColor"} /></g> <path d="M13 17C13 16.4477 13.4477 16 14 16C14.5523 16 15 16.4477 15 17C15 17.5523 14.5523 18 14 18C13.4477 18 13 17.5523 13 17Z" fill={color || "currentColor"} /> <path d="M13 7C13 6.44772 13.4477 6 14 6C14.5523 6 15 6.44772 15 7C15 7.55228 14.5523 8 14 8C13.4477 8 13 7.55228 13 7Z" fill={color || "currentColor"} /> <path d="M17 17C17 16.4477 17.4477 16 18 16C18.5523 16 19 16.4477 19 17C19 17.5523 18.5523 18 18 18C17.4477 18 17 17.5523 17 17Z" fill={color || "currentColor"} /> <path d="M17 7C17 6.44772 17.4477 6 18 6C18.5523 6 19 6.44772 19 7C19 7.55228 18.5523 8 18 8C17.4477 8 17 7.55228 17 7Z" fill={color || "currentColor"} />
+    </svg>
+  );
+}

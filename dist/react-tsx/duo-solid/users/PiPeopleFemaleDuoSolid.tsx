@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiPeopleFemaleDuoSolid icon from the duo-solid style in users category.
+ */
+interface PiPeopleFemaleDuoSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiPeopleFemaleDuoSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'people-female icon',
+  ...props
+}: PiPeopleFemaleDuoSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M11.9978 9C10.92 9.00008 9.87441 9.36772 9.03372 10.0422C8.19303 10.7168 7.60751 11.6578 7.37383 12.71L6.02383 18.783C5.99134 18.9292 5.99208 19.0808 6.02602 19.2266C6.05995 19.3725 6.1262 19.5088 6.21988 19.6256C6.31356 19.7424 6.43228 19.8367 6.56728 19.9015C6.70227 19.9663 6.85009 20 6.99983 20H8.47483L8.96283 21.057C9.23062 21.6371 9.65895 22.1283 10.1972 22.4727C10.7354 22.817 11.3609 23 11.9998 23C12.6387 23 13.2643 22.817 13.8025 22.4727C14.3407 22.1283 14.769 21.6371 15.0368 21.057L15.5248 20H16.9848C17.1344 20.0001 17.2822 19.9665 17.4171 19.9019C17.552 19.8373 17.6708 19.7432 17.7645 19.6266C17.8583 19.5101 17.9247 19.3739 17.9588 19.2282C17.993 19.0826 17.994 18.9311 17.9618 18.785L16.6228 12.716C16.3903 11.6625 15.8051 10.72 14.9641 10.0443C14.1231 9.36855 13.0767 9.00015 11.9978 9Z" fill={color || "currentColor"} fillRule="evenodd" clipRule="evenodd" /> <path d="M12 1.03418C11.5404 1.03418 11.0852 1.12471 10.6606 1.3006C10.236 1.47649 9.85013 1.7343 9.52513 2.05931C9.20012 2.38431 8.94231 2.77015 8.76642 3.19479C8.59053 3.61943 8.5 4.07455 8.5 4.53418C8.5 4.99381 8.59053 5.44893 8.76642 5.87357C8.94231 6.29821 9.20012 6.68405 9.52513 7.00905C9.85013 7.33406 10.236 7.59187 10.6606 7.76776C11.0852 7.94365 11.5404 8.03418 12 8.03418C12.9283 8.03418 13.8185 7.66543 14.4749 7.00905C15.1313 6.35268 15.5 5.46244 15.5 4.53418C15.5 3.60592 15.1313 2.71568 14.4749 2.05931C13.8185 1.40293 12.9283 1.03418 12 1.03418Z" fill={color || "currentColor"} opacity="0.28" fillRule="evenodd" clipRule="evenodd" />
+    </svg>
+  );
+}

@@ -30,7 +30,7 @@ export function cli(args) {
   program
     .argument('<input>', 'Input directory containing SVG icons')
     .argument('[output]', 'Output directory for generated components', './dist')
-    .option('-f, --formats <formats>', 'Comma-separated list of output formats (react-jsx,react-tsx,vue,react-native)', 'react-jsx,react-tsx,vue,react-native')
+    .option('-f, --formats <formats>', 'Comma-separated list of output formats (react-jsx,react-tsx,vue,react-native,svelte)', 'react-jsx,react-tsx,vue,react-native,svelte')
     .option('--no-optimize', 'Skip SVG optimization')
     .option('-d, --dry-run', 'Preview without writing files', false)
     .option('-v, --verbose', 'Enable verbose output', false)

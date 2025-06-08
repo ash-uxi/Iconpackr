@@ -1,0 +1,45 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piscissorsleftcutstroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piscissorsleftcutstroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "scissors left cut icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M5.29167 19.2635L12.6802 11.875M12.6802 11.875L5.29167 4.48647M12.6802 11.875L15.719 14.9138M12.6802 11.875L15.719 8.8362M15.719 14.9138C16.3129 14.3199 17.1183 13.9863 17.9582 13.9863C18.7981 13.9863 19.6036 14.3199 20.1975 14.9138C20.7914 15.5077 21.125 16.3132 21.125 17.153C21.125 17.9929 20.7914 18.7984 20.1975 19.3923C19.6036 19.9862 18.7981 20.3198 17.9582 20.3198C17.1183 20.3198 16.3129 19.9862 15.719 19.3923C15.1251 18.7984 14.7914 17.9929 14.7914 17.153C14.7914 16.3132 15.1251 15.5077 15.719 14.9138ZM15.719 8.8362C15.1251 8.24232 14.7914 7.43683 14.7914 6.59695C14.7914 5.75707 15.1251 4.95159 15.719 4.3577C16.3129 3.76382 17.1183 3.43018 17.9582 3.43018C18.7981 3.43018 19.6036 3.76382 20.1975 4.3577C20.7914 4.95159 21.125 5.75707 21.125 6.59695C21.125 7.43683 20.7914 8.24232 20.1975 8.8362C19.6036 9.43009 18.7981 9.76373 17.9582 9.76373C17.1183 9.76373 16.3129 9.43009 15.719 8.8362ZM6.875 11.875H7.875M2.875 11.875H3.875"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Piscissorsleftcutstroke;

@@ -1,0 +1,25 @@
+<script>
+  /**
+   * PiTwitterDuoStroke icon from the duo-stroke style in apps-&-social category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'twitter icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M20.9608 5.25489C21.1399 4.84457 20.6691 4.49899 20.2745 4.71049C19.6557 5.04213 19.0045 5.31177 18.3302 5.5148C15.6161 2.12518 10.94 4.97882 11.631 8.63441C11.6534 8.75303 11.5652 8.86786 11.4445 8.86559C8.90196 8.81779 7.10701 7.99065 5.37498 6.04184C5.12908 5.76516 4.69391 5.7782 4.50788 6.09821C3.36354 8.06663 0.538612 14.1724 7.80588 16.6205C6.38468 17.5852 4.53053 18.4045 3.58068 18.7963C3.34575 18.8932 3.33572 19.2266 3.56743 19.3309C13.0505 23.6026 22.2799 17.3808 19.3574 7.58866C20.0384 6.91712 20.5813 6.12419 20.9608 5.25489Z" stroke={color || "currentColor"} stroke-width="2" opacity="0.28" fill="none"/>
+  <path d="M7.80588 16.6205C0.538612 14.1724 3.36354 8.06663 4.50788 6.09821C4.69391 5.7782 5.12908 5.76516 5.37498 6.04184C7.10701 7.99065 8.90196 8.81779 11.4445 8.86559C11.5652 8.86786 11.6534 8.75303 11.631 8.63441C10.94 4.97882 15.6161 2.12518 18.3302 5.5148C19.0045 5.31177 19.6557 5.04213 20.2745 4.71049C20.6691 4.49899 21.1399 4.84457 20.9608 5.25489C20.5814 6.12419 20.0384 6.91712 19.3574 7.58866" stroke={color || "currentColor"} stroke-width="2" fill="none"/>
+</svg>

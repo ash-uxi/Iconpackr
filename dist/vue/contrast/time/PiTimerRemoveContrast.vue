@@ -1,0 +1,44 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path fill="currentColor" d="M20 14a8 8 0 1 1-16 0 8 8 0 0 1 16 0" opacity=".28"/>
+  <path d="M9 14h6M12 2v4m0 0a8 8 0 1 0 0 16 8 8 0 0 0 0-16m-2-4h4m5.366 3.322 1.06 1.06"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiTimerRemoveContrast icon from the contrast style in time category.
+ */
+export default {
+  name: 'PiTimerRemoveContrast',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'timer-remove icon'
+    }
+  }
+}
+</script>

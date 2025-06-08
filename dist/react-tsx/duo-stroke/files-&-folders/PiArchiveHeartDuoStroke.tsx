@@ -1,0 +1,39 @@
+import React from 'react';
+
+/**
+ * PiArchiveHeartDuoStroke icon from the duo-stroke style in files-&-folders category.
+ */
+interface PiArchiveHeartDuoStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiArchiveHeartDuoStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'archive-heart icon',
+  ...props
+}: PiArchiveHeartDuoStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12 17.5628C12.35 17.5628 15.5 15.8608 15.5 13.4788C15.5 12.2888 14.45 11.4528 13.4 11.4378C12.875 11.4298 12.35 11.6078 12 12.1178C11.65 11.6078 11.116 11.4378 10.6 11.4378C9.55 11.4378 8.5 12.2878 8.5 13.4788C8.5 15.8608 11.65 17.5628 12 17.5628Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M2 5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H20C20.5304 3 21.0391 3.21071 21.4142 3.58579C21.7893 3.96086 22 4.46957 22 5V6C22 6.53043 21.7893 7.03914 21.4142 7.41421C21.0391 7.78929 20.5304 8 20 8H4C3.46957 8 2.96086 7.78929 2.58579 7.41421C2.21071 7.03914 2 6.53043 2 6V5Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M4 8H20V17C20 18.0609 19.5786 19.0783 18.8284 19.8284C18.0783 20.5786 17.0609 21 16 21H8C6.93913 21 5.92172 20.5786 5.17157 19.8284C4.42143 19.0783 4 18.0609 4 17V8Z" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+    </svg>
+  );
+}

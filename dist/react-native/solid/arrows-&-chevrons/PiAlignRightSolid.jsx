@@ -1,0 +1,49 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pialignrightsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pialignrightsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "align right icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M19 19C19 19.5523 19.4477 20 20 20C20.5523 20 21 19.5523 21 19V5C21 4.44771 20.5523 4 20 4C19.4477 4 19 4.44771 19 5V19Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M4 11C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H11.1242C11.104 14.0018 11.0534 15.0031 10.9724 16.0026C10.9278 16.553 11.3379 17.0355 11.8883 17.0801C12.1386 17.1003 12.3748 17.0267 12.5621 16.8885C14.0838 15.7802 15.4514 14.4851 16.6308 13.0356C16.8745 12.7361 17 12.3695 17 12C17 11.6305 16.8745 11.2639 16.6308 10.9644C15.4514 9.51489 14.0838 8.21981 12.5621 7.11148C12.3748 6.97334 12.1386 6.89965 11.8883 6.91993C11.3379 6.96454 10.9278 7.44696 10.9724 7.99744C11.0534 8.99691 11.104 9.99822 11.1242 11H4Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pialignrightsolid;

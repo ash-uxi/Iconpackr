@@ -1,0 +1,24 @@
+<script>
+  /**
+   * PiClockOffStroke icon from the stroke style in time category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'clock-off icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M12 8V12M12 12L18.4701 5.52991M12 12L5.53003 18.47M22 2L18.4701 5.52991M18.4701 5.52991C16.8143 3.87411 14.5268 2.84998 12.0001 2.84998C6.94669 2.84998 2.8501 6.94657 2.8501 12C2.8501 14.5267 3.87423 16.8141 5.53003 18.47M5.53003 18.47L2 22M9.00521 20.6486C9.94357 20.9735 10.9512 21.15 12.0001 21.15C17.0535 21.15 21.1501 17.0534 21.1501 12C21.1501 10.9511 20.9736 9.94345 20.6487 9.00508M14.7884 14.8654L15 15" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg>

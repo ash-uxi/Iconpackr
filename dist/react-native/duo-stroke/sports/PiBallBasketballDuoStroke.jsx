@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piballbasketballduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piballbasketballduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "ball basketball icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M11.9996 21.15C17.053 21.15 21.1496 17.0534 21.1496 12C21.1496 6.94657 17.053 2.84998 11.9996 2.84998C6.9462 2.84998 2.84961 6.94657 2.84961 12C2.84961 17.0534 6.9462 21.15 11.9996 21.15Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+    <path
+      d="M5.51836 5.5416C6.36587 6.38985 7.03781 7.39689 7.49574 8.50508C7.95367 9.61328 8.18861 10.8009 8.18711 12M8.18711 12C8.18861 13.1991 7.95367 14.3867 7.49574 15.4949C7.03781 16.6031 6.36587 17.6101 5.51836 18.4583M8.18711 12H2.84961M8.18711 12H11.9996M18.4809 5.5416C16.772 7.2566 15.8125 9.57895 15.8125 12M15.8125 12C15.8125 14.421 16.772 16.7433 18.4809 18.4583M15.8125 12H11.9996M15.8125 12H21.1496M11.9996 12V2.84998M11.9996 12V21.15"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Piballbasketballduostroke;

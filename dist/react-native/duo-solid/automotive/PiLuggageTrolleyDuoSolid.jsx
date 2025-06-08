@@ -1,0 +1,54 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piluggagetrolleyduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piluggagetrolleyduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "luggage trolley icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M12.1615 4.5C11.6343 4.49998 11.1795 4.49997 10.805 4.53057C10.4096 4.56287 10.0164 4.63419 9.63803 4.82698C9.07354 5.1146 8.6146 5.57354 8.32698 6.13803C8.13419 6.51641 8.06287 6.90963 8.03057 7.30497C7.99997 7.67954 7.99998 8.13429 8 8.66142V12.3385C7.99998 12.8657 7.99997 13.3205 8.03057 13.695C8.06287 14.0904 8.13419 14.4836 8.32698 14.862C8.6146 15.4265 9.07354 15.8854 9.63803 16.173C10.0164 16.3658 10.4096 16.4371 10.805 16.4694C11.1795 16.5 11.6343 16.5 12.1614 16.5H17.8385C18.3657 16.5 18.8205 16.5 19.195 16.4694C19.5904 16.4371 19.9836 16.3658 20.362 16.173C20.9265 15.8854 21.3854 15.4265 21.673 14.862C21.8658 14.4836 21.9371 14.0904 21.9694 13.695C22 13.3205 22 12.8657 22 12.3386V8.66144C22 8.13431 22 7.67953 21.9694 7.30498C21.9371 6.90963 21.8658 6.51641 21.673 6.13803C21.3854 5.57354 20.9265 5.1146 20.362 4.82698C19.9836 4.63419 19.5904 4.56287 19.195 4.53057C18.8205 4.49997 18.3657 4.49998 17.8386 4.5H12.1615Z"
+      fill={color || "#000"}
+      opacity={0.28}
+    />{" "}
+    <path
+      d="M16 5.5C16 4.94772 15.5523 4.5 15 4.5C14.4477 4.5 14 4.94772 14 5.5V9C14 9.55228 14.4477 10 15 10C15.5523 10 16 9.55228 16 9V5.5Z"
+      fill={color || "#000"}
+    />{" "}
+    <path
+      d="M3 2C2.44772 2 2 2.44772 2 3C2 3.55228 2.44772 4 3 4C3.55228 4 4 4.44772 4 5V15.126C2.27477 15.5701 1 17.1362 1 19C1 21.2091 2.79086 23 5 23C6.86384 23 8.42994 21.7252 8.87398 20H21C21.5523 20 22 19.5523 22 19C22 18.4477 21.5523 18 21 18H8.87398C8.5122 16.5944 7.40561 15.4878 6 15.126V5C6 3.34315 4.65685 2 3 2ZM3 19C3 17.8954 3.89543 17 5 17C6.10457 17 7 17.8954 7 19C7 20.1046 6.10457 21 5 21C3.89543 21 3 20.1046 3 19Z"
+      fill={color || "#000"}
+      fillRule="evenodd"
+      clipRule="evenodd"
+    />
+  </Svg>
+);
+
+export default Piluggagetrolleyduosolid;

@@ -1,0 +1,46 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pithermometerupduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pithermometerupduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "thermometer up icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path d="M15 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2m0 0v-7" />{" "}
+    <path
+      fill={color || "#000"}
+      d="M15 1a4 4 0 0 1 4 4v10a5 5 0 1 1-8 0V5a4 4 0 0 1 4-4"
+      opacity={0.28}
+    />{" "}
+    <path d="M7.572 8.41a12.9 12.9 0 0 0-2.19-2.275A.6.6 0 0 0 5 6m0 0a.6.6 0 0 0-.38.135A12.9 12.9 0 0 0 2.429 8.41M5.001 6v6.429" />
+  </Svg>
+);
+
+export default Pithermometerupduosolid;

@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiGaugeRightUpDuoStroke icon from the duo-stroke style in chart-&-graph category.
+ */
+interface PiGaugeRightUpDuoStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiGaugeRightUpDuoStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'gauge-right-up icon',
+  ...props
+}: PiGaugeRightUpDuoStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12.0001 2.8501C17.0535 2.8501 21.1501 6.94669 21.1501 12.0001C21.1501 17.0535 17.0535 21.1501 12.0001 21.1501C6.94669 21.1501 2.8501 17.0535 2.8501 12.0001C2.8501 6.94669 6.94669 2.8501 12.0001 2.8501Z" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+  <path d="M15.5353 8.46338L11.4273 11.2665C10.9413 11.5981 10.8766 12.29 11.2926 12.706C11.7087 13.1221 12.4005 13.0573 12.7322 12.5713L15.5353 8.46338Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

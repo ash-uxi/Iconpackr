@@ -1,0 +1,45 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M13 7.69727C13 8.24955 12.5523 8.69727 12 8.69727C11.4477 8.69727 11 8.24955 11 7.69727C11 7.14498 11.4477 6.69727 12 6.69727C12.5523 6.69727 13 7.14498 13 7.69727Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M13.25 11.126H10.75C10.0596 11.126 9.5 11.6856 9.5 12.376C9.5 12.7212 9.77982 13.001 10.125 13.001H13.875C14.2202 13.001 14.5 12.7212 14.5 12.376C14.5 11.6856 13.9404 11.126 13.25 11.126Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V12.2C3 13.8802 3 14.7202 3.32698 15.362C3.6146 15.9265 4.07354 16.3854 4.63803 16.673C5.27976 17 6.11984 17 7.8 17H8V21L13 17H16.2C17.8802 17 18.7202 17 19.362 16.673C19.9265 16.3854 20.3854 15.9265 20.673 15.362C21 14.7202 21 13.8802 21 12.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiMessageUserStroke icon from the stroke style in communication category.
+ */
+export default {
+  name: 'PiMessageUserStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'message-user icon'
+    }
+  }
+}
+</script>

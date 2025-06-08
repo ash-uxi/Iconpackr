@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiDraggableSixDotsDuoStroke icon from the duo-stroke style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiDraggableSixDotsDuoStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'draggable-six-dots icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <g opacity="0.28"  fill="none"><path d="M7.5 6C6.94772 6 6.5 5.55228 6.5 5C6.5 4.44772 6.94772 4 7.5 4C8.05228 4 8.5 4.44772 8.5 5C8.5 5.55228 8.05228 6 7.5 6Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/><path d="M7.5 20C6.94772 20 6.5 19.5523 6.5 19C6.5 18.4477 6.94772 18 7.5 18C8.05228 18 8.5 18.4477 8.5 19C8.5 19.5523 8.05228 20 7.5 20Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/><path d="M16.5 6C15.9477 6 15.5 5.55228 15.5 5C15.5 4.44772 15.9477 4 16.5 4C17.0523 4 17.5 4.44772 17.5 5C17.5 5.55228 17.0523 6 16.5 6Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/><path d="M16.5 20C15.9477 20 15.5 19.5523 15.5 19C15.5 18.4477 15.9477 18 16.5 18C17.0523 18 17.5 18.4477 17.5 19C17.5 19.5523 17.0523 20 16.5 20Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/></g>
+  <path d="M16.5 13C15.9477 13 15.5 12.5523 15.5 12C15.5 11.4477 15.9477 11 16.5 11C17.0523 11 17.5 11.4477 17.5 12C17.5 12.5523 17.0523 13 16.5 13Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M7.5 13C6.94772 13 6.5 12.5523 6.5 12C6.5 11.4477 6.94772 11 7.5 11C8.05228 11 8.5 11.4477 8.5 12C8.5 12.5523 8.05228 13 7.5 13Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

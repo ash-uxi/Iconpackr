@@ -1,0 +1,24 @@
+<script>
+  /**
+   * PiWebhookStroke icon from the stroke style in development category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'webhook icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M15.9959 6.49365C15.9959 4.28451 14.205 2.49365 11.9959 2.49365C9.78673 2.49365 7.99587 4.28451 7.99587 6.49365C7.99587 8.00872 8.8382 9.32706 10.0801 10.0059L5.99587 17.4937M15.8474 20.8547C17.7058 22.0491 20.1806 21.5107 21.3749 19.6522C22.5692 17.7937 22.0308 15.3189 20.1724 14.1246C18.8978 13.3055 17.3333 13.3014 16.0908 13.9792L11.9997 6.49524M4.07185 13.9954C2.13343 15.055 1.42105 17.4855 2.48069 19.4239C3.54033 21.3623 5.97073 22.0747 7.90915 21.015C9.23855 20.2883 9.9913 18.9168 9.99125 17.5015L18.5205 17.4937" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg>

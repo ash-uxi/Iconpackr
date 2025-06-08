@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiBallTennisDuoStroke icon from the duo-stroke style in sports category.
+ */
+interface PiBallTennisDuoStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiBallTennisDuoStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'ball-tennis icon',
+  ...props
+}: PiBallTennisDuoStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M20.4053 8.38211C17.9272 8.56128 15.7221 10.2801 15.0428 12.8152C14.3636 15.3503 15.4138 17.9413 17.4703 19.3356M6.53059 4.66455C8.58683 6.05884 9.63692 8.64974 8.95769 11.1847C8.27846 13.7196 6.07361 15.4383 3.5957 15.6177" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M9.63271 20.8383C12.4455 21.5919 15.3034 20.9495 17.4707 19.3356C19.0645 18.1488 20.2849 16.4367 20.8391 14.3682C21.3934 12.2998 21.1926 10.2069 20.4057 8.38216C19.3356 5.90087 17.1818 3.9155 14.3691 3.16183C11.5563 2.40814 8.69828 3.05067 6.53094 4.6646C4.93719 5.8514 3.71691 7.56346 3.16268 9.63185C2.60846 11.7003 2.80922 13.7931 3.59605 15.6178C4.66606 18.0991 6.8199 20.0846 9.63271 20.8383Z" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+    </svg>
+  );
+}

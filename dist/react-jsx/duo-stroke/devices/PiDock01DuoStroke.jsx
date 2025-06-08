@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiDock01DuoStroke icon from the duo-stroke style in devices category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiDock01DuoStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'dock-01 icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M11 11.8C11 11.52 11 11.38 11.0545 11.273C11.1024 11.1789 11.1789 11.1024 11.273 11.0545C11.38 11 11.52 11 11.8 11H12.2C12.48 11 12.62 11 12.727 11.0545C12.8211 11.1024 12.8976 11.1789 12.9455 11.273C13 11.38 13 11.52 13 11.8V12.2C13 12.48 13 12.62 12.9455 12.727C12.8976 12.8211 12.8211 12.8976 12.727 12.9455C12.62 13 12.48 13 12.2 13H11.8C11.52 13 11.38 13 11.273 12.9455C11.1789 12.8976 11.1024 12.8211 11.0545 12.727C11 12.62 11 12.48 11 12.2V11.8Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M16 11.8C16 11.52 16 11.38 16.0545 11.273C16.1024 11.1789 16.1789 11.1024 16.273 11.0545C16.38 11 16.52 11 16.8 11H17.2C17.48 11 17.62 11 17.727 11.0545C17.8211 11.1024 17.8976 11.1789 17.9455 11.273C18 11.38 18 11.52 18 11.8V12.2C18 12.48 18 12.62 17.9455 12.727C17.8976 12.8211 17.8211 12.8976 17.727 12.9455C17.62 13 17.48 13 17.2 13H16.8C16.52 13 16.38 13 16.273 12.9455C16.1789 12.8976 16.1024 12.8211 16.0545 12.727C16 12.62 16 12.48 16 12.2V11.8Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M17 7H7C6.07069 7 5.60603 7 5.21964 7.07686C3.63288 7.39249 2.39249 8.63288 2.07686 10.2196C2 10.606 2 11.0707 2 12C2 12.9293 2 13.394 2.07686 13.7804C2.39249 15.3671 3.63288 16.6075 5.21964 16.9231C5.60603 17 6.07069 17 7 17H17C17.9293 17 18.394 17 18.7804 16.9231C20.3671 16.6075 21.6075 15.3671 21.9231 13.7804C22 13.394 22 12.9293 22 12C22 11.0707 22 10.606 21.9231 10.2196C21.6075 8.63288 20.3671 7.39249 18.7804 7.07686C18.394 7 17.9293 7 17 7Z" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+  <path d="M6 11.8C6 11.52 6 11.38 6.0545 11.273C6.10243 11.1789 6.17892 11.1024 6.273 11.0545C6.37996 11 6.51997 11 6.8 11H7.2C7.48003 11 7.62004 11 7.727 11.0545C7.82108 11.1024 7.89757 11.1789 7.9455 11.273C8 11.38 8 11.52 8 11.8V12.2C8 12.48 8 12.62 7.9455 12.727C7.89757 12.8211 7.82108 12.8976 7.727 12.9455C7.62004 13 7.48003 13 7.2 13H6.8C6.51997 13 6.37996 13 6.273 12.9455C6.17892 12.8976 6.10243 12.8211 6.0545 12.727C6 12.62 6 12.48 6 12.2V11.8Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

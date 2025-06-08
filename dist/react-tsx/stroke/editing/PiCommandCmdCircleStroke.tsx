@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiCommandCmdCircleStroke icon from the stroke style in editing category.
+ */
+interface PiCommandCmdCircleStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiCommandCmdCircleStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'command-cmd-circle icon',
+  ...props
+}: PiCommandCmdCircleStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M10.3334 13.6666H8.66676C7.74629 13.6666 7.0001 14.4128 7.0001 15.3333C7.0001 16.2538 7.74629 17 8.66676 17C9.58724 17 10.3334 16.2538 10.3334 15.3333V13.6666ZM10.3334 13.6666H13.6668M10.3334 13.6666V10.3333M13.6668 13.6666H15.3334C16.2539 13.6666 17.0001 14.4128 17.0001 15.3333C17.0001 16.2538 16.2539 17 15.3334 17C14.413 17 13.6668 16.2538 13.6668 15.3333V13.6666ZM13.6668 13.6666V10.3333M13.6668 10.3333V8.66664C13.6668 7.74617 14.413 6.99998 15.3334 6.99998C16.2539 6.99998 17.0001 7.74617 17.0001 8.66664C17.0001 9.58712 16.2539 10.3333 15.3334 10.3333H13.6668ZM13.6668 10.3333H10.3334M10.3334 10.3333H8.66676C7.74629 10.3333 7.0001 9.58712 7.0001 8.66664C7.0001 7.74617 7.74629 6.99998 8.66676 6.99998C9.58724 6.99998 10.3334 7.74617 10.3334 8.66664V10.3333ZM21.1501 12C21.1501 17.0534 17.0535 21.15 12.0001 21.15C6.94669 21.15 2.8501 17.0534 2.8501 12C2.8501 6.94657 6.94669 2.84998 12.0001 2.84998C17.0535 2.84998 21.1501 6.94657 21.1501 12Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

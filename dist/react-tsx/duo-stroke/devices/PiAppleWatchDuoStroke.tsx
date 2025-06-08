@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiAppleWatchDuoStroke icon from the duo-stroke style in devices category.
+ */
+interface PiAppleWatchDuoStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiAppleWatchDuoStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'apple-watch icon',
+  ...props
+}: PiAppleWatchDuoStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <g opacity="0.28"  fill="none"><path d="M12 19.0002C13.8638 19.0002 14.7957 19.0002 15.5307 18.6958C15.6929 18.6286 15.8496 18.5512 16 18.4644L15.494 20.2534C15.317 20.8794 15.2285 21.1924 15.0465 21.4248C14.886 21.63 14.6747 21.7897 14.4337 21.8884C14.1605 22.0002 13.8352 22.0002 13.1846 22.0002H10.8154C10.1648 22.0002 9.83947 22.0002 9.56634 21.8884C9.32526 21.7897 9.11404 21.63 8.95347 21.4248C8.77154 21.1924 8.68302 20.8794 8.50596 20.2534L8 18.4644C8.15039 18.5512 8.30707 18.6286 8.46927 18.6958C9.20435 19.0002 10.1362 19.0002 12 19.0002Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/><path d="M15.5307 5.30448C14.7957 5 13.8638 5 12 5C10.1362 5 9.20435 5 8.46927 5.30448C8.30707 5.37167 8.15039 5.44906 8 5.53588L8.50596 3.74686C8.68302 3.12081 8.77154 2.80779 8.95347 2.57539C9.11404 2.37027 9.32526 2.2105 9.56634 2.11181C9.83947 2 10.1648 2 10.8154 2H13.1846C13.8352 2 14.1605 2 14.4337 2.11181C14.6747 2.2105 14.886 2.37027 15.0465 2.57539C15.2285 2.80779 15.317 3.12082 15.494 3.74686L16 5.53588C15.8496 5.44906 15.6929 5.37167 15.5307 5.30448Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/></g>
+  <path d="M18 11V13C18 14.8638 18 15.7956 17.6955 16.5307C17.2895 17.5108 16.5108 18.2895 15.5307 18.6955C14.7956 19 13.8638 19 12 19C10.1362 19 9.20435 19 8.46927 18.6955C7.48915 18.2895 6.71046 17.5108 6.30448 16.5307C6 15.7956 6 14.8638 6 13V11C6 9.13623 6 8.20435 6.30448 7.46927C6.71046 6.48915 7.48915 5.71046 8.46927 5.30448C9.20435 5 10.1362 5 12 5C13.8638 5 14.7956 5 15.5307 5.30448C16.5108 5.71046 17.2895 6.48915 17.6955 7.46927C18 8.20435 18 9.13623 18 11ZM18 11H19V10H18" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

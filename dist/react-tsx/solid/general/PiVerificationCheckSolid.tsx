@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiVerificationCheckSolid icon from the solid style in general category.
+ */
+interface PiVerificationCheckSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiVerificationCheckSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'verification-check icon',
+  ...props
+}: PiVerificationCheckSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M8.52226 3.58715C9.32033 2.49138 10.5575 1.75 12 1.75C13.4403 1.75 14.6845 2.48956 15.4858 3.5867C16.8268 3.37709 18.2319 3.73232 19.2498 4.75021C20.2684 5.76882 20.6234 7.17516 20.4129 8.51702C21.507 9.31924 22.25 10.5556 22.25 12C22.25 13.4444 21.507 14.6808 20.4129 15.483C20.6234 16.8248 20.2684 18.2312 19.2498 19.2498C18.229 20.2706 16.8235 20.6154 15.4879 20.4105C14.6867 21.5092 13.4415 22.25 12 22.25C10.5544 22.25 9.31711 21.5058 8.51495 20.41C7.1785 20.6159 5.77173 20.2713 4.75021 19.2498C3.72908 18.2287 3.38355 16.8214 3.59556 15.483C2.50171 14.6824 1.75 13.4474 1.75 12C1.75 10.5526 2.50171 9.31757 3.59556 8.51703C3.38355 7.17856 3.72908 5.77134 4.75021 4.75021C5.76978 3.73064 7.17649 3.37685 8.52226 3.58715ZM15.5639 10.6808C16.02 10.3694 16.1373 9.74715 15.8258 9.29106C15.5144 8.83497 14.8922 8.71771 14.4361 9.02915L14.3493 9.08844C12.9756 10.0265 11.7852 11.2023 10.8323 12.5572L9.70673 11.4328C9.316 11.0425 8.68283 11.0428 8.29252 11.4335C7.9022 11.8243 7.90254 12.4574 8.29327 12.8477L10.3 14.8523C10.5204 15.0725 10.8308 15.1774 11.1396 15.136C11.4483 15.0946 11.7202 14.9117 11.8748 14.6413C12.7648 13.085 13.9965 11.7511 15.4771 10.7401L15.5639 10.6808Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

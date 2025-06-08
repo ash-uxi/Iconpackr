@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiChefHatSolid icon from the solid style in food category.
+ */
+interface PiChefHatSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiChefHatSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'chef-hat icon',
+  ...props
+}: PiChefHatSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M6.48 18C6.31198 18 6.22798 18 6.1638 18.0327C6.10735 18.0615 6.06146 18.1074 6.0327 18.1638C6 18.228 6 18.312 6 18.48L6 18.6361C5.99998 19.0252 5.99996 19.3753 6.02376 19.6667C6.04925 19.9786 6.10694 20.3101 6.27248 20.635C6.51217 21.1054 6.89462 21.4879 7.36502 21.7275C7.68993 21.8931 8.0214 21.9508 8.33337 21.9763C8.62467 22.0001 8.97479 22 9.36386 22H14.6361C15.0252 22 15.3753 22.0001 15.6666 21.9763C15.9786 21.9508 16.3101 21.8931 16.635 21.7275C17.1054 21.4879 17.4878 21.1054 17.7275 20.635C17.8931 20.3101 17.9508 19.9786 17.9762 19.6667C18 19.3754 18 19.0252 18 18.6362V18.48C18 18.312 18 18.228 17.9673 18.1638C17.9385 18.1074 17.8926 18.0615 17.8362 18.0327C17.772 18 17.688 18 17.52 18H6.48Z" fill="currentColor" stroke="none"/>
+  <path d="M7.41609 5.00065C8.18742 3.2347 9.94858 2 12 2C14.0514 2 15.8126 3.23471 16.5839 5.00065C19.5828 5.0455 22 7.49048 22 10.5C22 13.0178 20.3088 15.1396 18 15.7928C18 15.9072 17.9072 16 17.7928 16H15V12C15 11.4477 14.5523 11 14 11C13.4477 11 13 11.4477 13 12V16H11V14C11 13.4477 10.5523 13 10 13C9.44772 13 9 13.4477 9 14V16H6.20723C6.09278 16 6 15.9072 6 15.7928C3.69119 15.1396 2 13.0178 2 10.5C2 7.49048 4.41721 5.0455 7.41609 5.00065Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,24 @@
+<script>
+  /**
+   * PiListAiGeneratedStroke icon from the stroke style in ai category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'list-ai-generated icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M4 12H13.5M4 18H10M4 6H20M14 20H14.01M18 13C17.3625 14.6165 16.6609 15.345 15 16C16.6609 16.655 17.3625 17.3835 18 19C18.6375 17.3835 19.3391 16.655 21 16C19.3391 15.345 18.6375 14.6165 18 13Z" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg>

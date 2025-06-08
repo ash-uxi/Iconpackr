@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiArrowBigRightSolid icon from the solid style in arrows-&-chevrons category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiArrowBigRightSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'arrow-big-right icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M14.791 4.19512C14.6342 4.07911 14.4468 4.01149 14.2521 4.00059C14.0574 3.98968 13.8637 4.03597 13.6949 4.13375C13.5261 4.23153 13.3896 4.37653 13.3022 4.5509C13.2148 4.72527 13.1803 4.92139 13.203 5.11512C13.314 6.07512 13.403 7.03512 13.467 7.99912H4.57095C4.31795 7.99912 4.07195 7.99912 3.86395 8.01612C3.5965 8.0314 3.33475 8.09973 3.09395 8.21712C2.71765 8.40887 2.4117 8.71482 2.21995 9.09112C2.10295 9.33201 2.03497 9.59375 2.01995 9.86112C2.00195 10.0691 2.00195 10.3151 2.00195 10.5671V13.4311C2.00195 13.6831 2.00195 13.9291 2.01895 14.1371C2.03428 14.4046 2.10261 14.6663 2.21995 14.9071C2.4117 15.2834 2.71765 15.5894 3.09395 15.7811C3.33477 15.8985 3.59651 15.9668 3.86395 15.9821C4.07295 15.9991 4.31895 15.9991 4.57195 15.9991H13.467C13.4023 16.9628 13.3142 17.9247 13.203 18.8841C13.1805 19.0778 13.2152 19.2738 13.3027 19.448C13.3902 19.6222 13.5267 19.767 13.6954 19.8646C13.8642 19.9623 14.0577 20.0085 14.2524 19.9976C14.447 19.9866 14.6342 19.919 14.791 19.8031C17.3096 17.9414 19.5765 15.7613 21.535 13.3171C21.8347 12.9432 21.9981 12.4783 21.9981 11.9991C21.9981 11.5199 21.8347 11.055 21.535 10.6811C19.5765 8.23697 17.3096 6.05683 14.791 4.19512Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

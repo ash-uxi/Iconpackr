@@ -1,0 +1,49 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pimaximizetwoarrowsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pimaximizetwoarrowsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "maximize two arrow icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M11.8348 5.30231C13.6973 4.99044 15.5812 4.91943 17.4393 5.09133C17.8248 5.12699 18.1765 5.29529 18.4406 5.55942C18.7047 5.82354 18.873 6.17517 18.9087 6.56069C19.0806 8.41884 19.0096 10.3027 18.6977 12.1652C18.6321 12.5566 18.3413 12.8722 17.9566 12.9695C17.5718 13.0668 17.1659 12.9273 16.9222 12.6141L16.8755 12.5541C15.2977 10.5262 13.4738 8.70234 11.4459 7.12448L11.3859 7.07782C11.0727 6.8341 10.9332 6.42821 11.0305 6.04345C11.1278 5.65868 11.4434 5.36786 11.8348 5.30231Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M6.56069 18.9087C8.41884 19.0806 10.3027 19.0096 12.1652 18.6977C12.5566 18.6321 12.8722 18.3413 12.9695 17.9566C13.0668 17.5718 12.9273 17.1659 12.6141 16.9222L12.5541 16.8755C10.5262 15.2977 8.70234 13.4738 7.12448 11.4459L7.07782 11.3859C6.8341 11.0727 6.42821 10.9332 6.04345 11.0305C5.65868 11.1278 5.36786 11.4434 5.30231 11.8348C4.99044 13.6973 4.91943 15.5812 5.09133 17.4393C5.12699 17.8248 5.29529 18.1765 5.55942 18.4406C5.82354 18.7047 6.17517 18.873 6.56069 18.9087Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pimaximizetwoarrowsolid;

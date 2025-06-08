@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiCalendarExclamationMarkSolid icon from the solid style in time category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiCalendarExclamationMarkSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'calendar-exclamation-mark icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M9 2C9 1.44772 8.55228 1 8 1C7.44772 1 7 1.44772 7 2V3.30517C6.76667 3.3668 6.5414 3.44164 6.32122 3.53284C4.60602 4.2433 3.2433 5.60602 2.53284 7.32122C2.21468 8.08933 2.09395 8.92567 2.04161 9.94891C2 10.7623 2 11.7512 2 12.974V13.0369C2 14.4035 1.99999 15.4801 2.05941 16.351C2.11997 17.2387 2.2456 17.9853 2.53284 18.6788C3.2433 20.394 4.60602 21.7567 6.32122 22.4672C7.01469 22.7544 7.76134 22.88 8.649 22.9406C9.51986 23 10.5965 23 11.9631 23H12.0369C13.4035 23 14.4801 23 15.351 22.9406C16.2387 22.88 16.9853 22.7544 17.6788 22.4672C19.394 21.7567 20.7567 20.394 21.4672 18.6788C21.7544 17.9853 21.88 17.2387 21.9406 16.351C22 15.4801 22 14.4035 22 13.0369V12.974C22 11.7511 22 10.7623 21.9584 9.94891C21.906 8.92567 21.7853 8.08933 21.4672 7.32122C20.7567 5.60602 19.394 4.2433 17.6788 3.53284C17.4586 3.44164 17.2333 3.3668 17 3.30517V2C17 1.44772 16.5523 1 16 1C15.4477 1 15 1.44772 15 2V3.03923C14.1952 2.99996 13.2412 2.99998 12.084 3H11.916C10.7588 2.99998 9.8048 2.99996 9 3.03923V2ZM13 17.3762C13 17.9285 12.5523 18.3762 12 18.3762C11.4477 18.3762 11 17.9285 11 17.3762V17.3751C11 16.8228 11.4477 16.3751 12 16.3751C12.5523 16.3751 13 16.8228 13 17.3751V17.3762ZM13 14.0001C13 14.5524 12.5523 15.0001 12 15.0001C11.4477 15.0001 11 14.5524 11 14.0001V10.0001C11 9.44781 11.4477 9.0001 12 9.0001C12.5523 9.0001 13 9.44781 13 10.0001V14.0001Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiItalicStroke icon from the stroke style in editing category.
+ */
+interface PiItalicStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiItalicStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'italic icon',
+  ...props
+}: PiItalicStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M13.5 5L10.5 19M13.5 5H17M13.5 5H10M10.5 19H14M10.5 19H7" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

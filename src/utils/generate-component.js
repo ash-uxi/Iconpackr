@@ -6,6 +6,74 @@ import babelParser from 'prettier/parser-babel';
 import { toPascalCase } from './text-utils.js';
 
 /**
+ * Convert SVG attributes from kebab-case to camelCase for JSX
+ * @param {string} svgContent - SVG content with kebab-case attributes
+ * @returns {string} - SVG content with camelCase attributes
+ */
+function convertSvgAttributesToJSX(svgContent) {
+  const attributeMap = {
+    // Stroke attributes
+    'stroke-width': 'strokeWidth',
+    'stroke-linecap': 'strokeLinecap', 
+    'stroke-linejoin': 'strokeLinejoin',
+    'stroke-dasharray': 'strokeDasharray',
+    'stroke-dashoffset': 'strokeDashoffset',
+    'stroke-miterlimit': 'strokeMiterlimit',
+    'stroke-opacity': 'strokeOpacity',
+    
+    // Fill attributes
+    'fill-rule': 'fillRule',
+    'fill-opacity': 'fillOpacity',
+    
+    // Clip and mask attributes
+    'clip-rule': 'clipRule',
+    'clip-path': 'clipPath',
+    'mask-type': 'maskType',
+    
+    // Color attributes
+    'stop-color': 'stopColor',
+    'stop-opacity': 'stopOpacity',
+    'flood-color': 'floodColor',
+    'flood-opacity': 'floodOpacity',
+    'lighting-color': 'lightingColor',
+    
+    // Transform attributes
+    'transform-origin': 'transformOrigin',
+    'gradient-transform': 'gradientTransform',
+    'pattern-transform': 'patternTransform',
+    
+    // Text attributes
+    'font-family': 'fontFamily',
+    'font-size': 'fontSize',
+    'font-weight': 'fontWeight',
+    'font-style': 'fontStyle',
+    'text-anchor': 'textAnchor',
+    'text-decoration': 'textDecoration',
+    'dominant-baseline': 'dominantBaseline',
+    
+    // Other common attributes
+    'vector-effect': 'vectorEffect',
+    'paint-order': 'paintOrder',
+    'marker-start': 'markerStart',
+    'marker-mid': 'markerMid',
+    'marker-end': 'markerEnd',
+    'shape-rendering': 'shapeRendering',
+    'color-interpolation': 'colorInterpolation',
+    'color-interpolation-filters': 'colorInterpolationFilters'
+  };
+  
+  let jsxContent = svgContent;
+  
+  // Convert each kebab-case attribute to camelCase
+  for (const [kebabCase, camelCase] of Object.entries(attributeMap)) {
+    const regex = new RegExp(`\\b${kebabCase}=`, 'g');
+    jsxContent = jsxContent.replace(regex, `${camelCase}=`);
+  }
+  
+  return jsxContent;
+}
+
+/**
  * Clean up malformed SVG content
  * @param {string} svgContent - SVG content to clean
  * @returns {string} - Cleaned SVG content
@@ -17,8 +85,8 @@ function cleanupSvgContent(svgContent) {
   cleanedContent = cleanedContent.replace(/stroke-width="([^"]*)"\/\s*fill="([^"]*)"/g, 'stroke-width="$1" fill="$2"');
   cleanedContent = cleanedContent.replace(/stroke="([^"]*)"\/\s*fill="([^"]*)"/g, 'stroke="$1" fill="$2"');
   
-  // Fix malformed path elements
-  cleanedContent = cleanedContent.replace(/\/\s*([a-zA-Z-]+="[^"]*")/g, ' $1/>');
+  // Fix malformed path elements - but NOT the root svg element
+  cleanedContent = cleanedContent.replace(/(<(?!svg\b)[^>]+)\/\s*([a-zA-Z-]+="[^"]*")/g, '$1 $2/>');
   
   // Fix path elements with attributes after closing tag
   cleanedContent = cleanedContent.replace(/"\/>/g, '"/>');
@@ -36,8 +104,8 @@ function cleanupSvgContent(svgContent) {
   cleanedContent = cleanedContent.replace(/"\/ >/g, '"/>');
   cleanedContent = cleanedContent.replace(/"\s+>/g, '">');
   
-  // Fix malformed self-closing tags with extra content after the slash
-  cleanedContent = cleanedContent.replace(/\/\s*([^>]+)>/g, ' $1/>');
+  // Fix malformed self-closing tags with extra content after the slash - but NOT for svg
+  cleanedContent = cleanedContent.replace(/(<(?!svg\b)[^>]+)\/\s*([^>]+)>/g, '$1 $2/>');
   
   // Remove any stray > character that might be part of text
   cleanedContent = cleanedContent.replace(/>\s*>/g, '>');
@@ -53,26 +121,108 @@ function cleanupSvgContent(svgContent) {
 function cleanupInnerSvgContent(innerContent) {
   let cleanedContent = innerContent;
   
-  // Fix malformed fill attributes
-  cleanedContent = cleanedContent.replace(/\s+fill="none">/g, ' fill="none"/>');
+  // First, fix missing self-closing tags for elements that should be self-closing
+  // But only if they don't already end with /> or have a proper closing tag
+  cleanedContent = cleanedContent.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*[^\/])>(?!\s*<\/\1>)/g, (match, tagName, attributes) => {
+    // Only convert to self-closing if it's not already self-closing
+    if (attributes.endsWith('/')) {
+      return match; // Already self-closing
+    }
+    return `<${tagName}${attributes}/>`;
+  });
   
-  // Fix missing closing tags (but NOT for group elements that have children)
-  cleanedContent = cleanedContent.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)>(?!\s*<\/\1>)/g, '<$1$2/>');
+  // Remove any double slashes that might have been created
+  cleanedContent = cleanedContent.replace(/\/\/>/g, '/>');
   
-  // Remove extra > characters
+  // Fix any remaining malformed attributes
+  cleanedContent = cleanedContent.replace(/"\/ fill=/g, '" fill=');
   cleanedContent = cleanedContent.replace(/>>+/g, '>');
   
-  // Fix broken closing tags on self-closing elements
-  cleanedContent = cleanedContent.replace(/"\/ fill=/g, '" fill=');
-  
-  // Fix double closing tags
-  cleanedContent = cleanedContent.replace(/\/\/>/g, '/>');
-  cleanedContent = cleanedContent.replace(/\/>"/g, '" />');
-  
-  // Fix malformed attributes after closing
-  cleanedContent = cleanedContent.replace(/\/([^>\/\s]+)="/g, ' $1="');
-  
   return cleanedContent;
+}
+
+/**
+ * Process duo-tone SVG content to use unified color with preserved opacity
+ * @param {string} svgContent - The JSX-converted SVG content
+ * @param {string} style - The icon style (duo-stroke or duo-solid)
+ * @returns {string} Processed SVG content with unified color handling
+ */
+function processDuoToneSvgContent(svgContent, style) {
+  if (style === 'duo-stroke') {
+    // For duo-stroke: all elements use the same stroke color, opacity is preserved
+    return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "currentColor"}');
+  } else if (style === 'duo-solid') {
+    // For duo-solid: all fill elements use the same color, remove stroke attributes (solid style)
+    return svgContent
+      .replace(/fill="[^"]*"/g, 'fill={color || "currentColor"}')
+      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/\s+/g, ' ') // Clean up extra spaces
+      .replace(/\s+>/g, '>'); // Clean up spaces before closing >
+  }
+  return svgContent;
+}
+
+/**
+ * Process duo-tone SVG content for Vue templates with unified color
+ * @param {string} svgContent - The SVG content
+ * @param {string} style - The icon style (duo-stroke or duo-solid)
+ * @returns {string} Processed SVG content with Vue unified color handling
+ */
+function processDuoToneVueSvgContent(svgContent, style) {
+  if (style === 'duo-stroke') {
+    // For duo-stroke: all elements use the same stroke color, opacity is preserved
+    return svgContent.replace(/stroke="[^"]*"/g, ':stroke="color || \'currentColor\'"');
+  } else if (style === 'duo-solid') {
+    // For duo-solid: all elements use the same color, remove stroke attributes (solid style)
+    return svgContent
+      .replace(/fill="[^"]*"/g, ':fill="color || \'currentColor\'"')
+      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/\s+/g, ' ') // Clean up extra spaces
+      .replace(/\s+>/g, '>'); // Clean up spaces before closing >
+  }
+  return svgContent;
+}
+
+/**
+ * Process duo-tone SVG content for Svelte templates with unified color
+ * @param {string} svgContent - The SVG content
+ * @param {string} style - The icon style (duo-stroke or duo-solid)
+ * @returns {string} Processed SVG content with Svelte unified color handling
+ */
+function processDuoToneSvelteSvgContent(svgContent, style) {
+  if (style === 'duo-stroke') {
+    // For duo-stroke: all elements use the same stroke color, opacity is preserved
+    return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "currentColor"}');
+  } else if (style === 'duo-solid') {
+    // For duo-solid: all elements use the same color, remove stroke attributes (solid style)
+    return svgContent
+      .replace(/fill="[^"]*"/g, 'fill={color || "currentColor"}')
+      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/\s+/g, ' ') // Clean up extra spaces
+      .replace(/\s+>/g, '>'); // Clean up spaces before closing >
+  }
+  return svgContent;
+}
+
+/**
+ * Process duo-tone SVG content for React Native with unified color
+ * @param {string} svgContent - The JSX-converted SVG content
+ * @param {string} style - The icon style (duo-stroke or duo-solid)
+ * @returns {string} Processed SVG content with React Native unified color handling
+ */
+function processDuoToneReactNativeSvgContent(svgContent, style) {
+  if (style === 'duo-stroke') {
+    // For duo-stroke: all elements use the same stroke color, opacity is preserved
+    return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "#000"}');
+  } else if (style === 'duo-solid') {
+    // For duo-solid: all elements use the same color, remove stroke attributes (solid style)
+    return svgContent
+      .replace(/fill="[^"]*"/g, 'fill={color || "#000"}')
+      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/\s+/g, ' ') // Clean up extra spaces
+      .replace(/\s+>/g, '>'); // Clean up spaces before closing >
+  }
+  return svgContent;
 }
 
 /**
@@ -118,6 +268,8 @@ export async function generateComponent(svgContent, options) {
       return generateVue(innerSvgContent, viewBox, cleanedSvgContent, { ...options, componentName: prefixedComponentName });
     case 'react-native':
       return generateReactNative(prefixedComponentName, innerSvgContent, getSvgThemingProps(cleanedSvgContent, 'react-native'));
+    case 'svelte':
+      return generateSvelte(innerSvgContent, viewBox, cleanedSvgContent, { ...options, componentName: prefixedComponentName });
     default:
       throw new Error(`Unsupported format: ${format}`);
   }
@@ -129,21 +281,43 @@ export async function generateComponent(svgContent, options) {
 function generateReactJSX(svgContent, viewBox, originalSvg, options) {
   const { componentName, style, category, iconName } = options;
   
+  // Convert SVG content to JSX-compatible attributes
+  let jsxSvgContent = convertSvgAttributesToJSX(svgContent);
+  
   // Get dynamic props based on SVG analysis
   const styleProps = getSvgThemingProps(originalSvg, 'react-jsx');
   
-  // Extract stroke attributes from the original SVG
+  // Handle duo-tone icons with unified color support
+  const isDuoTone = style === 'duo-stroke' || style === 'duo-solid';
+  if (isDuoTone) {
+    // Process duo-tone SVG content to support unified colors
+    jsxSvgContent = processDuoToneSvgContent(jsxSvgContent, style);
+  }
+  
+  // Extract stroke attributes from the original SVG (convert to camelCase)
   const strokeMatch = originalSvg.match(/stroke="([^"]*)"/);
   const strokeWidthMatch = originalSvg.match(/stroke-width="([^"]*)"/);
   const strokeLinecapMatch = originalSvg.match(/stroke-linecap="([^"]*)"/);
   const strokeLinejoinMatch = originalSvg.match(/stroke-linejoin="([^"]*)"/);
   
-  // Build stroke attributes string
-  let strokeAttributes = '';
-  if (strokeMatch) strokeAttributes += `stroke="${strokeMatch[1]}" `;
-  if (strokeWidthMatch) strokeAttributes += `stroke-width="${strokeWidthMatch[1]}" `;
-  if (strokeLinecapMatch) strokeAttributes += `stroke-linecap="${strokeLinecapMatch[1]}" `;
-  if (strokeLinejoinMatch) strokeAttributes += `stroke-linejoin="${strokeLinejoinMatch[1]}" `;
+  // Determine SVG attributes based on style
+  let svgStrokeAttrs = '';
+  let svgFillAttr = '';
+  
+  if (style === 'solid' || style === 'duo-solid') {
+    // Solid and duo-solid icons: no stroke attributes, no fill="none"
+    svgStrokeAttrs = '';
+    svgFillAttr = ''; // Let fill flow through from path elements
+  } else {
+    // For stroke, contrast, and duo-stroke icons: include stroke attributes and fill="none"
+    const stroke = strokeMatch ? strokeMatch[1] : 'currentColor';
+    const strokeWidth = strokeWidthMatch ? strokeWidthMatch[1] : '2';
+    const strokeLinecap = strokeLinecapMatch ? strokeLinecapMatch[1] : 'round';
+    const strokeLinejoin = strokeLinejoinMatch ? strokeLinejoinMatch[1] : 'round';
+    
+    svgStrokeAttrs = `stroke="currentColor" strokeWidth="${strokeWidth}" strokeLinecap="${strokeLinecap}" strokeLinejoin="${strokeLinejoin}"`;
+    svgFillAttr = 'fill="none"';
+  }
   
   return `import React from 'react';
 
@@ -153,11 +327,13 @@ function generateReactJSX(svgContent, viewBox, originalSvg, options) {
  * @param {number} [props.size=24] - Icon size
  * @param {string} [props.color] - Icon color
  * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
  */
 export default function ${componentName}({ 
   size = 24, 
   color,
   className,
+  ariaLabel = '${iconName} icon',
   ...props 
 }) {
   return (
@@ -167,12 +343,14 @@ export default function ${componentName}({
       viewBox="${viewBox}"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      fill="none"
-      ${strokeAttributes}${styleProps.styleAttribute}
-      ${styleProps.additionalProps}
+      ${svgFillAttr}
+      ${svgStrokeAttrs} style={{color: color || "currentColor"}}
+      ${styleProps.accessibility || ''}
+      role="img"
+      aria-label={ariaLabel}
       {...props}
     >
-      ${svgContent}
+      ${jsxSvgContent}
     </svg>
   );
 }
@@ -185,21 +363,43 @@ export default function ${componentName}({
 function generateReactTSX(svgContent, viewBox, originalSvg, options) {
   const { componentName, style, category, iconName } = options;
   
+  // Convert SVG content to JSX-compatible attributes
+  let jsxSvgContent = convertSvgAttributesToJSX(svgContent);
+  
   // Get dynamic props based on SVG analysis
   const styleProps = getSvgThemingProps(originalSvg, 'react-tsx');
   
-  // Extract stroke attributes from the original SVG
+  // Handle duo-tone icons with unified color
+  const isDuoTone = style === 'duo-stroke' || style === 'duo-solid';
+  if (isDuoTone) {
+    // Process duo-tone SVG content with unified color handling
+    jsxSvgContent = processDuoToneSvgContent(jsxSvgContent, style);
+  }
+  
+  // Extract stroke attributes from the original SVG (convert to camelCase)
   const strokeMatch = originalSvg.match(/stroke="([^"]*)"/);
   const strokeWidthMatch = originalSvg.match(/stroke-width="([^"]*)"/);
   const strokeLinecapMatch = originalSvg.match(/stroke-linecap="([^"]*)"/);
   const strokeLinejoinMatch = originalSvg.match(/stroke-linejoin="([^"]*)"/);
   
-  // Build stroke attributes string
-  let strokeAttributes = '';
-  if (strokeMatch) strokeAttributes += `stroke="${strokeMatch[1]}" `;
-  if (strokeWidthMatch) strokeAttributes += `stroke-width="${strokeWidthMatch[1]}" `;
-  if (strokeLinecapMatch) strokeAttributes += `stroke-linecap="${strokeLinecapMatch[1]}" `;
-  if (strokeLinejoinMatch) strokeAttributes += `stroke-linejoin="${strokeLinejoinMatch[1]}" `;
+  // Determine SVG attributes based on style
+  let svgStrokeAttrs = '';
+  let svgFillAttr = '';
+  
+  if (style === 'solid' || style === 'duo-solid') {
+    // Solid and duo-solid icons: no stroke attributes, no fill="none"
+    svgStrokeAttrs = '';
+    svgFillAttr = ''; // Let fill flow through from path elements
+  } else {
+    // For stroke, contrast, and duo-stroke icons: include stroke attributes and fill="none"
+    const stroke = strokeMatch ? strokeMatch[1] : 'currentColor';
+    const strokeWidth = strokeWidthMatch ? strokeWidthMatch[1] : '2';
+    const strokeLinecap = strokeLinecapMatch ? strokeLinecapMatch[1] : 'round';
+    const strokeLinejoin = strokeLinejoinMatch ? strokeLinejoinMatch[1] : 'round';
+    
+    svgStrokeAttrs = `stroke="currentColor" strokeWidth="${strokeWidth}" strokeLinecap="${strokeLinecap}" strokeLinejoin="${strokeLinejoin}"`;
+    svgFillAttr = 'fill="none"';
+  }
   
   return `import React from 'react';
 
@@ -210,12 +410,14 @@ interface ${componentName}Props extends React.SVGProps<SVGSVGElement> {
   size?: number;
   color?: string;
   className?: string;
+  ariaLabel?: string;
 }
 
 export default function ${componentName}({
   size = 24,
   color,
   className,
+  ariaLabel = '${iconName} icon',
   ...props
 }: ${componentName}Props): JSX.Element {
   return (
@@ -225,12 +427,14 @@ export default function ${componentName}({
       viewBox="${viewBox}"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      fill="none"
-      ${strokeAttributes}${styleProps.styleAttribute}
-      ${styleProps.additionalProps}
+      ${svgFillAttr}
+      ${svgStrokeAttrs} style={{color: color || "currentColor"}}
+      ${styleProps.accessibility || ''}
+      role="img"
+      aria-label={ariaLabel}
       {...props}
     >
-      ${svgContent}
+      ${jsxSvgContent}
     </svg>
   );
 }
@@ -243,8 +447,18 @@ export default function ${componentName}({
 function generateVue(svgContent, viewBox, originalSvg, options) {
   const { componentName, style, category, iconName } = options;
   
+  // Convert SVG content to Vue-compatible format
+  let vueSvgContent = svgContent;
+  
   // Get dynamic props based on SVG analysis
   const styleProps = getSvgThemingProps(originalSvg, 'vue');
+  
+  // Handle duo-tone icons with unified color
+  const isDuoTone = style === 'duo-stroke' || style === 'duo-solid';
+  if (isDuoTone) {
+    // Process duo-tone SVG content with unified color handling
+    vueSvgContent = processDuoToneVueSvgContent(vueSvgContent, style);
+  }
   
   // Extract stroke attributes from the original SVG
   const strokeMatch = originalSvg.match(/stroke="([^"]*)"/);
@@ -252,12 +466,28 @@ function generateVue(svgContent, viewBox, originalSvg, options) {
   const strokeLinecapMatch = originalSvg.match(/stroke-linecap="([^"]*)"/);
   const strokeLinejoinMatch = originalSvg.match(/stroke-linejoin="([^"]*)"/);
   
-  // Build stroke attributes string for Vue template
-  let strokeAttributes = '';
-  if (strokeMatch) strokeAttributes += `stroke="${strokeMatch[1]}" `;
-  if (strokeWidthMatch) strokeAttributes += `stroke-width="${strokeWidthMatch[1]}" `;
-  if (strokeLinecapMatch) strokeAttributes += `stroke-linecap="${strokeLinecapMatch[1]}" `;
-  if (strokeLinejoinMatch) strokeAttributes += `stroke-linejoin="${strokeLinejoinMatch[1]}" `;
+  // Determine SVG attributes based on style
+  let svgStrokeAttrs = '';
+  let svgFillAttr = '';
+  
+  if (style === 'solid' || style === 'duo-solid') {
+    // Solid and duo-solid icons: no stroke attributes on SVG element
+    svgStrokeAttrs = '';
+    svgFillAttr = ''; // Let fill flow through from path elements
+  } else {
+    // For stroke, contrast, and duo-stroke icons: include stroke attributes and fill="none"
+    const stroke = strokeMatch ? strokeMatch[1] : 'currentColor';
+    const strokeWidth = strokeWidthMatch ? strokeWidthMatch[1] : '2';
+    const strokeLinecap = strokeLinecapMatch ? strokeLinecapMatch[1] : 'round';
+    const strokeLinejoin = strokeLinejoinMatch ? strokeLinejoinMatch[1] : 'round';
+    
+    svgStrokeAttrs = `stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="${strokeLinecap}" stroke-linejoin="${strokeLinejoin}"`;
+    svgFillAttr = 'fill="none"';
+  }
+  
+  // Create accessible label
+  const cleanIconName = componentName.replace(/^Pi/, '').replace(/(Stroke|Solid|Contrast|DuoStroke|DuoSolid)$/, '');
+  const accessibleName = cleanIconName.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
   
   return `<template>
   <svg
@@ -266,11 +496,13 @@ function generateVue(svgContent, viewBox, originalSvg, options) {
     viewBox="${viewBox}"
     xmlns="http://www.w3.org/2000/svg"
     :class="className"
-    fill="none"
-    ${strokeAttributes}${styleProps.styleAttribute}
+    ${svgFillAttr}
+    ${svgStrokeAttrs} :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
     v-bind="$attrs"
   >
-    ${svgContent}
+    ${vueSvgContent}
   </svg>
 </template>
 
@@ -292,6 +524,10 @@ export default {
     className: {
       type: String,
       default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: '${iconName} icon'
     }
   }
 }
@@ -303,50 +539,86 @@ export default {
  * Generate React Native component
  */
 function generateReactNative(name, svgContent, themingProps) {
-  let processedContent = svgContent;
+  // First convert all SVG attributes to JSX camelCase format
+  let processedContent = convertSvgAttributesToJSX(svgContent);
 
-  // Apply style-specific transformations from themingProps
-  if (themingProps.styleAttribute) {
-    const [attr, value] = themingProps.styleAttribute.split('=');
-    // This is a very simplistic way to ensure the base color is applied via prop
-    // A more robust solution would parse and modify attributes more carefully
-    if (attr === 'fill') {
-      processedContent = processedContent.replace(/fill="currentColor"/g, `fill={color}`);
-      processedContent = processedContent.replace(/fill="(?!none)([^"]*)"/g, (match, p1) => {
-        if (p1 !== 'currentColor') return `fill="${p1}"`; // Keep hardcoded secondary colors
-        return `fill={color}`;
-      });
-    } else if (attr === 'stroke') {
-      processedContent = processedContent.replace(/stroke="currentColor"/g, `stroke={color}`);
-      processedContent = processedContent.replace(/stroke="(?!none)([^"]*)"/g, (match, p1) => {
-        if (p1 !== 'currentColor') return `stroke="${p1}"`; // Keep hardcoded secondary colors
-        return `stroke={color}`;
-      });
-    }
+  // Determine if this is a duo-tone icon
+  const isDuoTone = name.includes('DuoStroke') || name.includes('DuoSolid');
+  const style = name.includes('DuoSolid') ? 'duo-solid' : 
+               name.includes('DuoStroke') ? 'duo-stroke' :
+               name.includes('Solid') ? 'solid' :
+               name.includes('Contrast') ? 'contrast' : 'stroke';
+
+  // Handle duo-tone processing with unified color
+  if (isDuoTone) {
+    processedContent = processDuoToneReactNativeSvgContent(processedContent, style);
   } else {
-    // Default: if no specific styleAttribute, assume generalcurrentColor conversion
-    processedContent = processedContent.replace(/fill="currentColor"/g, 'fill={color}');
-    processedContent = processedContent.replace(/stroke="currentColor"/g, 'stroke={color}');
+    // Apply style-specific transformations from themingProps for non-duo-tone
+    if (themingProps.styleAttribute) {
+      const [attr, value] = themingProps.styleAttribute.split('=');
+      // Enhanced color handling for different icon styles
+      if (attr === 'fill') {
+        processedContent = processedContent.replace(/fill="currentColor"/g, `fill={color}`);
+        processedContent = processedContent.replace(/fill="(?!none)([^"]*)"/g, (match, p1) => {
+          if (p1 !== 'currentColor') return `fill="${p1}"`; // Keep hardcoded secondary colors
+          return `fill={color}`;
+        });
+      } else if (attr === 'stroke') {
+        processedContent = processedContent.replace(/stroke="currentColor"/g, `stroke={color}`);
+        processedContent = processedContent.replace(/stroke="(?!none)([^"]*)"/g, (match, p1) => {
+          if (p1 !== 'currentColor') return `stroke="${p1}"`; // Keep hardcoded secondary colors
+          return `stroke={color}`;
+        });
+      }
+    } else {
+      // Default: if no specific styleAttribute, assume general currentColor conversion
+      processedContent = processedContent.replace(/fill="currentColor"/g, 'fill={color}');
+      processedContent = processedContent.replace(/stroke="currentColor"/g, 'stroke={color}');
+    }
   }
 
-  // Handle opacity attributes, converting them to React Native SVG props
-  // fill-opacity -> fillOpacity={value}
-  processedContent = processedContent.replace(/fill-opacity="([\d\.]+)"/g, 'fillOpacity={$1}');
-  // stroke-opacity -> strokeOpacity={value}
-  processedContent = processedContent.replace(/stroke-opacity="([\d\.]+)"/g, 'strokeOpacity={$1}');
-  // opacity -> opacity={value} (this should apply to the whole element if present)
+  // Enhanced opacity handling for duo-tone icons (already camelCase from conversion)
+  processedContent = processedContent.replace(/fillOpacity="([\d\.]+)"/g, 'fillOpacity={$1}');
+  processedContent = processedContent.replace(/strokeOpacity="([\d\.]+)"/g, 'strokeOpacity={$1}');
   processedContent = processedContent.replace(/opacity="([\d\.]+)"/g, 'opacity={$1}');
 
   // Remove <svg> wrapper and its props, Svg component will provide them
   processedContent = processedContent.replace(/<svg[^>]*>/, '').replace(/<\/svg>/, '');
 
   const componentName = toPascalCase(name);
+  
+  // Create accessible label
+  const cleanIconName = name.replace(/^Pi/, '').replace(/(Stroke|Solid|Contrast|DuoStroke|DuoSolid)$/, '');
+  const accessibleName = cleanIconName.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
+  
   const template = `
 import React from 'react';
 import Svg, { Path, Rect, Circle, Ellipse, Line, Polygon, Polyline } from 'react-native-svg';
 
-const ${componentName} = ({ color = '#000', size = 24, ...props }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24" {...props}>
+/**
+ * ${componentName} icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const ${componentName} = ({ 
+  color = '#000', 
+  size = 24, 
+  accessibilityLabel = '${accessibleName} icon',
+  style,
+  ...props 
+}) => (
+  <Svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
     ${processedContent.trim()}
   </Svg>
 );
@@ -354,4 +626,79 @@ const ${componentName} = ({ color = '#000', size = 24, ...props }) => (
 export default ${componentName};
   `;
   return prettier.format(template, { parser: 'babel', plugins: [babelParser] });
+}
+
+/**
+ * Generate Svelte component
+ */
+function generateSvelte(svgContent, viewBox, originalSvg, options) {
+  const { componentName, style, category, iconName } = options;
+  
+  // Convert SVG content to Svelte-compatible format
+  let svelteSvgContent = svgContent;
+  
+  // Get dynamic props based on SVG analysis
+  const styleProps = getSvgThemingProps(originalSvg, 'svelte');
+  
+  // Handle duo-tone icons with unified color
+  const isDuoTone = style === 'duo-stroke' || style === 'duo-solid';
+  if (isDuoTone) {
+    // Process duo-tone SVG content with unified color handling
+    svelteSvgContent = processDuoToneSvelteSvgContent(svelteSvgContent, style);
+  }
+  
+  // Extract stroke attributes from the original SVG
+  const strokeMatch = originalSvg.match(/stroke="([^"]*)"/);
+  const strokeWidthMatch = originalSvg.match(/stroke-width="([^"]*)"/);
+  const strokeLinecapMatch = originalSvg.match(/stroke-linecap="([^"]*)"/);
+  const strokeLinejoinMatch = originalSvg.match(/stroke-linejoin="([^"]*)"/);
+  
+  // Determine SVG attributes based on style
+  let svgStrokeAttrs = '';
+  let svgFillAttr = '';
+  
+  if (style === 'solid' || style === 'duo-solid') {
+    // Solid and duo-solid icons: no stroke attributes, no fill="none"
+    svgStrokeAttrs = '';
+    svgFillAttr = ''; // Let fill flow through from path elements
+  } else {
+    // For stroke, contrast, and duo-stroke icons: include stroke attributes and fill="none"
+    const stroke = strokeMatch ? strokeMatch[1] : 'currentColor';
+    const strokeWidth = strokeWidthMatch ? strokeWidthMatch[1] : '2';
+    const strokeLinecap = strokeLinecapMatch ? strokeLinecapMatch[1] : 'round';
+    const strokeLinejoin = strokeLinejoinMatch ? strokeLinejoinMatch[1] : 'round';
+    
+    svgStrokeAttrs = `stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="${strokeLinecap}" stroke-linejoin="${strokeLinejoin}"`;
+    svgFillAttr = 'fill="none"';
+  }
+  
+  // Create accessible label
+  const cleanIconName = componentName.replace(/^Pi/, '').replace(/(Stroke|Solid|Contrast|DuoStroke|DuoSolid)$/, '');
+  const accessibleName = cleanIconName.replace(/([A-Z])/g, ' $1').trim().toLowerCase();
+  
+  return `<script>
+  /**
+   * ${componentName} icon from the ${style} style in ${category} category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = '${iconName} icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="${viewBox}"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  ${svgFillAttr}
+  ${svgStrokeAttrs} style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  ${svelteSvgContent}
+</svg>
+`;
 } 

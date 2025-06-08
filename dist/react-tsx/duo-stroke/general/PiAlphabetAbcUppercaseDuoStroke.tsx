@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiAlphabetAbcUppercaseDuoStroke icon from the duo-stroke style in general category.
+ */
+interface PiAlphabetAbcUppercaseDuoStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiAlphabetAbcUppercaseDuoStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'alphabet-abc-uppercase icon',
+  ...props
+}: PiAlphabetAbcUppercaseDuoStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M10 12H12.2M10 12V8H12.2C13.3046 8 14.2 8.89543 14.2 10C14.2 11.1046 13.3046 12 12.2 12M10 12V16H13C14.1046 16 15 15.1046 15 14C15 12.8954 14.1046 12 13 12H12.2M22.7002 15.2361C22.1694 15.7111 21.4685 16 20.7002 16C19.0433 16 17.7002 14.6569 17.7002 13V11C17.7002 9.34315 19.0433 8 20.7002 8C21.4685 8 22.1694 8.28885 22.7002 8.76389" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+  <path d="M2 16.0026V12.2189C2 10.3403 2.84709 8.65095 4.13894 7.95326C4.37072 7.82808 4.62928 7.82808 4.86106 7.95326C6.15291 8.65095 7 10.3403 7 12.2189V16.0026M2 13.0026H7" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

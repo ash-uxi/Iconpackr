@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiMegaphoneAnnouncementShoutSolid icon from the solid style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiMegaphoneAnnouncementShoutSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'megaphone-announcement-shout icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M15.2692 2.63673C15.448 2.39138 15.7161 2.15137 16.1012 2.04817C16.8724 1.84154 17.4917 2.32061 17.8103 2.6327C18.1843 2.9992 18.5343 3.51191 18.8526 4.08528C19.4969 5.24589 20.1257 6.8644 20.6095 8.67023C21.0934 10.4761 21.3581 12.1921 21.3804 13.5194C21.3915 14.1751 21.3448 14.7941 21.2041 15.2985C21.0842 15.7281 20.7874 16.4526 20.0162 16.6593C19.6311 16.7625 19.279 16.6886 19.0014 16.5655C16.8535 16.1737 14.6675 16.0499 12.4932 16.1955L14.2482 21.6959C14.3452 21.9999 14.2912 22.332 14.103 22.5898C13.9147 22.8475 13.6147 22.9998 13.2955 22.9998H8.91999C8.49506 22.9998 8.11654 22.7313 7.97615 22.3302L6.1345 17.069L5.32279 17.1926C5.06744 17.2315 4.80695 17.1701 4.59587 17.0212C2.17919 15.3168 1.3251 12.1293 2.56579 9.44488C2.67415 9.21041 2.86904 9.02698 3.10962 8.93298L7.77938 7.10854C10.5077 6.04262 13.0385 4.53106 15.2692 2.63673ZM19.3629 14.221C19.378 14.0321 19.385 13.8096 19.3807 13.553C19.3619 12.4321 19.132 10.8833 18.6777 9.18786C18.2234 7.49241 17.6481 6.03618 17.1039 5.056C16.9794 4.83162 16.8621 4.64246 16.7545 4.48649C16.7285 4.81135 16.7281 5.21554 16.7597 5.68988C16.8304 6.75067 17.0554 8.08515 17.4397 9.51957C17.8241 10.954 18.2965 12.2222 18.7657 13.1762C18.9755 13.6028 19.1779 13.9527 19.3629 14.221ZM9.62945 20.9998H11.9268L10.4673 16.4254L8.14813 16.768L9.62945 20.9998Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

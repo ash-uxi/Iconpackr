@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pifoldershieldduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pifoldershieldduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "folder shield icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M2 9.4C2 7.15979 2 6.03968 2.43597 5.18404C2.81947 4.43139 3.43139 3.81947 4.18404 3.43597C5.03968 3 6.15979 3 8.4 3H8.71556C9.18517 3 9.41997 3 9.6331 3.06473C9.82179 3.12203 9.99732 3.21597 10.1497 3.34118C10.3217 3.48262 10.452 3.67798 10.7125 4.06872L11.2875 4.93128C11.548 5.32202 11.6783 5.51739 11.8503 5.65882C12.0027 5.78403 12.1782 5.87797 12.3669 5.93527C12.58 6 12.8148 6 13.2844 6H15.6C17.8402 6 18.9603 6 19.816 6.43597C20.5686 6.81947 21.1805 7.43139 21.564 8.18404C22 9.03969 22 10.1598 22 12.4V14.6C22 16.8402 22 17.9603 21.564 18.816C21.1805 19.5686 20.5686 20.1805 19.816 20.564C18.9603 21 17.8402 21 15.6 21H8.4C6.15979 21 5.03968 21 4.18404 20.564C3.43139 20.1805 2.81947 19.5686 2.43597 18.816C2 17.9603 2 16.8402 2 14.6V9.4Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+    <path
+      d="M9.73596 10.8731L11.6114 10.1959C11.8406 10.1131 12.0915 10.1131 12.3207 10.1959L14.2231 10.8829C14.6095 11.0224 14.8782 11.3754 14.9097 11.785L14.9887 12.812C15.1046 14.3188 14.3234 15.7528 12.9946 16.4725L12.4764 16.7532C12.159 16.9251 11.7754 16.921 11.4618 16.7422L10.9325 16.4404C9.69182 15.733 8.94795 14.3939 9.00284 12.9669L9.04714 11.8152C9.06348 11.3902 9.33594 11.0175 9.73596 10.8731Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pifoldershieldduostroke;

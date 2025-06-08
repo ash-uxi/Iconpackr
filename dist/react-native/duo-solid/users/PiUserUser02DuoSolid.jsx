@@ -1,0 +1,48 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piuseruser02duosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piuseruser02duosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "user user02 icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M12 2.25C9.37665 2.25 7.25 4.37665 7.25 7C7.25 9.62335 9.37665 11.75 12 11.75C14.6234 11.75 16.75 9.62335 16.75 7C16.75 4.37665 14.6234 2.25 12 2.25Z"
+      fill={color || "#000"}
+    />{" "}
+    <path
+      d="M15.2244 13.7228C18.019 12.6749 21 14.7407 21 17.7253C21 20.0861 19.0862 22 16.7253 22H7.27466C4.91383 22 3 20.0861 3 17.7253C3 14.7407 5.98103 12.6749 8.7756 13.7228L10.701 14.4448C11.5385 14.7589 12.4615 14.7589 13.299 14.4448L15.2244 13.7228Z"
+      fill={color || "#000"}
+      opacity={0.28}
+    />
+  </Svg>
+);
+
+export default Piuseruser02duosolid;

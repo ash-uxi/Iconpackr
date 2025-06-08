@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiArrowTurnDownLeftDuoStroke icon from the duo-stroke style in arrows-&-chevrons category.
+ */
+interface PiArrowTurnDownLeftDuoStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiArrowTurnDownLeftDuoStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'arrow-turn-down-left icon',
+  ...props
+}: PiArrowTurnDownLeftDuoStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M4 15H12C14.8003 15 16.2004 15 17.27 14.455C18.2108 13.9757 18.9757 13.2108 19.455 12.27C20 11.2004 20 9.80026 20 7L20 4" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+  <path d="M8.85867 20C7.10583 18.7037 5.53153 17.1893 4.1746 15.4953C4.0582 15.3499 4 15.175 4 15C4 14.825 4.0582 14.6501 4.1746 14.5047C5.53153 12.8107 7.10583 11.2963 8.85867 10" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

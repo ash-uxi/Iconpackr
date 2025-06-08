@@ -1,0 +1,44 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pishieldsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pishieldsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "shield icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M13.2602 1.42748C12.3823 1.11044 11.4211 1.11044 10.5431 1.42748L5.15548 3.373C3.62323 3.92631 2.57963 5.3536 2.51702 6.98148L2.38976 10.2901C2.21775 14.7625 4.54899 18.9589 8.43708 21.1758L9.95776 22.0429C11.1588 22.7277 12.6284 22.7437 13.8442 22.0852L15.3328 21.2788C19.4972 19.0231 21.9453 14.5291 21.5821 9.80696L21.3551 6.85646C21.2344 5.28772 20.2053 3.93543 18.7255 3.40104L13.2602 1.42748Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pishieldsolid;

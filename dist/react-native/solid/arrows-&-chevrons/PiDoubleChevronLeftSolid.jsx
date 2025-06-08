@@ -1,0 +1,49 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pidoublechevronleftsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pidoublechevronleftsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "double chevron left icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M11.9972 8.07479C12.0263 7.68634 11.8272 7.31633 11.487 7.12662C11.1468 6.9369 10.7274 6.96201 10.4122 7.19097C8.87943 8.30456 7.5056 9.61063 6.32681 11.0751C5.89106 11.6164 5.89106 12.3836 6.32681 12.9249C7.5056 14.3894 8.87943 15.6955 10.4122 16.809C10.7274 17.038 11.1468 17.0631 11.487 16.8734C11.8272 16.6837 12.0263 16.3137 11.9972 15.9252L11.8318 13.7202C11.7459 12.575 11.7459 11.425 11.8318 10.2798L11.9972 8.07479Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M17.9972 8.07479C18.0263 7.68634 17.8272 7.31633 17.487 7.12662C17.1468 6.9369 16.7274 6.96201 16.4122 7.19097C14.8794 8.30456 13.5056 9.61063 12.3268 11.0751C11.8911 11.6164 11.8911 12.3836 12.3268 12.9249C13.5056 14.3894 14.8794 15.6955 16.4122 16.809C16.7274 17.038 17.1468 17.0631 17.487 16.8734C17.8272 16.6837 18.0263 16.3137 17.9972 15.9252L17.8318 13.7202C17.7459 12.575 17.7459 11.425 17.8318 10.2798L17.9972 8.07479Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pidoublechevronleftsolid;

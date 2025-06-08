@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiAnimation02Stroke icon from the stroke style in media category.
+ */
+interface PiAnimation02StrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiAnimation02Stroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'animation-02 icon',
+  ...props
+}: PiAnimation02StrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M2 14C4.76142 14 7 16.2386 7 19V18C7 14.373 9.14554 11.247 12.2367 9.82218M19 11C17.3431 11 16 9.65685 16 8C16 6.34315 17.3431 5 19 5C20.6569 5 22 6.34315 22 8C22 9.65685 20.6569 11 19 11Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiPiechartRingDuoSolid icon from the duo-solid style in chart-&-graph category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiPiechartRingDuoSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'piechart-ring icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <g opacity="0.28"><path d="M12.0001 1.8501C7.15529 1.8501 3.1054 5.24356 2.09336 9.78237C2.02732 10.0785 2.09933 10.3887 2.28912 10.6254C2.47891 10.8622 2.76594 11 3.06939 11L7.4162 11C7.81367 11 8.17341 10.7646 8.33255 10.4004C8.95071 8.98556 10.3615 8 12.0002 8C12.6179 8 13.2003 8.13935 13.7202 8.3874C14.1025 8.56985 14.5584 8.49157 14.8579 8.19199L17.8867 5.16324C18.0967 4.9532 18.2025 4.66064 18.1754 4.36483C18.1483 4.06903 17.9911 3.80059 17.7463 3.63224C16.1122 2.50816 14.1315 1.8501 12.0001 1.8501Z" fill={color || "currentColor"} /><path d="M3.06934 13C2.7659 13 2.47888 13.1378 2.28909 13.3745C2.0993 13.6113 2.02728 13.9214 2.09331 14.2176C2.94639 18.0439 5.95624 21.0538 9.78254 21.9069C10.0787 21.9729 10.3888 21.9009 10.6256 21.7111C10.8624 21.5213 11.0002 21.2343 11.0002 20.9309V16.584C11.0002 16.1865 10.7648 15.8267 10.4005 15.6676C9.47793 15.2645 8.73565 14.5222 8.33255 13.5996C8.17341 13.2354 7.81367 13 7.4162 13H3.06934Z" fill={color || "currentColor"} /></g> <path d="M20.7676 6.88342C20.6111 6.61588 20.3395 6.43599 20.0321 6.39639C19.7247 6.35679 19.4164 6.46194 19.1972 6.68109L16.0691 9.80925C15.8065 10.0718 15.7111 10.4581 15.8211 10.8127C15.9371 11.1866 16 11.5851 16 12.0001C16 13.6388 15.0144 15.0496 13.5996 15.6677C13.2354 15.8269 13 16.1866 13 16.5841V20.931C13 21.2344 13.1378 21.5214 13.3745 21.7112C13.6113 21.901 13.9215 21.973 14.2176 21.907C18.7565 20.895 22.15 16.8451 22.15 12.0002C22.15 10.1361 21.6465 8.38658 20.7676 6.88342Z" fill={color || "currentColor"} />
+    </svg>
+  );
+}

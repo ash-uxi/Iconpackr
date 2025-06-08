@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pinotificationbellcheckduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pinotificationbellcheckduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "notification bell check icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M12.0007 2C7.73227 2 4.17637 5.2719 3.82189 9.52563L3.4669 13.7856C3.43575 14.1593 3.31701 14.5205 3.14665 15.0315C2.62569 16.5944 3.67874 18.2394 5.31568 18.4213C6.57802 18.5615 7.84373 18.6619 9.11089 18.7225C11.0363 18.8145 12.9651 18.8144 14.8906 18.7223C16.1575 18.6618 17.423 18.5613 18.6851 18.421C20.3207 18.2392 21.3731 16.5965 20.8545 15.0345C20.6846 14.5228 20.5659 14.1618 20.5348 13.788L20.1796 9.52563C19.8251 5.2719 16.2692 2 12.0007 2Z"
+      fill={color || "#000"}
+      opacity={0.28}
+    />{" "}
+    <path
+      d="M15.5639 9.82579C16.02 9.51433 16.1373 8.89212 15.8258 8.43603C15.5144 7.97995 14.8921 7.8627 14.4361 8.17416C13.0389 9.12826 11.8287 10.325 10.8612 11.7044L9.70672 10.5512C9.31599 10.1609 8.68282 10.1612 8.29251 10.5519C7.9022 10.9427 7.90254 11.5759 8.29328 11.9662L10.3295 14.0002C10.5499 14.2203 10.8603 14.3252 11.169 14.2838C11.4778 14.2424 11.7496 14.0595 11.9043 13.7891C12.8084 12.208 14.0598 10.853 15.5639 9.82579Z"
+      fill={color || "#000"}
+    />{" "}
+    <path
+      d="M9.11084 18.7224C8.80468 18.7078 8.4986 18.6908 8.19263 18.6715C8.4437 20.5506 10.0529 21.9999 12.0007 21.9999C13.9485 21.9999 15.5578 20.5505 15.8088 18.6714C15.5028 18.6907 15.1967 18.7076 14.8905 18.7223C14.4092 18.7453 13.9276 18.7626 13.4459 18.7741C13.5439 18.7717 13.6419 18.7692 13.7399 18.7663C13.4886 19.4847 12.8048 19.9999 12.0007 19.9999C11.1966 19.9999 10.5128 19.4847 10.2615 18.7664C9.87784 18.7554 9.49428 18.7407 9.11084 18.7224Z"
+      fill={color || "#000"}
+    />
+  </Svg>
+);
+
+export default Pinotificationbellcheckduosolid;

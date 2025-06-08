@@ -1,0 +1,50 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pigaugerightupduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pigaugerightupduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "gauge right up icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M12.0001 22.1501C6.3941 22.1501 1.8501 17.6061 1.8501 12.0001C1.8501 6.3951 6.3941 1.8501 12.0001 1.8501C17.6061 1.8501 22.1501 6.3951 22.1501 12.0001C22.1501 17.6061 17.6061 22.1501 12.0001 22.1501Z"
+      fill={color || "#000"}
+      opacity={0.28}
+      fillRule="evenodd"
+      clipRule="evenodd"
+    />{" "}
+    <path
+      d="M16.075 6.99861C15.8349 6.98155 15.5967 7.05166 15.4041 7.19609L10.7811 10.6651C10.5711 10.8217 10.3974 11.0216 10.2715 11.2513C10.1457 11.4809 10.0708 11.735 10.0519 11.9962C10.033 12.2574 10.0705 12.5196 10.1619 12.7651C10.2533 13.0105 10.3965 13.2333 10.5817 13.4185C10.7668 13.6037 10.9897 13.7469 11.2351 13.8383C11.4805 13.9297 11.7428 13.9672 12.004 13.9483C12.2652 13.9294 12.5192 13.8545 12.7489 13.7286C12.9786 13.6028 13.1785 13.429 13.3351 13.2191L16.8041 8.59609C16.9485 8.40352 17.0186 8.16532 17.0016 7.92521C16.9845 7.6851 16.8814 7.4592 16.7112 7.28899C16.541 7.11878 16.3151 7.01568 16.075 6.99861Z"
+      fill={color || "#000"}
+    />
+  </Svg>
+);
+
+export default Pigaugerightupduosolid;

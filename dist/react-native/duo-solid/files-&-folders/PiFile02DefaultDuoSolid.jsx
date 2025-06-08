@@ -1,0 +1,48 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pifile02defaultduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pifile02defaultduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "file02 default icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M14.6641 1.40088C14.8393 1.8228 14.9167 2.26903 14.9559 2.74825C15.0001 3.28944 15.0001 3.9538 15 4.75877V4.80007C15 5.37663 15.0008 5.7489 15.024 6.03224C15.0462 6.3039 15.0838 6.40462 15.109 6.45406C15.2049 6.64223 15.3579 6.79521 15.5461 6.89108C15.5955 6.91627 15.6962 6.95395 15.9679 6.97615C16.2512 6.9993 16.6235 7.00007 17.2 7.00007H17.2413C18.0463 7.00006 18.7107 7.00005 19.2519 7.04427C19.7311 7.08342 20.1773 7.16084 20.5992 7.33606C19.7241 4.50795 17.4922 2.27603 14.6641 1.40088Z"
+      fill={color || "#000"}
+    />{" "}
+    <path
+      d="M8 1C5.23858 1 3 3.23858 3 6V18C3 20.7614 5.23858 23 8 23H16C18.7614 23 21 20.7614 21 18V12.8C21 11.9434 20.9992 11.3611 20.9624 10.911C20.9266 10.4726 20.8617 10.2484 20.782 10.092C20.5903 9.71569 20.2843 9.40973 19.908 9.21799C19.7516 9.1383 19.5274 9.07337 19.089 9.03755C18.6389 9.00078 18.0566 9 17.2 9L17.1615 9C16.6343 9.00002 16.1795 9.00003 15.805 8.96943C15.4096 8.93713 15.0164 8.86581 14.638 8.67302C14.0735 8.3854 13.6146 7.92646 13.327 7.36197C13.1342 6.98359 13.0629 6.59037 13.0306 6.19503C13 5.82046 13 5.36569 13 4.83854L13 4.8C13 3.94342 12.9992 3.36113 12.9624 2.91104C12.9266 2.47262 12.8617 2.24842 12.782 2.09202C12.5903 1.71569 12.2843 1.40973 11.908 1.21799C11.7516 1.1383 11.5274 1.07337 11.089 1.03755C10.6389 1.00078 10.0566 1 9.2 1H8Z"
+      fill={color || "#000"}
+      opacity={0.28}
+    />
+  </Svg>
+);
+
+export default Pifile02defaultduosolid;

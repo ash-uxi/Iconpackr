@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M5 17.1344C4.66109 17.2187 4.32332 17.3092 3.98686 17.406C3.82662 17.452 3.66378 17.5009 3.33814 17.5986C3.29255 17.6122 3.26975 17.6191 3.25197 17.6237C2.63314 17.7848 2.02416 17.3317 2.00067 16.6927C2 16.6744 2 16.6506 2 16.603V4.39707C2 4.34947 2 4.32567 2.00067 4.30731C2.02416 3.66828 2.63314 3.21518 3.25197 3.37631C3.26975 3.38094 3.29255 3.38778 3.33814 3.40145C3.66378 3.49915 3.82662 3.548 3.98686 3.59407C9.2229 5.09947 14.7771 5.09947 20.0131 3.59407C20.1734 3.548 20.3362 3.49915 20.6619 3.40145C20.7074 3.38779 20.7303 3.38094 20.748 3.37631C21.3669 3.21518 21.9758 3.66828 21.9993 4.30731C22 4.32567 22 4.34947 22 4.39707V16.603C22 16.6506 22 16.6744 21.9993 16.6927C21.9758 17.3317 21.3669 17.7848 20.748 17.6237C20.7302 17.6191 20.7075 17.6122 20.6619 17.5986C20.3367 17.501 20.1733 17.452 20.0131 17.406C19.6767 17.3092 19.3389 17.2187 19 17.1344M17 21C17 19.3432 15.6569 18 14 18H10C8.34315 18 7 19.3432 7 21M14.5 12.5C14.5 13.8807 13.3807 15 12 15C10.6193 15 9.5 13.8807 9.5 12.5C9.5 11.1193 10.6193 10 12 10C13.3807 10 14.5 11.1193 14.5 12.5Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiSpatialEnvironmentStroke icon from the stroke style in ar-&-vr category.
+ */
+export default {
+  name: 'PiSpatialEnvironmentStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'spatial-environment icon'
+    }
+  }
+}
+</script>

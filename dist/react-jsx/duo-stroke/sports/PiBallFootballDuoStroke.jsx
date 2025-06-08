@@ -1,0 +1,36 @@
+import React from 'react';
+
+/**
+ * PiBallFootballDuoStroke icon from the duo-stroke style in sports category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiBallFootballDuoStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'ball-football icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M13.4995 10.5L10.4995 13.5M12.1672 3.25452C15.4254 5.67 18.3294 8.574 20.7449 11.8321M3.25781 12.1634C5.6734 15.4218 8.57756 18.326 11.8359 20.7416" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M4.12053 19.8794C5.23422 20.9931 6.44419 21.2904 8.00372 21.2273C9.20327 21.1789 10.5205 21.0398 11.8365 20.7416C13.9759 20.2567 16.1119 19.351 17.7334 17.7296C19.3549 16.108 20.2606 13.9717 20.7455 11.8321C21.0437 10.5163 21.1827 9.19931 21.2311 7.99993C21.2941 6.44041 20.9969 5.23044 19.8832 4.11675C18.7695 3.00306 17.5596 2.70583 16 2.76885C14.8006 2.81731 13.4836 2.95632 12.1678 3.2545C10.0282 3.73935 7.89196 4.64504 6.27039 6.26661C4.64897 7.88803 3.7433 10.024 3.25841 12.1634C2.96015 13.4794 2.82111 14.7967 2.77263 15.9963C2.70962 17.5558 3.00684 18.7658 4.12053 19.8794Z" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+    </svg>
+  );
+}

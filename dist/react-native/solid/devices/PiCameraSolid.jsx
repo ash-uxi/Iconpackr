@@ -1,0 +1,51 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Picamerasolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Picamerasolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "camera icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M9.95624 2H14.0438C15.4068 1.99999 16.4908 1.99999 17.3654 2.07144C18.261 2.14462 19.0247 2.29768 19.7239 2.65396C20.8529 3.2292 21.7708 4.14709 22.346 5.27606C22.7023 5.9753 22.8554 6.73898 22.9286 7.63458C23 8.50914 23 9.59313 23 10.9561V13.0438C23 14.4068 23 15.4909 22.9286 16.3654C22.8554 17.261 22.7023 18.0247 22.346 18.7239C21.7708 19.8529 20.8529 20.7708 19.7239 21.346C19.0247 21.7023 18.261 21.8554 17.3654 21.9286C16.4909 22 15.4069 22 14.0439 22H9.95622C8.59322 22 7.50914 22 6.63458 21.9286C5.73898 21.8554 4.9753 21.7023 4.27606 21.346C3.14709 20.7708 2.2292 19.8529 1.65396 18.7239C1.29768 18.0247 1.14462 17.261 1.07144 16.3654C0.999986 15.4908 0.999992 14.4068 1 13.0438V10.9562C0.999992 9.5932 0.999986 8.50917 1.07144 7.63458C1.14462 6.73898 1.29768 5.9753 1.65396 5.27606C2.2292 4.14708 3.14708 3.2292 4.27606 2.65396C4.9753 2.29768 5.73898 2.14462 6.63458 2.07144C7.50917 1.99999 8.5932 1.99999 9.95624 2ZM12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7Z"
+      fill={color}
+      fillRule="evenodd"
+      clipRule="evenodd"
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Picamerasolid;

@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiControlTowerSolid icon from the solid style in building category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiControlTowerSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'control-tower icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12 1C12.5523 1.00003 13 1.44773 13 2V3H19.1299C20.6793 3.00003 21.843 4.3901 21.5986 5.89648L21.5703 6.04199L20.4111 11.2588C20.1345 12.5035 19.2133 13.4655 18.0469 13.834L18.4981 21.9443L18.499 22.0469C18.4759 22.5531 18.0725 22.9692 17.5557 22.998C17.0387 23.0268 16.5918 22.6579 16.5127 22.1572L16.502 22.0557L16.0547 14H7.94532L7.49805 22.0557C7.46731 22.607 6.99568 23.0286 6.44434 22.998C5.89301 22.9673 5.47133 22.4957 5.50196 21.9443L5.95215 13.834C4.78611 13.4653 3.86542 12.5032 3.58887 11.2588L2.42969 6.04199C2.08294 4.48081 3.27084 3 4.87012 3H11V2C11 1.44772 11.4477 1 12 1ZM5.54102 10.8252C5.69354 11.5115 6.30282 12 7.00586 12H8.78028L8.18067 9H5.13575L5.54102 10.8252ZM10.8193 12H13.1807L13.7803 9H10.2197L10.8193 12ZM15.2197 12H16.9941C17.6972 12 18.3065 11.5115 18.459 10.8252L18.8643 9H15.8193L15.2197 12Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

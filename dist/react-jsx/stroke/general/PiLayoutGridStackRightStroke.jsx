@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiLayoutGridStackRightStroke icon from the stroke style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiLayoutGridStackRightStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'layout-grid-stack-right icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M10 15.2C10 14.0799 10 13.5198 9.78201 13.092C9.59027 12.7157 9.28431 12.4097 8.90798 12.218C8.48016 12 7.9201 12 6.8 12H6.2C5.0799 12 4.51984 12 4.09202 12.218C3.71569 12.4097 3.40973 12.7157 3.21799 13.092C3 13.5198 3 14.0799 3 15.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.0799 21 6.2 21H6.8C7.9201 21 8.48016 21 8.90798 20.782C9.28431 20.5903 9.59027 20.2843 9.78201 19.908C10 19.4802 10 18.9201 10 17.8V15.2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+  <path d="M10 5.5C10 5.03534 10 4.80302 9.96157 4.60982C9.80376 3.81644 9.18356 3.19624 8.39018 3.03843C8.19698 3 7.96466 3 7.5 3H5.5C5.03534 3 4.80302 3 4.60982 3.03843C3.81644 3.19624 3.19624 3.81644 3.03843 4.60982C3 4.80302 3 5.03534 3 5.5C3 5.96466 3 6.19698 3.03843 6.39018C3.19624 7.18356 3.81644 7.80376 4.60982 7.96157C4.80302 8 5.03534 8 5.5 8H7.5C7.96466 8 8.19698 8 8.39018 7.96157C9.18356 7.80376 9.80376 7.18356 9.96157 6.39018C10 6.19698 10 5.96466 10 5.5Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+  <path d="M21 6.2C21 5.07989 21 4.51984 20.782 4.09202C20.5903 3.71569 20.2843 3.40973 19.908 3.21799C19.4802 3 18.9201 3 17.8 3H17.2C16.0799 3 15.5198 3 15.092 3.21799C14.7157 3.40973 14.4097 3.71569 14.218 4.09202C14 4.51984 14 5.0799 14 6.2V17.8C14 18.9201 14 19.4802 14.218 19.908C14.4097 20.2843 14.7157 20.5903 15.092 20.782C15.5198 21 16.0799 21 17.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V6.2Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

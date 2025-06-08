@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiArrowRightCircleSolid icon from the solid style in arrows-&-chevrons category.
+ */
+interface PiArrowRightCircleSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiArrowRightCircleSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'arrow-right-circle icon',
+  ...props
+}: PiArrowRightCircleSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M11.9999 1.8501C17.6055 1.8501 22.1499 6.39441 22.1499 12.0001C22.1499 17.6058 17.6055 22.1501 11.9999 22.1501C6.39416 22.1501 1.84985 17.6058 1.84985 12.0001C1.84985 6.39441 6.39416 1.8501 11.9999 1.8501ZM11.4628 8.80852C12.3688 9.46807 13.2127 10.2015 13.9857 11.0001L7.99995 11.0001C7.44767 11.0001 6.99995 11.4478 6.99995 12.0001C6.99995 12.5524 7.44767 13.0001 7.99995 13.0001L13.9857 13.0001C13.2127 13.7986 12.3688 14.532 11.4628 15.1916C11.0163 15.5166 10.9178 16.1421 11.2429 16.5886C11.5679 17.0351 12.1934 17.1336 12.6399 16.8085C14.1336 15.7211 15.4761 14.4501 16.6337 13.0274C16.8755 12.7303 17 12.3667 17 12.0001C17 11.6334 16.8755 11.2698 16.6337 10.9727C15.4761 9.55002 14.1336 8.27906 12.6399 7.1916C12.1934 6.86655 11.5679 6.96501 11.2429 7.41151C10.9178 7.85801 11.0163 8.48347 11.4628 8.80852Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

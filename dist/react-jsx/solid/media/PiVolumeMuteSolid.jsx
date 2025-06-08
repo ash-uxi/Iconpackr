@@ -1,0 +1,36 @@
+import React from 'react';
+
+/**
+ * PiVolumeMuteSolid icon from the solid style in media category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiVolumeMuteSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'volume-mute icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M15 5.08748C15 2.56319 12.1467 1.09485 10.0926 2.56206L7.27968 4.57131C6.82732 4.89443 6.31155 5.11788 5.76644 5.2269C2.99496 5.7812 1 8.21465 1 11.041V12.959C1 15.7853 2.99496 18.2188 5.76644 18.7731C6.31155 18.8821 6.82732 19.1056 7.27968 19.4287L10.0926 21.4379C12.1467 22.9051 15 21.4368 15 18.9125V5.08748Z" fill="currentColor" stroke="none"/>
+  <path d="M22.7071 10.7071C23.0976 10.3166 23.0976 9.68341 22.7071 9.29288C22.3166 8.90236 21.6834 8.90236 21.2929 9.29288L19.5 11.0858L17.7071 9.29289C17.3166 8.90236 16.6834 8.90236 16.2929 9.29289C15.9024 9.68341 15.9024 10.3166 16.2929 10.7071L18.0858 12.5L16.2929 14.2929C15.9024 14.6834 15.9024 15.3166 16.2929 15.7071C16.6834 16.0976 17.3166 16.0976 17.7071 15.7071L19.5 13.9142L21.2929 15.7071C21.6834 16.0976 22.3166 16.0976 22.7071 15.7071C23.0976 15.3166 23.0976 14.6834 22.7071 14.2929L20.9142 12.5L22.7071 10.7071Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,25 @@
+<script>
+  /**
+   * PiFile02CancelDuoStroke icon from the duo-stroke style in files-&-folders category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'file-02-cancel icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M16 22H8C5.79086 22 4 20.2091 4 18V6C4 3.79086 5.79086 2 8 2H12C16.4183 2 20 5.58172 20 10V18C20 20.2091 18.2091 22 16 22Z" stroke={color || "currentColor"} stroke-width="2" opacity="0.28" fill="none"/>
+  <path d="M9.52539 16.9497L12.0003 14.4749M12.0003 14.4749L14.4751 12M12.0003 14.4749L9.52539 12M12.0003 14.4749L14.4751 16.9497M20.0002 10C20.0002 5.58172 16.4185 2 12.0002 2H11.0002C12.6571 2 14.0002 3.34315 14.0002 5V5.6C14.0002 5.9716 14.0002 6.1574 14.0249 6.31287C14.1604 7.16865 14.8316 7.83983 15.6874 7.97538C15.8428 8 16.0286 8 16.4002 8L17.0002 8C18.6571 8 20.0002 9.34315 20.0002 11V10Z" stroke={color || "currentColor"} stroke-width="2" fill="none"/>
+</svg>

@@ -1,0 +1,45 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Picaptionoffstroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Picaptionoffstroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "caption off icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M10.25 9C8.59315 9 7.25 10.3431 7.25 12V12.5C7.25 13.6502 7.89726 14.6492 8.8474 15.1526M14.8415 14.8148C15.3601 15.2428 16.025 15.5 16.75 15.5M20.9883 8.66791C21 9.16036 21 9.7301 21 10.4V13.6C21 15.8402 21 16.9603 20.564 17.816C20.1805 18.5686 19.5686 19.1805 18.816 19.564C17.9603 20 16.8402 20 14.6 20H9.65625M4.71611 19.2839L2 22M4.71611 19.2839C4.17727 18.9091 3.73649 18.4058 3.43597 17.816C3 16.9603 3 15.8402 3 13.6V10.4C3 8.15979 3 7.03969 3.43597 6.18404C3.81947 5.43139 4.43139 4.81947 5.18404 4.43597C6.03968 4 7.15979 4 9.4 4H14.6C16.8402 4 17.9603 4 18.816 4.43597C18.9788 4.51895 19.1351 4.61263 19.2839 4.71611M4.71611 19.2839L8.8474 15.1526M8.8474 15.1526L19.2839 4.71611M22 2L19.2839 4.71611"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Picaptionoffstroke;

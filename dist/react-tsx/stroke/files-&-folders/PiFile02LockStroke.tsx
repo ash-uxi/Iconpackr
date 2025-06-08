@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiFile02LockStroke icon from the stroke style in files-&-folders category.
+ */
+interface PiFile02LockStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiFile02LockStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'file-02-lock icon',
+  ...props
+}: PiFile02LockStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M20 11V18C20 20.2091 18.2091 22 16 22H8C5.79086 22 4 20.2091 4 18V6C4 3.79086 5.79086 2 8 2H11M20 11V10C20 5.58172 16.4183 2 12 2H11M20 11C20 9.34315 18.6569 8 17 8L16.4 8C16.0284 8 15.8426 8 15.6871 7.97538C14.8313 7.83983 14.1602 7.16865 14.0246 6.31287C14 6.1574 14 5.9716 14 5.6V5C14 3.34315 12.6569 2 11 2M13.92 14.0414C13.7122 13.9999 13.4293 13.9999 12.9383 13.9999H11.0614C10.5705 13.9999 10.2875 13.9999 10.0797 14.0414M13.92 14.0414C14.5609 14.1693 15.0392 14.7715 15.0762 15.4135C15.1067 15.9425 14.9087 16.6967 14.6688 17.1738C14.467 17.5752 14.0958 17.8649 13.6575 17.9634C13.4951 17.9999 13.3095 17.9999 12.9383 17.9999H11.0614C10.6902 17.9999 10.5046 17.9999 10.3423 17.9634C9.90392 17.8649 9.53279 17.5752 9.33094 17.1738C9.09101 16.6967 8.893 15.9425 8.92353 15.4135C8.96058 14.7715 9.43889 14.1693 10.0797 14.0414M13.92 14.0414C13.8686 13.4246 13.8905 12.751 13.7442 12.1469C13.6014 11.5569 13.1169 11.1111 12.517 11.0177C12.1936 10.9674 11.8062 10.9674 11.4827 11.0177C10.8828 11.1111 10.3984 11.5569 10.2555 12.1469C10.1093 12.751 10.1311 13.4246 10.0797 14.0414" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,50 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pithumbreactionlikeduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pithumbreactionlikeduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "thumb reaction like icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M2 11.5C2 9.567 3.567 8 5.5 8C7.433 8 9 9.567 9 11.5V17.5C9 19.433 7.433 21 5.5 21C3.567 21 2 19.433 2 17.5V11.5ZM5.5 10C4.67157 10 4 10.6716 4 11.5V17.5C4 18.3284 4.67157 19 5.5 19C6.32843 19 7 18.3284 7 17.5V11.5C7 10.6716 6.32843 10 5.5 10Z"
+      fill={color || "#000"}
+      opacity={0.28}
+      fillRule="evenodd"
+      clipRule="evenodd"
+    />{" "}
+    <path
+      d="M9.18404 20.5647C9.66938 20.812 10.1861 20.9105 10.7482 20.9565C11.2894 21.0007 11.9537 21.0007 12.7587 21.0007H16.3467C17.0482 21.0007 17.6306 21.0007 18.1096 20.9641C18.6096 20.926 19.0706 20.8442 19.5153 20.642C20.2105 20.3259 20.8007 19.8174 21.2162 19.1766C21.4819 18.7667 21.631 18.3229 21.7427 17.834C21.8497 17.3657 21.9359 16.7897 22.0396 16.0959L22.5827 12.4647C22.6488 12.0232 22.7075 11.6307 22.728 11.3037C22.7497 10.9574 22.7377 10.581 22.5922 10.2029C22.3844 9.66271 21.9955 9.21137 21.492 8.9259C21.1396 8.72608 20.7691 8.65854 20.4234 8.62875C20.097 8.60062 19.7001 8.60064 19.2537 8.60066L16.8278 8.60067C16.6596 8.60067 16.4844 8.61284 16.3168 8.59187C15.9939 8.5304 15.8483 8.19966 15.9506 7.91022C16.0685 7.57651 16.2177 7.25307 16.3216 6.9145C16.7262 5.59611 16.4232 4.16228 15.5197 3.12038C15.3327 2.9048 15.1161 2.67523 14.8921 2.49491C14.0547 1.82072 12.8341 1.92916 12.1287 2.74043C12.0562 2.82381 11.987 2.92346 11.9295 3.0063L8.84507 7.43664C8.25852 8.27895 7.88969 8.8086 7.62482 9.39274C7.39011 9.91034 7.21931 10.4546 7.11619 11.0135C7.01319 11.5718 7.00196 12.1293 7.00001 12.9345L7 12.9369L7 15.7326L7.00001 15.7353C7.00344 16.9989 7.01554 17.9915 7.43598 18.8166C7.81947 19.5693 8.4314 20.1812 9.18404 20.5647Z"
+      fill={color || "#000"}
+    />
+  </Svg>
+);
+
+export default Pithumbreactionlikeduosolid;

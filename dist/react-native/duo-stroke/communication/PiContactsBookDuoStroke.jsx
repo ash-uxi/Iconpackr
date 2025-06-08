@@ -1,0 +1,58 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Picontactsbookduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Picontactsbookduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "contacts book icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M14.2223 13.6669H9.77789C8.55059 13.6669 7.55566 14.6618 7.55566 15.8891C7.55566 16.5028 8.05313 17.0002 8.66678 17.0002H15.3334C15.9471 17.0002 16.4446 16.5028 16.4446 15.8891C16.4446 14.6618 15.4496 13.6669 14.2223 13.6669Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M14.2223 8.7691C14.2223 9.9964 13.2274 10.9913 12.0001 10.9913C10.7728 10.9913 9.77789 9.9964 9.77789 8.7691C9.77789 7.5418 10.7728 6.54688 12.0001 6.54688C13.2274 6.54688 14.2223 7.5418 14.2223 8.7691Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M3.01105 16C3 15.423 3 14.7635 3 14V10C3 9.23647 3 8.57703 3.01105 8M3.01105 16C3.04052 17.5392 3.14859 18.492 3.54497 19.27C4.02433 20.2108 4.78924 20.9757 5.73005 21.455C6.79961 22 8.19974 22 11 22H13C15.8003 22 17.2004 22 18.27 21.455C19.2108 20.9757 19.9757 20.2108 20.455 19.27C21 18.2004 21 16.8003 21 14V10C21 7.19974 21 5.79961 20.455 4.73005C19.9757 3.78924 19.2108 3.02433 18.27 2.54497C17.2004 2 15.8003 2 13 2H11C8.19974 2 6.79961 2 5.73005 2.54497C4.78924 3.02433 4.02433 3.78924 3.54497 4.73005C3.14859 5.50797 3.04052 6.46078 3.01105 8M3.01105 16H2M3.01105 16H4M3.01105 8H2M3.01105 8H4"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Picontactsbookduostroke;

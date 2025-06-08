@@ -1,0 +1,45 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pimaximizefourlinearrowstroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pimaximizefourlinearrowstroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "maximize four line arrow icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M16 20.7595C17.4821 21.0077 18.9799 21.064 20.456 20.9274C20.5826 20.9157 20.6946 20.8612 20.7779 20.7779M20.7595 16C21.0077 17.4821 21.064 18.9799 20.9274 20.456C20.9157 20.5826 20.8612 20.6946 20.7779 20.7779M20.7779 20.7779L15 15M8 3.24048C6.51786 2.9923 5.02006 2.93601 3.54401 3.07256C3.41739 3.08427 3.30538 3.13883 3.2221 3.2221M3.24048 8C2.9923 6.51786 2.93601 5.02006 3.07256 3.54401C3.08427 3.41739 3.13883 3.30538 3.2221 3.2221M3.2221 3.2221L9 9M8 20.7595C6.51786 21.0077 5.02006 21.064 3.54401 20.9274C3.41739 20.9157 3.30538 20.8612 3.2221 20.7779M3.24048 16C2.9923 17.4821 2.93601 18.9799 3.07256 20.456C3.08427 20.5826 3.13883 20.6946 3.2221 20.7779M3.2221 20.7779L9 15M16 3.24048C17.4821 2.9923 18.9799 2.93601 20.456 3.07256C20.5826 3.08427 20.6946 3.13883 20.7779 3.2221M20.7595 8C21.0077 6.51786 21.064 5.02006 20.9274 3.54401C20.9157 3.41739 20.8612 3.30538 20.7779 3.2221M20.7779 3.2221L15 9"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pimaximizefourlinearrowstroke;

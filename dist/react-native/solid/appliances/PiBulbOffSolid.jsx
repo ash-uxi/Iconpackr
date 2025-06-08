@@ -1,0 +1,49 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pibulboffsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pibulboffsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "bulb off icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M10.3789 20C9.82662 20 9.37891 20.4477 9.37891 21C9.37891 21.5523 9.82662 22 10.3789 22H13.621C14.1733 22 14.621 21.5523 14.621 21C14.621 20.4477 14.1733 20 13.621 20H10.3789Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M12 3.99438C8.34306 3.99438 5.3125 6.85698 5.3125 10.4681C5.3125 12.4426 6.22588 14.2028 7.64758 15.3834C8.07681 15.7398 8.34196 16.1002 8.43495 16.4582L8.66232 17.3335C8.91639 18.3115 9.79926 18.9944 10.8098 18.9944H13.1902C14.2007 18.9944 15.0836 18.3115 15.3377 17.3335L15.5651 16.4582C15.658 16.1002 15.9232 15.7398 16.3524 15.3834C17.7741 14.2028 18.6875 12.4426 18.6875 10.4681C18.6875 6.85698 15.6569 3.99438 12 3.99438Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pibulboffsolid;

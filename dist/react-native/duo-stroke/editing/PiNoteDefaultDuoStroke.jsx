@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pinotedefaultduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pinotedefaultduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "note default icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M21 7.7998V15.1998C21 16.88 21 17.72 20.673 18.3618C20.3854 18.9263 19.9265 19.3852 19.362 19.6728C18.7202 19.9998 17.8802 19.9998 16.2 19.9998H7.8C6.11984 19.9998 5.27976 19.9998 4.63803 19.6728C4.07354 19.3852 3.6146 18.9263 3.32698 18.3618C3 17.72 3 16.88 3 15.1998V7.7998"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+    <path
+      d="M7.00001 12.6661H17M7.00001 17.9985H14M16.2 2.00146H7.80001C6.11986 2.00146 5.27978 2.00146 4.63804 2.43736C4.07356 2.82078 3.61462 3.43259 3.327 4.18509C3.05659 4.89256 3.0098 5.78085 3.00171 7.33379H20.9983C20.9902 5.78085 20.9434 4.89256 20.673 4.18509C20.3854 3.43259 19.9265 2.82078 19.362 2.43736C18.7202 2.00146 17.8802 2.00146 16.2 2.00146Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pinotedefaultduostroke;

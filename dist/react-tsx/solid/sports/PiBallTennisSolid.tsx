@@ -1,0 +1,39 @@
+import React from 'react';
+
+/**
+ * PiBallTennisSolid icon from the solid style in sports category.
+ */
+interface PiBallTennisSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiBallTennisSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'ball-tennis icon',
+  ...props
+}: PiBallTennisSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M2.9668 16.6284C4.22963 19.0913 6.48909 21.0314 9.37314 21.8042C12.2572 22.577 15.184 22.0265 17.5091 20.5251C14.7256 19.0179 13.2313 15.7505 14.0865 12.5591C14.9416 9.36768 17.8694 7.28514 21.0336 7.3717C19.7708 4.90881 17.5112 2.96869 14.6272 2.19591C11.7431 1.42313 8.81624 1.97357 6.49113 3.4751C9.27455 4.98225 10.7688 8.24964 9.91366 11.441C9.05855 14.6323 6.13085 16.7148 2.9668 16.6284Z" fill="currentColor" stroke="none"/>
+  <path d="M21.8043 14.6271C22.2737 12.8751 22.2549 11.1074 21.8312 9.46829C19.2649 8.95103 16.7053 10.513 16.0183 13.0767C15.3314 15.6405 16.7671 18.273 19.2481 19.1082C20.4347 17.9005 21.3349 16.379 21.8043 14.6271Z" fill="currentColor" stroke="none"/>
+  <path d="M4.75212 4.89198C3.56565 6.09959 2.66545 7.62109 2.19601 9.37306C1.72658 11.125 1.74545 12.8928 2.1692 14.5319C4.7354 15.049 7.29487 13.4871 7.98181 10.9234C8.66876 8.35964 7.23311 5.72723 4.75212 4.89198Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

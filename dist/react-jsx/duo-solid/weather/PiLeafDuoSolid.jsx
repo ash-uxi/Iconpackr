@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiLeafDuoSolid icon from the duo-solid style in weather category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiLeafDuoSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'leaf icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M18.3456 2.24424C18.5853 2.03628 18.9129 1.95235 19.2274 2.02549C19.5866 2.10932 19.8711 2.38402 19.9666 2.74033L20.1082 3.28623C21.5181 8.91553 21.2538 14.0109 18.8075 17.212C16.2627 20.5415 11.7233 21.412 5.59848 19.3595L5.00082 19.1515C4.70952 19.0465 4.48264 18.8124 4.38754 18.5177C3.10531 14.5426 3.04458 11.6291 3.95102 9.4708C4.87222 7.27779 6.69418 6.09044 8.62778 5.35752C10.5203 4.64029 12.7241 4.29092 14.4725 3.90732C15.3769 3.70889 16.1713 3.50152 16.8319 3.2374C17.4945 2.97234 17.9547 2.67589 18.2479 2.34092L18.3456 2.24424Z" fill={color || "currentColor"} opacity="0.28" /> <path d="M4 20.5C4 16.815 6.26579 14.061 8.35547 12.2978C9.41331 11.4053 10.4663 10.7309 11.2529 10.2802C11.6927 10.0283 12.1453 9.81107 12.5977 9.58491L12.5986 9.58394C13.1045 9.3628 13.6947 9.59368 13.916 10.0996C14.1371 10.6055 13.9062 11.1937 13.4004 11.415L13.4014 11.416L13.4004 11.4169C13.3675 11.4315 12.9118 11.6357 12.2471 12.0166C11.5338 12.4252 10.5865 13.0324 9.64453 13.8271C7.73436 15.4389 6 17.6851 6 20.5C6 21.0522 5.55228 21.5 5 21.5C4.44772 21.5 4 21.0522 4 20.5Z" fill={color || "currentColor"} />
+    </svg>
+  );
+}

@@ -1,0 +1,44 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pilayeronesolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pilayeronesolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "layer one icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M12.5431 6.54778C12.184 6.48407 11.816 6.48407 11.4569 6.54778C11.0468 6.62056 10.6681 6.80008 10.231 7.0073L3.83505 10.0319C3.49872 10.1909 3.18843 10.3376 2.95094 10.4768C2.72273 10.6105 2.37994 10.8355 2.18318 11.2279C1.93894 11.715 1.93894 12.285 2.18318 12.7721C2.37994 13.1645 2.72273 13.3895 2.95094 13.5232C3.18844 13.6624 3.49873 13.8091 3.83507 13.9681L10.231 16.9927C10.6681 17.1999 11.0467 17.3794 11.4569 17.4522C11.816 17.5159 12.184 17.5159 12.5431 17.4522C12.9533 17.3794 13.3319 17.1999 13.769 16.9927L20.1649 13.9681C20.5013 13.8091 20.8116 13.6624 21.0491 13.5232C21.2773 13.3895 21.6201 13.1645 21.8168 12.7721C22.0611 12.285 22.0611 11.715 21.8168 11.2279C21.6201 10.8355 21.2773 10.6105 21.0491 10.4767C20.8116 10.3376 20.5013 10.1909 20.165 10.0319L13.769 7.0073C13.3319 6.80008 12.9533 6.62056 12.5431 6.54778Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pilayeronesolid;

@@ -1,0 +1,49 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pitimeroffsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pitimeroffsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "timer off icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M19.3452 9.48509C19.6634 9.53775 19.9367 9.74067 20.0791 10.0301C20.6691 11.2287 21 12.5771 21 14C21 18.9706 16.9706 23 12 23C10.5771 23 9.2287 22.6691 8.03006 22.0791C7.74067 21.9367 7.53775 21.6634 7.48509 21.3452C7.43243 21.0269 7.53649 20.7029 7.76456 20.4748L18.4748 9.76456C18.7029 9.53649 19.0269 9.43243 19.3452 9.48509Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M9 2C9 1.44772 9.44772 1 10 1H14C14.5523 1 15 1.44772 15 2C15 2.55228 14.5523 3 14 3H13V5.055C14.2333 5.1915 15.3924 5.57741 16.4246 6.16114L21.2929 1.29289C21.6834 0.902369 22.3166 0.902369 22.7071 1.29289C23.0976 1.68342 23.0976 2.31658 22.7071 2.70711L2.70711 22.7071C2.31658 23.0976 1.68342 23.0976 1.29289 22.7071C0.902369 22.3166 0.902369 21.6834 1.29289 21.2929L4.16114 18.4246C3.42197 17.1176 3 15.607 3 14C3 9.36745 6.50005 5.55237 11 5.05493V3H10C9.44772 3 9 2.55228 9 2Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pitimeroffsolid;

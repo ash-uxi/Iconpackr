@@ -1,0 +1,49 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Picrownwinnerkingsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Picrownwinnerkingsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "crown winner king icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M13.2996 2.37972C12.8304 1.20676 11.17 1.20676 10.7008 2.37972L9.93587 4.29206C8.86042 6.98068 5.3863 7.69377 3.33871 5.64618C2.1813 4.48877 0.231176 5.56961 0.599234 7.16453L3.08407 17.9322C3.14887 18.2129 3.33163 18.4521 3.58553 18.5884C3.83943 18.7247 4.13977 18.7448 4.40959 18.6436C9.30359 16.8084 14.6968 16.8084 19.5908 18.6436C19.8606 18.7448 20.1609 18.7247 20.4148 18.5884C20.6687 18.4521 20.8515 18.2129 20.9163 17.9322L23.4011 7.16453C23.7692 5.56962 21.8191 4.48877 20.6617 5.64618C18.6141 7.69377 15.1399 6.98067 14.0645 4.29206L13.2996 2.37972Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M19.5807 20.5637C14.6933 18.7309 9.30731 18.7309 4.41988 20.5637C3.90276 20.7576 3.64076 21.334 3.83468 21.8511C4.0286 22.3682 4.60501 22.6302 5.12213 22.4363C9.55678 20.7733 14.4438 20.7733 18.8784 22.4363C19.3955 22.6302 19.972 22.3682 20.1659 21.8511C20.3598 21.334 20.0978 20.7576 19.5807 20.5637Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Picrownwinnerkingsolid;

@@ -1,0 +1,24 @@
+<script>
+  /**
+   * PiPhoneIncomingStroke icon from the stroke style in communication category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'phone-incoming icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M5.40732 12.974C4.16988 10.8771 3.35625 8.43264 3.03493 5.70916C2.89384 4.51323 3.63519 3.25377 4.89733 3.04738C5.29394 2.98252 5.78432 2.99232 6.18768 3.0287C7.87081 3.18051 8.56659 4.6661 8.93595 6.10803C9.43051 8.03869 8.82803 10.0852 7.36633 11.4397C6.76147 12.0002 6.06056 12.4721 5.40732 12.974ZM5.40732 12.974C6.72406 15.2053 8.52068 17.043 10.7146 18.4047M10.7146 18.4047C12.8787 19.7478 15.4293 20.6276 18.2873 20.965C19.4834 21.1062 20.7423 20.3643 20.9486 19.1022C21.0194 18.6693 21.011 18.1714 20.9594 17.7362C20.7499 15.9658 19.0454 15.2967 17.5244 14.9479C15.7912 14.5505 13.9733 15.0271 12.6578 16.2238C11.9438 16.8733 11.3465 17.6768 10.7146 18.4047ZM14.8501 4.90642C14.7008 6.11239 14.7033 7.33743 14.8568 8.55328C14.8962 8.86512 15.134 9.10294 15.4459 9.14233C16.6617 9.29589 17.8868 9.29831 19.0927 9.14906M19.9989 4.00023L15.0492 8.94997" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg>

@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiPencilEraserEditDuoSolid icon from the duo-solid style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiPencilEraserEditDuoSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'pencil-eraser-edit icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M13.717 5.63084C13.5997 5.5135 13.4094 5.51371 13.2923 5.6313L3.05189 15.9166C2.83563 16.1333 2.62424 16.345 2.46567 16.6007C2.32684 16.8244 2.22287 17.068 2.15724 17.323C2.08231 17.6141 2.07531 17.9133 2.06813 18.2201L2.0003 20.9705C1.99366 21.2396 2.09582 21.5001 2.28367 21.6929C2.47151 21.8858 2.72919 21.9947 2.9984 21.9952L5.79769 21.9997C6.11408 22.0006 6.42451 22.0015 6.72739 21.9289C6.99253 21.8652 7.24588 21.7601 7.47811 21.6173C7.74324 21.4543 7.962 21.234 8.18546 21.0089L18.4061 10.7433C18.5228 10.6261 18.5226 10.4365 18.4056 10.3195L13.717 5.63084Z" fill={color || "currentColor"} opacity="0.28" /> <path d="M19.3694 2.41141C18.3496 1.7525 17.0102 1.89744 16.154 2.75744L15.1267 3.78918C15.01 3.90641 15.0102 4.096 15.1272 4.21297L19.8158 8.90161C19.9332 9.01895 20.1235 9.01874 20.2406 8.90114L21.2163 7.92115C21.2415 7.89579 21.2657 7.87147 21.2881 7.84783C22.1004 6.99042 22.2317 5.69153 21.609 4.68846C21.5919 4.6608 21.573 4.63209 21.5534 4.60218L21.5148 4.54323C20.9557 3.69046 20.225 2.96422 19.3694 2.41141Z" fill={color || "currentColor"} /> <path d="M4.06585 18.3401C4.07948 17.788 3.64295 17.3294 3.09083 17.3157C2.53872 17.3021 2.08009 17.7386 2.06646 18.2908L2.0003 20.9712C1.99366 21.2403 2.09582 21.5008 2.28367 21.6936C2.47151 21.8865 2.72919 21.9954 2.9984 21.9959L5.72505 22.0002C6.27734 22.0011 6.72577 21.5541 6.72665 21.0018C6.72753 20.4495 6.28053 20.0011 5.72825 20.0002L4.02495 19.9975L4.06585 18.3401Z" fill={color || "currentColor"} />
+    </svg>
+  );
+}

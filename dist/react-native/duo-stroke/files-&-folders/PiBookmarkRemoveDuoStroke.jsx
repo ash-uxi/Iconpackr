@@ -1,0 +1,47 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pibookmarkremoveduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pibookmarkremoveduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "bookmark remove icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M5 9C5 7.13872 5 6.20808 5.24472 5.45492C5.73931 3.93273 6.93273 2.73931 8.45492 2.24472C9.20808 2 10.1387 2 12 2C13.8613 2 14.7919 2 15.5451 2.24472C17.0673 2.73931 18.2607 3.93273 18.7553 5.45492C19 6.20808 19 7.13872 19 9V22L17.2063 20.4626C15.3585 18.8787 14.4345 18.0867 13.3984 17.7849C12.4851 17.5189 11.5149 17.5189 10.6016 17.7849C9.56547 18.0867 8.64154 18.8787 6.79367 20.4626L5 22V9Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+    <path d="M9 10H15" stroke={color || "#000"} strokeWidth="2" fill="none" />
+  </Svg>
+);
+
+export default Pibookmarkremoveduostroke;

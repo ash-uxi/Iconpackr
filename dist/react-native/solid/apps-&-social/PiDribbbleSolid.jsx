@@ -1,0 +1,69 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pidribbblesolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pidribbblesolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "dribbble icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M14.9318 21.5633C14.6319 19.068 14.0628 16.6563 13.2547 14.3575C10.3041 15.4694 7.78087 17.4566 6.0026 20.0028C7.67345 21.2569 9.74987 22 11.9998 22C13.0201 22 14.0046 21.8472 14.9318 21.5633Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M17.1076 3.40104C15.9357 5.23775 14.3871 6.81159 12.5705 8.01324C11.4768 6.06587 10.208 4.2303 8.78548 2.52782C9.79428 2.1856 10.8754 2 11.9998 2C13.8659 2 15.6126 2.51114 17.1076 3.40104Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M18.7187 4.59331C17.3683 6.67317 15.5885 8.44765 13.5051 9.79161C13.8424 10.4794 14.1585 11.1795 14.4525 11.8911C15.8192 11.5486 17.2488 11.3669 18.7196 11.3669C19.8386 11.3669 20.9334 11.4721 21.9946 11.673C21.9045 8.86791 20.6591 6.3546 18.7187 4.59331Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M2.11786 10.459C2.58276 7.45339 4.38603 4.88992 6.89956 3.39662C8.39031 5.12449 9.71067 7.00324 10.8346 9.00673C8.7815 10.0115 6.47318 10.5757 4.03077 10.5757C3.38283 10.5757 2.74445 10.536 2.11786 10.459Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M21.8585 13.6847C20.8452 13.4764 19.7954 13.3669 18.7196 13.3669C17.4972 13.3669 16.309 13.5082 15.1698 13.7751C15.9491 16.0088 16.5152 18.3422 16.8438 20.7506C19.4498 19.3049 21.3421 16.7289 21.8585 13.6847Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M4.51964 18.6369C6.51374 15.8736 9.29481 13.7155 12.5359 12.4911C12.2932 11.9123 12.035 11.3416 11.7618 10.7796C9.42958 11.9297 6.80444 12.5757 4.03077 12.5757C3.34763 12.5757 2.6734 12.5365 2.01025 12.4602C2.11744 14.8264 3.0469 16.9783 4.51964 18.6369Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pidribbblesolid;

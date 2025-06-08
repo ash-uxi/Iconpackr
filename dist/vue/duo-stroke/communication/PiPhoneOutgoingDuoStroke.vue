@@ -1,0 +1,44 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M19.889 8.35286C20.0383 7.14689 20.0358 5.92184 19.8823 4.70599C19.8626 4.55007 19.7933 4.41266 19.6899 4.3093M15.6464 4.11021C16.8523 3.96096 18.0774 3.96339 19.2932 4.11695C19.4491 4.13664 19.5866 4.20594 19.6899 4.3093M14.7402 9.25905L19.6899 4.3093M3.03518 5.70916C3.35649 8.43264 4.17013 10.8771 5.40756 12.974C6.0608 12.4721 6.76171 12.0002 7.36657 11.4397C8.82827 10.0852 9.43075 8.03869 8.93619 6.10803C8.56683 4.6661 7.87105 3.18051 6.18792 3.0287C5.78456 2.99232 5.29419 2.98252 4.89757 3.04738C3.63544 3.25377 2.89408 4.51323 3.03518 5.70916ZM10.7149 18.4047C12.8789 19.7478 15.4296 20.6276 18.2876 20.965C19.4837 21.1062 20.7426 20.3643 20.9489 19.1022C21.0197 18.6693 21.0113 18.1714 20.9597 17.7362C20.7502 15.9658 19.0457 15.2967 17.5247 14.9479C15.7915 14.5505 13.9736 15.0271 12.6581 16.2238C11.9441 16.8733 11.3468 17.6768 10.7149 18.4047Z" :stroke="color || 'currentColor'" stroke-width="2" fill="none"/>
+  <path d="M5.40723 12.9741C6.72398 15.2054 8.52059 17.0432 10.7145 18.4048" :stroke="color || 'currentColor'" stroke-width="2" opacity="0.28" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiPhoneOutgoingDuoStroke icon from the duo-stroke style in communication category.
+ */
+export default {
+  name: 'PiPhoneOutgoingDuoStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'phone-outgoing icon'
+    }
+  }
+}
+</script>

@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiFaceEvilSmileSolid icon from the solid style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiFaceEvilSmileSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'face-evil-smile icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M1.8501 11.9996C1.8501 6.39392 6.39441 1.84961 12.0001 1.84961C17.6058 1.84961 22.1501 6.39392 22.1501 11.9996C22.1501 17.6053 17.6058 22.1496 12.0001 22.1496C6.39441 22.1496 1.8501 17.6053 1.8501 11.9996ZM10.178 9.08085C10.6304 9.39763 10.7404 10.0212 10.4236 10.4736C10.1068 10.926 9.48325 11.0359 9.03085 10.7192L7.80212 9.85879C7.34971 9.54201 7.23977 8.91847 7.55654 8.46606C7.87332 8.01365 8.49687 7.90371 8.94927 8.22048L10.178 9.08085ZM9.14338 13.8997C8.75676 13.5053 8.12363 13.499 7.72924 13.8856C7.33485 14.2722 7.32856 14.9054 7.71519 15.2998C8.80298 16.4094 10.3218 17.0997 12 17.0997C13.6782 17.0997 15.197 16.4094 16.2848 15.2998C16.6714 14.9054 16.6651 14.2722 16.2708 13.8856C15.8764 13.499 15.2432 13.5053 14.8566 13.8997C14.1295 14.6414 13.1192 15.0997 12 15.0997C10.8808 15.0997 9.87052 14.6414 9.14338 13.8997ZM13.5766 10.4736C13.8933 10.926 14.5169 11.0359 14.9693 10.7192L16.198 9.85879C16.6504 9.54201 16.7604 8.91847 16.4436 8.46606C16.1268 8.01365 15.5033 7.90371 15.0509 8.22048L13.8221 9.08085C13.3697 9.39763 13.2598 10.0212 13.5766 10.4736Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

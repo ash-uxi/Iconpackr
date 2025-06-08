@@ -1,0 +1,47 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pivideocalloffduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pivideocalloffduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "video call off icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M13 5H6C3.79086 5 2 6.79086 2 9V15C2 16.9002 3.32493 18.4909 5.10135 18.8987M17 12V13.868C17 14.4588 17.2612 15.0194 17.7136 15.3994L18.7136 16.2394C20.0148 17.3324 22 16.4074 22 14.708V9.29197C22 7.59262 20.0148 6.66755 18.7136 7.76056L17.7136 8.60056C17.2612 8.98057 17 9.54116 17 10.132V12ZM17 12V9C17 8.41306 16.8736 7.85565 16.6465 7.3535M17 12V15C17 17.2091 15.2091 19 13 19H10"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+    <path d="M2 22L22 2" stroke={color || "#000"} strokeWidth="2" fill="none" />
+  </Svg>
+);
+
+export default Pivideocalloffduostroke;

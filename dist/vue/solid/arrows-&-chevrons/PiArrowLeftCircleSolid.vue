@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    
+     :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M12.0001 22.1499C6.39441 22.1499 1.8501 17.6055 1.8501 11.9999C1.8501 6.39416 6.39441 1.84985 12.0001 1.84985C17.6058 1.84985 22.1501 6.39416 22.1501 11.9999C22.1501 17.6055 17.6058 22.1499 12.0001 22.1499ZM12.5372 15.1914C11.6312 14.5319 10.7872 13.7984 10.0142 12.9999L16 12.9999C16.5523 12.9999 17 12.5522 17 11.9999C17 11.4476 16.5523 10.9999 16 10.9999L10.0142 10.9999C10.7873 10.2014 11.6312 9.4679 12.5372 8.80835C12.9837 8.4833 13.0821 7.85784 12.7571 7.41134C12.432 6.96484 11.8066 6.86638 11.3601 7.19143C9.86631 8.27888 8.52387 9.54985 7.36624 10.9725C7.12448 11.2696 7 11.6333 7 11.9999C7 12.3665 7.12448 12.7301 7.36624 13.0273C8.52387 14.4499 9.86631 15.7209 11.3601 16.8083C11.8066 17.1334 12.432 17.0349 12.7571 16.5884C13.0821 16.1419 12.9837 15.5165 12.5372 15.1914Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" stroke="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiArrowLeftCircleSolid icon from the solid style in arrows-&-chevrons category.
+ */
+export default {
+  name: 'PiArrowLeftCircleSolid',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'arrow-left-circle icon'
+    }
+  }
+}
+</script>

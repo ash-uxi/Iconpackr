@@ -1,0 +1,57 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pispreadsheetswapstroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pispreadsheetswapstroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "spreadsheet swap icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M20 13V18C20 18.5304 19.7893 19.0391 19.4142 19.4142C19.0391 19.7893 18.5304 20 18 20H13"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M22 15C21.4718 14.272 20.8494 13.6173 20.149 13.053C20.1069 13.0187 20.0543 13 20 13C19.9457 13 19.8931 13.0187 19.851 13.053C19.1507 13.6173 18.5283 14.272 18 15M15.4 22C14.5445 21.4863 13.759 20.8641 13.063 20.149C13.0429 20.1297 13.0268 20.1066 13.0159 20.081C13.0049 20.0554 12.9993 20.0278 12.9993 20C12.9993 19.9721 13.0049 19.9446 13.0159 19.919C13.0268 19.8933 13.0429 19.8702 13.063 19.851C13.7592 19.1361 14.5447 18.514 15.4 18"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M9 9L9 15M9 9H3.0001M9 9H20.9999C20.9984 7.0233 20.9732 5.98717 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C17.9603 3 16.8402 3 14.6 3H9.4C7.15979 3 6.03968 3 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.02676 5.98717 3.00164 7.0233 3.0001 9M9 15L9 20.9999C7.0233 20.9984 5.98717 20.9732 5.18404 20.564C4.43139 20.1805 3.81947 19.5686 3.43597 18.816C3.02676 18.0128 3.00164 16.9767 3.0001 15M9 15H3.0001M3.0001 15C3 14.8708 3 14.7375 3 14.6V9.4C3 9.26251 3 9.12925 3.0001 9"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pispreadsheetswapstroke;

@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiPencilEraserEditSwooshStroke icon from the stroke style in general category.
+ */
+interface PiPencilEraserEditSwooshStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiPencilEraserEditSwooshStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'pencil-eraser-edit-swoosh icon',
+  ...props
+}: PiPencilEraserEditSwooshStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12 21C16.018 17.7256 16.0891 24.3574 21 19M18.6157 9.11574L20.5014 7.22177C21.0315 6.68941 21.1632 5.86631 20.7594 5.21582C20.2713 4.42948 19.6037 3.75331 18.8267 3.25131C18.204 2.84896 17.3862 2.93708 16.8626 3.46297L14.9171 5.41706M18.6157 9.11574L7.52811 20.2521C7.25274 20.5287 7.11505 20.6669 6.95435 20.7658C6.81188 20.8534 6.65654 20.9178 6.49406 20.9568C6.31079 21.0008 6.11608 21.0005 5.72665 20.9999L3 20.9955L3.06616 18.3151C3.07546 17.9381 3.08011 17.7497 3.12568 17.5726C3.16608 17.4156 3.23007 17.2658 3.31544 17.1282C3.41171 16.973 3.54444 16.8396 3.8099 16.573L14.9171 5.41706M18.6157 9.11574L14.9171 5.41706" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,25 @@
+<script>
+  /**
+   * PiShieldPlusDuoStroke icon from the duo-stroke style in security category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'shield-plus icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M12.1328 15V12M12.1328 12V9M12.1328 12L9.13281 12M12.1328 12H15.1328" stroke={color || "currentColor"} stroke-width="2" fill="none"/>
+  <path d="M5.49513 4.31356L10.8827 2.36804C11.5412 2.13025 12.2621 2.13025 12.9206 2.36804L18.3858 4.34159C19.4957 4.74238 20.2675 5.7566 20.358 6.93316L20.585 9.88366C20.918 14.2123 18.6739 18.3318 14.8565 20.3995L13.3679 21.2059C12.4561 21.6998 11.3539 21.6878 10.4531 21.1741L8.93239 20.3071C5.36831 18.2749 3.23134 14.4282 3.38902 10.3285L3.51627 7.01992C3.56323 5.799 4.34594 4.72854 5.49513 4.31356Z" stroke={color || "currentColor"} stroke-width="2" opacity="0.28" fill="none"/>
+</svg>

@@ -1,0 +1,44 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M14 5.87436C13.5065 5.21636 12.934 4.62215 12.2957 4.10493C12.2094 4.03498 12.1047 4 12 4M10 5.87436C10.4935 5.21636 11.066 4.62215 11.7043 4.10493C11.7906 4.03498 11.8953 4 12 4M12 4V9M14 20H10C7.19974 20 5.79961 20 4.73005 19.455C3.78924 18.9757 3.02433 18.2108 2.54497 17.27C2 16.2004 2 14.8003 2 12V11.8498C2 11.5333 2 11.3751 2.02421 11.2209C2.03591 11.1464 2.05181 11.0726 2.07181 11H7.07692C7.58672 11 8 11.4133 8 11.9231C8 13.6224 9.37759 15 11.0769 15H12.9231C14.6224 15 16 13.6224 16 11.9231C16 11.4133 16.4133 11 16.9231 11H21.9282C21.9482 11.0726 21.9641 11.1464 21.9758 11.2209C22 11.3751 22 11.5333 22 11.8498V12C22 14.8003 22 16.2004 21.455 17.27C20.9757 18.2108 20.2108 18.9757 19.27 19.455C18.2004 20 16.8003 20 14 20Z" :stroke="color || 'currentColor'" stroke-width="2" fill="none"/>
+  <path d="M21.9281 11.0001C21.9114 10.9393 21.8918 10.8793 21.8693 10.8203C21.8139 10.6744 21.7354 10.537 21.5783 10.2622L19.8427 7.22479C19.1715 6.05032 18.836 5.46308 18.3644 5.03586C17.9473 4.65786 17.455 4.37219 16.9198 4.19751M2.07178 11.0001C2.08852 10.9393 2.10814 10.8793 2.13058 10.8203C2.18605 10.6744 2.26456 10.537 2.42159 10.2622L4.15727 7.22479C4.8284 6.05032 5.16396 5.46308 5.63548 5.03586C6.05266 4.65786 6.54493 4.37219 7.08011 4.19751" :stroke="color || 'currentColor'" stroke-width="2" opacity="0.28" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiInboxOutgoingDuoStroke icon from the duo-stroke style in communication category.
+ */
+export default {
+  name: 'PiInboxOutgoingDuoStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'inbox-outgoing icon'
+    }
+  }
+}
+</script>

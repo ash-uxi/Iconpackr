@@ -1,0 +1,70 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piqrdefaultstroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piqrdefaultstroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "qr default icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path d="M14 14V17" stroke={color} strokeWidth="2" fill="none" />
+    <path d="M14 20V21" stroke={color} strokeWidth="2" fill="none" />
+    <path d="M18 7H17V6H18V7Z" stroke={color} strokeWidth="2" fill="none" />
+    <path
+      d="M19 3H16C14.8954 3 14 3.89543 14 5V8C14 9.10457 14.8954 10 16 10H19C20.1046 10 21 9.10457 21 8V5C21 3.89543 20.1046 3 19 3Z"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path d="M20 17V17.1" stroke={color} strokeWidth="2" fill="none" />
+    <path d="M20 20V21" stroke={color} strokeWidth="2" fill="none" />
+    <path
+      d="M21 14H18.5C17.6716 14 17 14.6716 17 15.5V21"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path d="M7 18H6V17H7V18Z" stroke={color} strokeWidth="2" fill="none" />
+    <path d="M7 7H6V6H7V7Z" stroke={color} strokeWidth="2" fill="none" />
+    <path
+      d="M8 14H5C3.89543 14 3 14.8954 3 16V19C3 20.1046 3.89543 21 5 21H8C9.10457 21 10 20.1046 10 19V16C10 14.8954 9.10457 14 8 14Z"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M8 3H5C3.89543 3 3 3.89543 3 5V8C3 9.10457 3.89543 10 5 10H8C9.10457 10 10 9.10457 10 8V5C10 3.89543 9.10457 3 8 3Z"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Piqrdefaultstroke;

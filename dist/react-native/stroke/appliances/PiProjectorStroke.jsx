@@ -1,0 +1,45 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piprojectorstroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piprojectorstroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "projector icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M5 15C4.06812 15 3.60218 15 3.23463 14.8478C2.74458 14.6448 2.35523 14.2554 2.15224 13.7654C2 13.3978 2 12.9319 2 12C2 11.0681 2 10.6022 2.15224 10.2346C2.35523 9.74458 2.74458 9.35523 3.23463 9.15224C3.60218 9 4.06812 9 5 9L9.35418 9M5 15H9.35418M5 15L5 16M19 15C19.9319 15 20.3978 15 20.7654 14.8478C21.2554 14.6448 21.6448 14.2554 21.8478 13.7654C22 13.3978 22 12.9319 22 12C22 11.0681 22 10.6022 21.8478 10.2346C21.6448 9.74458 21.2554 9.35523 20.7654 9.15224C20.3978 9 19.9319 9 19 9L14.6458 9M19 15L14.6458 15M19 15V16M14.6458 9C13.9407 8.37764 13.0144 8 12 8C10.9856 8 10.0593 8.37764 9.35418 9M14.6458 9C15.4762 9.73294 16 10.8053 16 12C16 13.1947 15.4762 14.2671 14.6458 15M14.6458 15C13.9407 15.6224 13.0144 16 12 16C10.9856 16 10.0593 15.6224 9.35418 15M9.35418 15C8.52375 14.2671 8 13.1947 8 12C8 10.8053 8.52376 9.73294 9.35418 9M19.01 12H19"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Piprojectorstroke;

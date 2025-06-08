@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pigraduationhatduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pigraduationhatduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "graduation hat icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M2 7.84669C1.99999 7.75201 2.02221 7.6574 2.06653 7.56996C2.16451 7.37665 2.45382 7.23395 3.03244 6.94854L9.09649 3.95745C10.159 3.43337 10.6902 3.17133 11.2498 3.06837C11.7452 2.97721 12.2548 2.97721 12.7502 3.06837C13.3098 3.17133 13.841 3.43337 14.9035 3.95745L20.9676 6.94854C21.5462 7.23395 21.8355 7.37665 21.9335 7.56996C22.0188 7.73841 22.0222 7.93344 21.9427 8.10441C21.8514 8.30059 21.5671 8.45202 20.9986 8.75487L15.081 11.9073C13.9575 12.5057 13.3958 12.805 12.7997 12.9222C12.2723 13.0259 11.7277 13.0259 11.2003 12.9222C10.6042 12.805 10.0425 12.5057 8.91902 11.9073L3.00138 8.75487C2.43287 8.45202 2.14862 8.30059 2.05734 8.10441C2.01909 8.02219 2.00001 7.93441 2 7.84669ZM2 7.84669V15"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M5 9.81934V16.1355C5 16.4736 5 16.6427 5.04936 16.794C5.09303 16.9277 5.16445 17.0508 5.25894 17.1551C5.36575 17.273 5.51256 17.3569 5.80618 17.5247L6.44324 17.8887C8.46862 19.0461 9.48132 19.6247 10.5568 19.8513C11.5085 20.0519 12.4915 20.0519 13.4432 19.8513C14.5187 19.6247 15.5314 19.0461 17.5568 17.8887L18.1938 17.5247C18.4874 17.3569 18.6342 17.273 18.7411 17.1551C18.8356 17.0508 18.907 16.9277 18.9506 16.794C19 16.6427 19 16.4832 19 16.1451V9.81934"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pigraduationhatduostroke;

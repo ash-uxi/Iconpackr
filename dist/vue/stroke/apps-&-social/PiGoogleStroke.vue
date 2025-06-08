@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M18.0543 4.51753C16.5373 3.46708 14.6867 2.8501 12.6894 2.8501C7.54259 2.8501 3.25 6.78097 3.25 12C3.25 17.0534 7.43253 21.0996 12.6894 21.0996C18.0543 21.0996 21.4965 16.9741 21.2362 12H12.6894" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiGoogleStroke icon from the stroke style in apps-&-social category.
+ */
+export default {
+  name: 'PiGoogleStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'google icon'
+    }
+  }
+}
+</script>

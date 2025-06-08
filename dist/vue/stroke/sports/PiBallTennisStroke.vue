@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M20.4047 8.38216C17.9266 8.56133 15.7215 10.2801 15.0422 12.8152C14.3629 15.3503 15.4132 17.9414 17.4697 19.3356M20.4047 8.38216C19.3347 5.90087 17.1809 3.9155 14.3681 3.16183C11.5553 2.40814 8.6973 3.05067 6.52996 4.6646M20.4047 8.38216C21.1916 10.2069 21.3924 12.2998 20.8381 14.3682C20.2839 16.4367 19.0635 18.1488 17.4697 19.3356M17.4697 19.3356C15.3024 20.9495 12.4445 21.5919 9.63173 20.8383C6.81892 20.0846 4.66509 18.0991 3.59508 15.6178M6.52996 4.6646C8.58621 6.05889 9.6363 8.64979 8.95706 11.1847C8.27783 13.7197 6.07298 15.4384 3.59508 15.6178M6.52996 4.6646C4.93621 5.8514 3.71593 7.56346 3.16171 9.63185C2.60748 11.7003 2.80825 13.7931 3.59508 15.6178" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiBallTennisStroke icon from the stroke style in sports category.
+ */
+export default {
+  name: 'PiBallTennisStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'ball-tennis icon'
+    }
+  }
+}
+</script>

@@ -1,0 +1,46 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pi3dspheresolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pi3dspheresolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "3d sphere icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M1.91085 10.882C2.38903 6.51941 5.63191 2.98838 9.84979 2.07865C8.67756 4.88191 7.99995 8.31633 7.99995 12.0005C7.99995 12.2381 8.00277 12.4747 8.00836 12.7102C5.70061 12.3634 3.62375 11.725 1.91085 10.882ZM1.90674 13.0808C2.37017 17.4609 5.61965 21.0099 9.84979 21.9223C8.97465 19.8295 8.37519 17.3849 8.12754 14.7472C5.84889 14.4404 3.7388 13.8674 1.90674 13.0808ZM10.1578 14.9462C10.4573 17.7009 11.167 20.1713 12.1508 22.1494C17.3233 22.074 21.559 18.1296 22.0931 13.0808C19.259 14.2976 15.7595 15.0033 12 15.0033C11.3782 15.0033 10.7636 14.984 10.1578 14.9462ZM22.0891 10.8821C21.5377 5.85154 17.3103 1.92672 12.1508 1.85156C10.8274 4.51244 9.99995 8.06418 9.99995 12.0005C9.99995 12.3136 10.0052 12.6242 10.0155 12.9322C10.6641 12.979 11.3264 13.0033 12 13.0033C15.9068 13.0033 19.4349 12.1882 22.0891 10.8821Z"
+      fill={color}
+      fillRule="evenodd"
+      clipRule="evenodd"
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pi3dspheresolid;

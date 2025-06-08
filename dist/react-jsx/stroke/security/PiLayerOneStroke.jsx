@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiLayerOneStroke icon from the stroke style in security category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiLayerOneStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'layer-one icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M4.29927 13.0814C3.56321 12.7334 3.19518 12.5593 3.07708 12.3238C2.97431 12.1189 2.97431 11.8811 3.07708 11.6762C3.19518 11.4407 3.56321 11.2666 4.29927 10.9186L10.5707 7.95291C11.0948 7.70508 11.3568 7.58117 11.6317 7.5324C11.8751 7.4892 12.1249 7.4892 12.3683 7.5324C12.6432 7.58117 12.9052 7.70508 13.4293 7.95291L19.7007 10.9186C20.4368 11.2666 20.8048 11.4407 20.9229 11.6762C21.0257 11.8811 21.0257 12.1189 20.9229 12.3238C20.8048 12.5593 20.4368 12.7334 19.7007 13.0814L13.4293 16.0471C12.9052 16.2949 12.6432 16.4188 12.3683 16.4676C12.1249 16.5108 11.8751 16.5108 11.6317 16.4676C11.3568 16.4188 11.0948 16.2949 10.5707 16.0471L4.29927 13.0814Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

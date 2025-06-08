@@ -1,0 +1,47 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piequalscancelduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piequalscancelduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "equals cancel icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path d="M5 21L19 3" stroke={color || "#000"} strokeWidth="2" fill="none" />
+    <path
+      d="M5 9H14.3333M15 15L19 15M18.9805 9H19M5 15H9.66667"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Piequalscancelduostroke;

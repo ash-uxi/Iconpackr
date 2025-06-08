@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M11.9488 16C10.5242 14.963 9.24481 13.7515 8.14204 12.3962C8.04744 12.28 8.00014 12.14 8.00014 12M11.9488 8C10.5242 9.03704 9.24481 10.2485 8.14204 11.6038C8.04744 11.72 8.00014 11.86 8.00014 12M8.00014 12L16.0001 12M21.1501 12.0001C21.1501 17.0535 17.0535 21.1501 12.0001 21.1501C6.94669 21.1501 2.8501 17.0535 2.8501 12.0001C2.8501 6.94669 6.94669 2.8501 12.0001 2.8501C17.0535 2.8501 21.1501 6.94669 21.1501 12.0001Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiArrowLeftCircleStroke icon from the stroke style in arrows-&-chevrons category.
+ */
+export default {
+  name: 'PiArrowLeftCircleStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'arrow-left-circle icon'
+    }
+  }
+}
+</script>

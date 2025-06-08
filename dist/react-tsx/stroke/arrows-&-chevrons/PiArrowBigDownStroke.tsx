@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiArrowBigDownStroke icon from the stroke style in arrows-&-chevrons category.
+ */
+interface PiArrowBigDownStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiArrowBigDownStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'arrow-big-down icon',
+  ...props
+}: PiArrowBigDownStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M13.4 3.00195L10.6 3.00195C10.0399 3.00195 9.75992 3.00195 9.54601 3.11095C9.35784 3.20682 9.20486 3.3598 9.10899 3.54796C9 3.76187 9 4.0419 9 4.60195L9 14.5253C7.6643 14.4592 6.33024 14.3491 5 14.1948C6.81482 16.6488 8.93491 18.8528 11.3066 20.7525C11.5101 20.9155 11.755 20.997 12 20.997C12.245 20.997 12.4899 20.9155 12.6934 20.7525C15.0651 18.8528 17.1852 16.6488 19 14.1948C17.6698 14.3491 16.3357 14.4592 15 14.5253L15 4.60195C15 4.0419 15 3.76187 14.891 3.54796C14.7951 3.3598 14.6421 3.20682 14.454 3.11095C14.2401 3.00195 13.96 3.00195 13.4 3.00195Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

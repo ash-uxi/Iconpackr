@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiHomeVLineSolid icon from the solid style in building category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiHomeVLineSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'home-v-line icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M10.5094 2.22933C11.48 1.92616 12.5201 1.92616 13.4907 2.22933C14.1 2.41965 14.6264 2.7554 15.171 3.19337C15.6991 3.61803 16.3032 4.18862 17.0509 4.89477L19.7673 7.46022C20.4238 8.07983 20.8781 8.50869 21.2102 9.02697C21.5035 9.4849 21.7202 9.98762 21.8517 10.5153C22.0005 11.1126 22.0003 11.7373 22.0001 12.64L22 14.6428C22.0001 15.7266 22.0001 16.6008 21.9422 17.3086C21.8827 18.0375 21.7569 18.6777 21.4551 19.2699C20.9757 20.2108 20.2108 20.9757 19.27 21.455C18.6777 21.7568 18.0375 21.8826 17.3087 21.9422C16.6008 22 15.7267 22 14.643 22H9.35721C8.27349 22 7.39927 22 6.69142 21.9422C5.96257 21.8826 5.32239 21.7568 4.73009 21.455C3.78928 20.9757 3.02438 20.2108 2.54501 19.2699C2.24323 18.6777 2.11741 18.0375 2.05786 17.3086C2.00003 16.6007 2.00004 15.7266 2.00005 14.6428L2.00002 12.6401C1.99975 11.7374 1.99956 11.1126 2.14838 10.5153C2.27986 9.98762 2.49656 9.4849 2.78993 9.02697C3.12196 8.50869 3.57631 8.07984 4.23278 7.46022L6.94916 4.89478C7.69685 4.18862 8.30099 3.61803 8.82906 3.19337C9.37368 2.7554 9.90005 2.41965 10.5094 2.22933ZM13 13C13 12.4477 12.5523 12 12 12C11.4477 12 11 12.4477 11 13V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V13Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

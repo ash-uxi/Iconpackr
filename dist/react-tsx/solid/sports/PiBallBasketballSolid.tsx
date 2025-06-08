@@ -1,0 +1,44 @@
+import React from 'react';
+
+/**
+ * PiBallBasketballSolid icon from the solid style in sports category.
+ */
+interface PiBallBasketballSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiBallBasketballSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'ball-basketball icon',
+  ...props
+}: PiBallBasketballSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M1.89845 13H7.12285C6.85553 15.1772 5.7267 17.0832 4.09231 18.364C2.88597 16.867 2.09603 15.0203 1.89845 13Z" fill="currentColor" stroke="none"/>
+  <path d="M10.9996 1.8986C8.91859 2.10215 7.02187 2.93416 5.50171 4.20235C7.50841 5.84976 8.86647 8.26508 9.13496 11H10.9996V1.8986Z" fill="currentColor" stroke="none"/>
+  <path d="M12.9996 22.1013C15.0816 21.8978 16.9792 21.0651 18.4997 19.796C16.4941 18.1487 15.1368 15.734 14.8684 13H12.9996V22.1013Z" fill="currentColor" stroke="none"/>
+  <path d="M14.8684 11H12.9996V1.89856C15.0816 2.10212 16.9792 2.93475 18.4997 4.20389C16.4941 5.85126 15.1368 8.26593 14.8684 11Z" fill="currentColor" stroke="none"/>
+  <path d="M16.8805 13C17.1477 15.1762 18.2756 17.0814 19.9087 18.3622C21.1143 16.8655 21.9037 15.0195 22.1012 13H16.8805Z" fill="currentColor" stroke="none"/>
+  <path d="M22.1012 11H16.8805C17.1476 8.82371 18.2756 6.91851 19.9088 5.63771C21.1143 7.13442 21.9037 8.98042 22.1012 11Z" fill="currentColor" stroke="none"/>
+  <path d="M7.12286 11C6.85555 8.8227 5.7267 6.91674 4.09228 5.63592C2.88594 7.13295 2.096 8.97962 1.89844 11H7.12286Z" fill="currentColor" stroke="none"/>
+  <path d="M9.13496 13H10.9996V22.1013C8.91861 21.8977 7.02189 21.0657 5.50174 19.7976C7.50841 18.1502 8.86646 15.7349 9.13496 13Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

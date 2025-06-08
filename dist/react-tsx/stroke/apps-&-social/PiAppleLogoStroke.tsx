@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiAppleLogoStroke icon from the stroke style in apps-&-social category.
+ */
+interface PiAppleLogoStrokeProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiAppleLogoStroke({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'apple-logo icon',
+  ...props
+}: PiAppleLogoStrokeProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M16.7554 2.00006C13.1173 2.00006 12.0709 4.09285 12.0982 6.17564C15.2102 6.18564 16.7795 4.09285 16.7554 2.00006Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+  <path d="M19.1613 10.199C17.9841 8.60699 16.3164 8.41969 15.7278 8.41969C14.2564 8.2324 12.883 9.26252 12.0982 9.26252C11.3134 9.26252 10.2343 8.41969 8.95898 8.51334C6.70269 8.51334 4.1521 10.2926 4.1521 13.8513C4.1521 17.6908 7.29129 22.0922 9.25328 21.9986C10.5286 21.9986 10.8229 21.2494 12.2944 21.2494C13.7659 21.2494 14.0602 21.9986 15.4335 21.9986C17.2974 21.9986 19.1613 19.0019 19.848 17.3162C16.7088 15.7242 16.3164 11.9783 19.1613 10.199Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

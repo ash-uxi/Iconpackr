@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiAnimation01Solid icon from the solid style in media category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiAnimation01Solid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'animation-01 icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M15.0501 1.8501C11.5731 1.8501 8.68076 4.34881 8.06921 7.6491C6.35722 8.58875 5.14354 10.3272 4.93276 12.3648C3.11987 13.1465 1.8501 14.9489 1.8501 17.05C1.8501 19.8666 4.13345 22.15 6.9501 22.15C9.05115 22.15 10.8536 20.8802 11.6353 19.0672C13.6727 18.8564 15.4111 17.6429 16.3507 15.9311C19.6512 15.3197 22.1501 12.4273 22.1501 8.9501C22.1501 5.02888 18.9713 1.8501 15.0501 1.8501ZM6.9001 12.9999C6.9001 11.8939 7.33811 10.8892 8.05127 10.1511C8.55536 13.1098 10.8901 15.4446 13.8488 15.9489C13.1106 16.662 12.106 17.0999 11.0001 17.0999C10.977 17.0999 10.954 17.0997 10.931 17.0993C8.7217 17.063 6.937 15.2783 6.90067 13.069C6.90029 13.046 6.9001 13.023 6.9001 12.9999ZM3.8501 17.05C3.8501 16.0312 4.34193 15.1261 5.10167 14.5608C5.65977 16.6754 7.32464 18.3403 9.43927 18.8984C8.87395 19.6581 7.96882 20.15 6.9501 20.15C5.23801 20.15 3.8501 18.762 3.8501 17.05Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

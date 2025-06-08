@@ -1,0 +1,44 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M16.0039 20.9957C16.6296 20.1607 17.0003 19.1237 17.0003 18C17.0003 15.2386 14.7617 13 12.0003 13C9.23884 13 7.00027 15.2386 7.00027 18C7.00027 19.1205 7.36887 20.155 7.99144 20.9887M16.0039 20.9957L7.99144 20.9887M16.0039 20.9957L21.0003 21M7.99144 20.9887L3 20.9844M9.55691 5.28986C10.1598 4.486 10.8592 3.76006 11.639 3.12819C11.7445 3.04273 11.8724 3 12.0003 3M14.4436 5.28986C13.8407 4.48601 13.1413 3.76007 12.3615 3.12819C12.2561 3.04273 12.1282 3 12.0003 3M12.0003 3V9.00022" :stroke="color || 'currentColor'" stroke-width="2" fill="none"/>
+  <path d="M2 17H3M21 17H22M4.47234 10.4221L5.22544 11.08M19.5343 10.4219L18.7812 11.0798" :stroke="color || 'currentColor'" stroke-width="2" opacity="0.28" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiSunriseUpDuoStroke icon from the duo-stroke style in weather category.
+ */
+export default {
+  name: 'PiSunriseUpDuoStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'sunrise-up icon'
+    }
+  }
+}
+</script>

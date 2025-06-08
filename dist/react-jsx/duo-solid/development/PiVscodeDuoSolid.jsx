@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiVscodeDuoSolid icon from the duo-solid style in development category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiVscodeDuoSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'vscode icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M17.4068 2.08652C17.7676 2.24718 18 2.60511 18 3.00002V7.99705C18 8.30747 17.8558 8.60029 17.6098 8.78959L13.4388 11.999L17.6097 15.2074C17.8558 15.3967 18 15.6895 18 16V21C18 21.3949 17.7676 21.7528 17.4068 21.9135C17.0461 22.0742 16.6246 22.0075 16.331 21.7433L9.16121 15.2905L4.60983 18.7926C4.25396 19.0664 3.75922 19.0694 3.4 18.8L1.4 17.3C1.16074 17.1206 1.01435 16.8434 1.001 16.5447C0.987647 16.2459 1.10873 15.9568 1.33104 15.7567L5.50517 12L1.33104 8.24329C1.10873 8.04322 0.987647 7.75414 1.001 7.45536C1.01435 7.15657 1.16074 6.87945 1.4 6.7L3.4 5.2C3.75917 4.93062 4.25385 4.93364 4.60971 5.20738L9.16183 8.70901L16.331 2.25672C16.6246 1.99254 17.0461 1.92585 17.4068 2.08652Z" fill={color || "currentColor"} opacity="0.28" /> <path d="M17.4472 2.10557C17.1372 1.95058 16.7691 1.96714 16.4743 2.14935C16.1795 2.33156 16 2.65342 16 3V21C16 21.3466 16.1795 21.6684 16.4743 21.8507C16.7691 22.0329 17.1372 22.0494 17.4472 21.8944L20.7896 20.2233C21.3208 19.9586 21.788 19.7258 22.1433 19.3631C22.4544 19.0454 22.691 18.6625 22.836 18.2421C23.0016 17.7622 23.0009 17.2402 23.0001 16.6467V7.35334C23.0009 6.75979 23.0016 6.23781 22.836 5.75786C22.691 5.33748 22.4544 4.9546 22.1433 4.63691C21.788 4.2742 21.3208 4.04137 20.7896 3.77663L17.4472 2.10557Z" fill={color || "currentColor"} />
+    </svg>
+  );
+}

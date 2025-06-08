@@ -1,0 +1,45 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pimappinareastroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pimappinareastroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "map pin area icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M3.51789 17C2.55602 17.5021 2 18.0958 2 18.7318C2 20.5368 6.47715 22 12 22C17.5228 22 22 20.5368 22 18.7318C22 18.0958 21.444 17.5021 20.4821 17M14.5263 8.73684C14.5263 10.1321 13.3953 11.2632 12 11.2632C10.6048 11.2632 9.47371 10.1321 9.47371 8.73684C9.47371 7.3416 10.6048 6.21053 12 6.21053C13.3953 6.21053 14.5263 7.3416 14.5263 8.73684ZM18.7369 9.11111C18.7369 14.4444 13.6842 18 12 18C10.3158 18 5.26318 14.4444 5.26318 9.11111C5.26318 3.77778 9.47371 2 12 2C14.5263 2 18.7369 3.77778 18.7369 9.11111Z"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pimappinareastroke;

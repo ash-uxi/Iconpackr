@@ -32,7 +32,7 @@ export async function processIcons(options) {
     dryRun, 
     verbose, 
     autoDetectStyle = false,
-    includeProcessedSvgs = false,
+    includeProcessedSvgs = true,
     processedSvgsDir = null
   } = options;
   
@@ -136,8 +136,9 @@ export async function processIcons(options) {
       // Read SVG content for potential style detection
       let svgContent = await fs.readFile(svgFile, 'utf8');
       
-      // Auto-detect style if needed
-      if (autoDetectStyle || style === 'auto') {
+      // Auto-detect style if needed - only run if we don't have a valid folder-based style
+      const validStyles = ['stroke', 'solid', 'contrast', 'duo-stroke', 'duo-solid'];
+      if ((autoDetectStyle || style === 'auto') && !validStyles.includes(style)) {
         const detectedStyle = detectIconStyle(svgContent);
         if (verbose && style !== detectedStyle && style !== 'auto') {
           console.log(chalk.yellow(`Style mismatch: Path indicates "${style}" but detected "${detectedStyle}" for ${svgFile}`));
@@ -223,8 +224,19 @@ export async function processIcons(options) {
       console.log(chalk.cyan(`📁 Copying processed SVGs to: ${svgsOutputDir}`));
       
       try {
-        await fs.copy(processedSvgsDir, svgsOutputDir);
-        console.log(chalk.green(`✅ Processed SVGs copied successfully`));
+        // Only copy SVG files, not components
+        const svgPattern = path.join(processedSvgsDir, '**/*.svg');
+        const svgFiles = await glob(svgPattern);
+        
+        for (const svgFile of svgFiles) {
+          const relativePath = path.relative(processedSvgsDir, svgFile);
+          const outputPath = path.join(svgsOutputDir, relativePath);
+          
+          await fs.ensureDir(path.dirname(outputPath));
+          await fs.copy(svgFile, outputPath);
+        }
+        
+        console.log(chalk.green(`✅ Processed SVGs copied successfully (${svgFiles.length} files)`));
       } catch (error) {
         console.error(chalk.red(`Error copying processed SVGs: ${error.message}`));
       }
@@ -267,6 +279,8 @@ function getExtensionForFormat(format) {
       return '.vue';
     case 'react-native':
       return '.jsx';
+    case 'svelte':
+      return '.svelte';
     default:
       return '.js';
   }

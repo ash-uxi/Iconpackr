@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiArrowBigRightDuoSolid icon from the duo-solid style in arrows-&-chevrons category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiArrowBigRightDuoSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'arrow-big-right icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M14.7903 4.19512C14.6335 4.07911 14.4462 4.01149 14.2515 4.00059C14.0567 3.98968 13.863 4.03597 13.6943 4.13375C13.5255 4.23152 13.389 4.37652 13.3016 4.55089C13.2142 4.72526 13.1797 4.92139 13.2023 5.11512C13.7323 9.68912 13.7323 14.3091 13.2023 18.8841C13.1797 19.0779 13.2142 19.274 13.3016 19.4483C13.389 19.6227 13.5255 19.7677 13.6943 19.8655C13.863 19.9633 14.0567 20.0096 14.2515 19.9987C14.4462 19.9878 14.6335 19.9201 14.7903 19.8041C17.3089 17.9424 19.5758 15.7622 21.5343 13.3181C21.8343 12.9442 21.9978 12.4791 21.9978 11.9996C21.9978 11.5202 21.8343 11.0551 21.5343 10.6811C19.5758 8.23701 17.3089 6.05687 14.7903 4.19512Z" fill={color || "currentColor"} fillRule="evenodd" clipRule="evenodd" /> <path d="M4.56902 7.99902C4.31702 7.99902 4.07102 7.99902 3.86302 8.01602C3.59557 8.0313 3.33382 8.09963 3.09302 8.21702C2.71672 8.40877 2.41077 8.71472 2.21902 9.09102C2.10202 9.33191 2.03404 9.59364 2.01902 9.86102C1.99902 10.069 1.99902 10.315 1.99902 10.567V13.431C1.99902 13.683 1.99902 13.929 2.01602 14.137C2.03136 14.4045 2.09968 14.6662 2.21702 14.907C2.40877 15.2833 2.71472 15.5893 3.09102 15.781C3.33184 15.8984 3.59358 15.9667 3.86102 15.982C4.06902 15.999 4.31502 15.999 4.56702 15.999L14.526 15.999C14.7828 15.9993 15.0299 15.9009 15.216 15.724C15.4022 15.5472 15.5132 15.3055 15.526 15.049C15.626 13.017 15.626 10.981 15.526 8.94902C15.5132 8.69257 15.4022 8.45088 15.216 8.27402C15.0299 8.09717 14.7828 7.9987 14.526 7.99902L4.56902 7.99902Z" fill={color || "currentColor"} opacity="0.28" fillRule="evenodd" clipRule="evenodd" />
+    </svg>
+  );
+}

@@ -1,0 +1,44 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M12.0309 7.91669C10.5767 8.97533 9.2706 10.2121 8.14485 11.5956C8.04828 11.7142 8 11.8571 8 12M12.0309 16.0834C10.5767 15.0247 9.2706 13.788 8.14485 12.4045C8.04828 12.2858 8 12.1429 8 12M8 12L20 12" :stroke="color || 'currentColor'" stroke-width="2" fill="none"/>
+  <path d="M4 5V19" :stroke="color || 'currentColor'" stroke-width="2" opacity="0.28" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiAlignLeftDuoStroke icon from the duo-stroke style in arrows-&-chevrons category.
+ */
+export default {
+  name: 'PiAlignLeftDuoStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'align-left icon'
+    }
+  }
+}
+</script>

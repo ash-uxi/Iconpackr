@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piuserthreeduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piuserthreeduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "user three icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M2.64455 15.6464C1.65198 16.3211 1 17.4594 1 18.75C1 19.6724 1.55505 20.4652 2.34936 20.8125M21.3555 15.6462C22.348 16.3208 23 17.4592 23 18.7498C23 19.6722 22.445 20.4649 21.6506 20.8123M8.25 21H15.75C16.9926 21 18 19.9926 18 18.75C18 16.6789 16.3211 15 14.25 15H9.75C7.67893 15 6 16.6789 6 18.75C6 19.9926 7.00736 21 8.25 21Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+    <path
+      d="M4.70584 3.7229C3.67433 4.44635 3 5.64444 3 7.00003C3 8.35562 3.67433 9.55371 4.70584 10.2772M19.2942 3.72266C20.3257 4.44611 21 5.6442 21 6.99979C21 8.35537 20.3257 9.55346 19.2942 10.2769M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Piuserthreeduostroke;

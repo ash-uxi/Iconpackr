@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiNftRemoveStroke icon from the stroke style in web3-&-crypto category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiNftRemoveStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'nft-remove icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M10.9885 21.0001L10.7544 21C9.98651 21 9.43373 21 8.98857 20.9645M8.98857 20.9645C8.98858 20.0595 8.98901 19.6021 9.02282 19.2156C9.40348 14.8646 12.8531 11.415 17.2042 11.0343C17.5956 11 18.0599 11 18.9886 11H21.295M8.98857 20.9645C8.63919 20.9366 8.35611 20.8869 8.08735 20.7981C7.54664 20.6194 7.05031 20.3274 6.63155 19.9415C6.15821 19.5053 5.8254 18.9062 5.15979 17.7081L3.71535 15.1081C3.08512 13.9737 2.77 13.4065 2.64646 12.8058C2.53712 12.2742 2.53712 11.7258 2.64646 11.1942C2.77 10.5935 3.08512 10.0263 3.71535 8.89189L5.15979 6.29189C5.8254 5.09379 6.15821 4.49474 6.63155 4.05853C7.05031 3.67263 7.54664 3.38059 8.08735 3.20194C8.69854 3 9.38383 3 10.7544 3H13.2228C14.5934 3 15.2787 3 15.8899 3.20194C16.4306 3.38059 16.9269 3.67263 17.3457 4.05853C17.819 4.49474 18.1518 5.09379 18.8174 6.29189L20.2968 8.95471C20.8402 9.93291 21.1448 10.4811 21.295 11M21.295 11C21.3156 11.0713 21.3333 11.142 21.3484 11.2132C21.4585 11.7352 21.4632 12.2739 21.362 12.7977C21.2503 13.3763 20.9615 13.9261 20.3889 15.0001M14.9885 19.0001H20.9885M8.98857 10C8.43629 10 7.98857 9.55233 7.98857 9.00005C7.98857 8.44776 8.43629 8.00005 8.98857 8.00005C9.54086 8.00005 9.98857 8.44776 9.98857 9.00005C9.98857 9.55233 9.54086 10 8.98857 10Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

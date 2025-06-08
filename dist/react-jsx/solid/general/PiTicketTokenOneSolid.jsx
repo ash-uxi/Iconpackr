@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiTicketTokenOneSolid icon from the solid style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiTicketTokenOneSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'ticket-token-one icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M1 8C1 5.23858 3.23858 3 6 3H18C20.7614 3 23 5.23858 23 8V8.4C23 9.28366 22.2837 10 21.4 10C20.6268 10 20 10.6268 20 11.4V12.6C20 13.3732 20.6268 14 21.4 14C22.2837 14 23 14.7163 23 15.6V16C23 18.7614 20.7614 21 18 21H6C3.23858 21 1 18.7614 1 16V15.6C1 14.7163 1.71634 14 2.6 14C3.3732 14 4 13.3732 4 12.6V11.4C4 10.6268 3.3732 10 2.6 10C1.71634 10 1 9.28366 1 8.4V8ZM13 9.37744C13 9.07035 12.8589 8.78029 12.6173 8.59072C12.3757 8.40116 12.0604 8.3331 11.7622 8.40614C10.7594 8.65168 10.0234 9.3394 9.60557 10.1751C9.35858 10.6691 9.55881 11.2698 10.0528 11.5167C10.3646 11.6727 10.7189 11.6504 11 11.4885V13.9999H10C9.44771 13.9999 9 14.4476 9 14.9999C9 15.5522 9.44771 15.9999 10 15.9999H14C14.5523 15.9999 15 15.5522 15 14.9999C15 14.4476 14.5523 13.9999 14 13.9999H13V9.37744Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

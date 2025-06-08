@@ -1,0 +1,25 @@
+<script>
+  /**
+   * PiPriorityHighDuoStroke icon from the duo-stroke style in development category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'priority-high icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M14.9999 11.2289C14.2609 10.7675 13.4914 10.3274 12.6933 9.90972C12.4899 9.80324 12.2449 9.75 12 9.75C11.755 9.75 11.5101 9.80324 11.3066 9.90972C10.5086 10.3274 9.73902 10.7675 9 11.2289" stroke={color || "currentColor"} stroke-width="2" fill="none"/>
+  <path d="M5.19971 14.25C5.32615 13.9893 5.51125 13.7518 5.75084 13.5548C7.39132 12.2063 9.25488 10.9836 11.3068 9.90972C11.5102 9.80324 11.7552 9.75 12.0001 9.75C12.2451 9.75 12.4901 9.80324 12.6935 9.90972C14.7454 10.9836 16.609 12.2063 18.2495 13.5548C18.4891 13.7518 18.6741 13.9893 18.8006 14.25" stroke={color || "currentColor"} stroke-width="2" opacity="0.28" fill="none"/>
+</svg>

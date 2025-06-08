@@ -1,0 +1,44 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M10.1213 4.12132L8 2M14.1213 4.12132L16.2426 2M10.1213 20L8 22.1213M14.1213 20L16.2426 22.1213" :stroke="color || 'currentColor'" stroke-width="2" fill="none"/>
+  <path d="M8 7H7C4.23858 7 2 9.23858 2 12C2 14.7614 4.23858 17 7 17H8M15 7H16C18.7614 7 21 9.23858 21 12C21 14.7614 18.7614 17 16 17H15" :stroke="color || 'currentColor'" stroke-width="2" opacity="0.28" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiLinkHorizontalBrokenDuoStroke icon from the duo-stroke style in development category.
+ */
+export default {
+  name: 'PiLinkHorizontalBrokenDuoStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'link-horizontal-broken icon'
+    }
+  }
+}
+</script>

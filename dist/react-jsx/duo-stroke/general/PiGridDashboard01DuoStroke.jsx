@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiGridDashboard01DuoStroke icon from the duo-stroke style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiGridDashboard01DuoStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'grid-dashboard-01 icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <g opacity="0.28"  fill="none"><path d="M3 6.2C3 5.0799 3 4.51984 3.21799 4.09202C3.40973 3.71569 3.71569 3.40973 4.09202 3.21799C4.51984 3 5.0799 3 6.2 3H6.8C7.9201 3 8.48016 3 8.90798 3.21799C9.28431 3.40973 9.59027 3.71569 9.78201 4.09202C10 4.51984 10 5.0799 10 6.2V6.8C10 7.9201 10 8.48016 9.78201 8.90798C9.59027 9.28431 9.28431 9.59027 8.90798 9.78201C8.48016 10 7.92011 10 6.8 10H6.2C5.0799 10 4.51984 10 4.09202 9.78201C3.71569 9.59027 3.40973 9.28431 3.21799 8.90798C3 8.48016 3 7.9201 3 6.8V6.2Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/><path d="M14 17.2C14 16.0799 14 15.5198 14.218 15.092C14.4097 14.7157 14.7157 14.4097 15.092 14.218C15.5198 14 16.0799 14 17.2 14H17.8C18.9201 14 19.4802 14 19.908 14.218C20.2843 14.4097 20.5903 14.7157 20.782 15.092C21 15.5198 21 16.0799 21 17.2V17.8C21 18.9201 21 19.4802 20.782 19.908C20.5903 20.2843 20.2843 20.5903 19.908 20.782C19.4802 21 18.9201 21 17.8 21H17.2C16.0799 21 15.5198 21 15.092 20.782C14.7157 20.5903 14.4097 20.2843 14.218 19.908C14 19.4802 14 18.9201 14 17.8V17.2Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/></g>
+  <path d="M14.0002 6.5C14.0002 4.567 15.5672 3 17.5002 3C19.4332 3 21.0002 4.567 21.0002 6.5C21.0002 8.433 19.4332 10 17.5002 10C15.5672 10 14.0002 8.433 14.0002 6.5Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+  <path d="M3.81322 19.7627C3.02119 18.9707 2.62517 18.5747 2.47679 18.118C2.34628 17.7163 2.34628 17.2837 2.47679 16.882C2.62517 16.4253 3.02119 16.0293 3.81322 15.2373L4.23748 14.813C5.02952 14.021 5.42554 13.6249 5.88219 13.4766C6.28388 13.3461 6.71657 13.3461 7.11826 13.4766C7.57492 13.6249 7.97093 14.021 8.76297 14.813L9.18723 15.2373C9.97927 16.0293 10.3753 16.4253 10.5237 16.882C10.6542 17.2837 10.6542 17.7163 10.5237 18.118C10.3753 18.5747 9.97927 18.9707 9.18723 19.7627L8.76297 20.187C7.97093 20.979 7.57492 21.3751 7.11826 21.5234C6.71657 21.6539 6.28388 21.6539 5.88219 21.5234C5.42554 21.3751 5.02952 20.979 4.23748 20.187L3.81322 19.7627Z" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

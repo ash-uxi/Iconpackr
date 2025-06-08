@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiUserRemoveSolid icon from the solid style in users category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiUserRemoveSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'user-remove icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M11 2C8.23858 2 6 4.23858 6 7C6 9.76142 8.23858 12 11 12C13.7614 12 16 9.76142 16 7C16 4.23858 13.7614 2 11 2Z" fill="currentColor" stroke="none"/>
+  <path d="M15 14C14.4477 14 14 14.4477 14 15C14 15.5523 14.4477 16 15 16H21C21.5523 16 22 15.5523 22 15C22 14.4477 21.5523 14 21 14H15Z" fill="currentColor" stroke="none"/>
+  <path d="M2 19C2 16.2386 4.23858 14 7 14H12.1707C12.0602 14.3128 12 14.6494 12 15C12 16.6569 13.3431 18 15 18H19.9C19.9656 18.3231 20 18.6575 20 19C20 20.6569 18.6569 22 17 22H5C3.34315 22 2 20.6569 2 19Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,59 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pilistmusicnotesolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pilistmusicnotesolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "list music note icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M19 13.0232C19 12.2603 18.6199 11.5555 18 11.1347V17.5009C18 18.8815 16.8813 20.0017 15.5 20.0017C14.1187 20.0017 13 18.8815 13 17.5009C13 16.1202 14.1187 15 15.5 15C15.6712 15 15.8385 15.0172 16 15.05V10.8216C16 9.46908 17.4232 8.58751 18.6342 9.19336C20.0843 9.91884 21 11.4016 21 13.0232C21 13.6742 20.8663 14.3184 20.5992 14.9109C20.3722 15.4144 19.7801 15.6386 19.2766 15.4117C18.7731 15.1847 18.5489 14.5926 18.7758 14.0891C18.9224 13.7638 19 13.4009 19 13.0232Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M4 11C3.44772 11 3 11.4477 3 12C3 12.5523 3.44772 13 4 13H10C10.5523 13 11 12.5523 11 12C11 11.4477 10.5523 11 10 11H4Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M4 17C3.44772 17 3 17.4477 3 18C3 18.5523 3.44772 19 4 19H10C10.5523 19 11 18.5523 11 18C11 17.4477 10.5523 17 10 17H4Z"
+      fill={color}
+      stroke="none"
+    />
+    <path
+      d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4Z"
+      fill={color}
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pilistmusicnotesolid;

@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiDoubleChevronRightDuoSolid icon from the duo-solid style in arrows-&-chevrons category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiDoubleChevronRightDuoSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'double-chevron-right icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12.0028 8.07479C11.9737 7.68634 12.1728 7.31633 12.513 7.12662C12.8532 6.9369 13.2726 6.96201 13.5878 7.19097C15.1206 8.30456 16.4944 9.61063 17.6732 11.0751C18.1089 11.6164 18.1089 12.3836 17.6732 12.9249C16.4944 14.3894 15.1206 15.6955 13.5878 16.809C13.2726 17.038 12.8532 17.0631 12.513 16.8734C12.1728 16.6837 11.9737 16.3137 12.0028 15.9252L12.1682 13.7202C12.2541 12.575 12.2541 11.425 12.1682 10.2798L12.0028 8.07479Z" fill={color || "currentColor"} /> <path d="M6.00281 8.07479C5.97368 7.68634 6.17277 7.31633 6.51299 7.12662C6.8532 6.9369 7.27263 6.96201 7.58778 7.19097C9.12058 8.30456 10.4944 9.61063 11.6732 11.0751C12.1089 11.6164 12.1089 12.3836 11.6732 12.9249C10.4944 14.3894 9.12058 15.6955 7.58778 16.809C7.27263 17.038 6.8532 17.0631 6.51299 16.8734C6.17277 16.6837 5.97368 16.3137 6.00281 15.9252L6.16819 13.7202C6.25408 12.575 6.25408 11.425 6.16819 10.2798L6.00281 8.07479Z" fill={color || "currentColor"} opacity="0.28" />
+    </svg>
+  );
+}

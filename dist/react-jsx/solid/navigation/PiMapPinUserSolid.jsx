@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiMapPinUserSolid icon from the solid style in navigation category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiMapPinUserSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'map-pin-user icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12.0004 2C10.3383 2 8.16095 2.57617 6.37994 4.02229C4.56152 5.49878 3.21094 7.84065 3.21094 11.2222C3.21094 14.2765 4.50589 16.8439 6.08641 18.7297C6.27074 18.9496 6.45896 19.1603 6.64946 19.3614C7.5639 20.3266 8.55029 21.0928 9.4559 21.6239C10.3216 22.1315 11.2416 22.5 12.0004 22.5C12.7592 22.5 13.6792 22.1315 14.5449 21.6239C15.4505 21.0928 16.4369 20.3266 17.3514 19.3614C17.544 19.158 17.7343 18.9449 17.9206 18.7223C19.4983 16.8372 20.7899 14.2725 20.7899 11.2222C20.7899 7.84065 19.4393 5.49878 17.6209 4.02229C15.8399 2.57617 13.6625 2 12.0004 2ZM7.00151 16.64C7.60902 16.2469 8.33374 16.0181 9.11162 16.0181H14.8894C15.6672 16.0181 16.3919 16.2469 16.9994 16.6399C16.6595 17.1261 16.2878 17.5759 15.8995 17.9859C15.11 18.8192 14.2707 19.4662 13.5332 19.8987C12.7558 20.3546 12.2153 20.5 12.0004 20.5C11.7855 20.5 11.245 20.3546 10.4676 19.8987C9.73014 19.4662 8.89087 18.8192 8.10136 17.9859C7.71301 17.5759 7.34133 17.1261 7.00151 16.64ZM8.57959 10.7895C8.57959 8.90007 10.1112 7.36841 12.0006 7.36841C13.89 7.36841 15.4217 8.90007 15.4217 10.7895C15.4217 12.6789 13.89 14.2105 12.0006 14.2105C10.1112 14.2105 8.57959 12.6789 8.57959 10.7895Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

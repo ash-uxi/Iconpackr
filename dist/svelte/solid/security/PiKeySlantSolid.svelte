@@ -1,0 +1,24 @@
+<script>
+  /**
+   * PiKeySlantSolid icon from the solid style in security category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'key-slant icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  
+   style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M3.74767 12.1214C5.45813 10.411 8.09954 10.1988 10.0409 11.4851L17.8898 3.63615C18.2803 3.24563 18.9135 3.24563 19.304 3.63615L21.4253 5.75748C21.8159 6.148 21.8159 6.78116 21.4253 7.17169C21.0348 7.56221 20.4016 7.56221 20.0111 7.17169L18.5969 5.75748L17.1827 7.17169L17.8898 7.8788C18.2803 8.26932 18.2803 8.90248 17.8898 9.29301C17.4993 9.68353 16.8661 9.68353 16.4756 9.29301L15.7685 8.5859L11.4551 12.8993C12.7413 14.8406 12.5292 17.482 10.8187 19.1925C8.86612 21.1451 5.70029 21.1451 3.74767 19.1925C1.79505 17.2399 1.79505 14.0741 3.74767 12.1214Z" fill="currentColor" stroke="none"/>
+</svg>

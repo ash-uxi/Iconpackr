@@ -1,0 +1,46 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piearthglobesolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piearthglobesolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "earth globe icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M11.9996 1.8501C8.15118 1.8501 4.80453 3.99227 3.08441 7.1445C2.29682 8.5878 1.84961 10.2432 1.84961 12.0001C1.84961 17.6058 6.39392 22.1501 11.9996 22.1501C13.5557 22.1501 15.0326 21.7992 16.3532 21.1714C18.4015 20.1975 20.0709 18.5586 21.0835 16.533C21.766 15.1675 22.1496 13.6272 22.1496 12.0001C22.1496 8.13829 19.9926 4.78179 16.8223 3.06702C15.3867 2.29053 13.7431 1.8501 11.9996 1.8501ZM13.2677 9.98061C15.1192 9.08581 16.5631 7.54384 17.1095 5.65041C18.9646 7.1452 20.1496 9.43478 20.1496 12.0001C20.1496 12.8589 20.0171 13.6855 19.7717 14.4613C19.2806 13.7212 18.4403 13.2334 17.4852 13.2334C15.9706 13.2334 14.7428 14.4613 14.7428 15.9759C14.7428 16.3562 14.8207 16.7194 14.9612 17.0495C14.7069 17.5849 14.5646 18.1837 14.5646 18.8142C14.5646 19.1199 14.598 19.4183 14.6616 19.7058C13.8282 19.9936 12.933 20.1501 11.9996 20.1501C7.49849 20.1501 3.84961 16.5012 3.84961 12.0001C3.84961 11.0379 4.01596 10.1159 4.32122 9.26046C4.61422 9.47137 4.92433 9.6638 5.24906 9.83615C5.16795 10.1587 5.12491 10.4959 5.12491 10.8426C5.12491 12.5012 6.10505 13.9292 7.51736 14.5815C7.58167 16.0391 8.78368 17.201 10.2571 17.201C11.7717 17.201 12.9995 15.9732 12.9995 14.4586C12.9995 13.9793 12.8762 13.5285 12.6602 13.1366C13.1006 12.4813 13.3583 11.6916 13.3583 10.8426C13.3583 10.5474 13.3271 10.259 13.2677 9.98061Z"
+      fill={color}
+      fillRule="evenodd"
+      clipRule="evenodd"
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Piearthglobesolid;

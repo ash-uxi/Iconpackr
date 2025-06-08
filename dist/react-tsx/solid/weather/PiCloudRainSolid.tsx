@@ -1,0 +1,43 @@
+import React from 'react';
+
+/**
+ * PiCloudRainSolid icon from the solid style in weather category.
+ */
+interface PiCloudRainSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiCloudRainSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'cloud-rain icon',
+  ...props
+}: PiCloudRainSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12.5 2C15.6592 2 18.36 3.95271 19.4654 6.71458C21.5626 7.79159 23 9.97693 23 12.5C23 15.2187 21.3309 17.5476 18.9614 18.5178C18.9024 18.1522 18.7772 17.8087 18.5987 17.5C18.8539 17.0587 19 16.5464 19 16V14C19 12.3431 17.6569 11 16 11C14.9377 11 14.0044 11.5521 13.4714 12.385C13.0366 12.1399 12.5347 12 12 12C11.4653 12 10.9634 12.1399 10.5286 12.385C9.99556 11.5521 9.06226 11 8 11C6.34315 11 5 12.3431 5 14V16C5 16.5464 5.14609 17.0587 5.40135 17.5C5.17829 17.8856 5.0386 18.3255 5.0069 18.7949C2.69487 18.1443 1 16.0201 1 13.5C1 10.94 2.74832 8.78945 5.11656 8.17566C5.41101 6.52295 6.24679 5.0576 7.43401 3.96951C8.58426 2.91528 10.0644 2.21521 11.7017 2.04198C11.964 2.01423 12.2304 2 12.5 2Z" fill="currentColor" stroke="none"/>
+  <path d="M13 15C13 14.4477 12.5523 14 12 14C11.4477 14 11 14.4477 11 15V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V15Z" fill="currentColor" stroke="none"/>
+  <path d="M13 20C13 19.4477 12.5523 19 12 19C11.4477 19 11 19.4477 11 20V21C11 21.5523 11.4477 22 12 22C12.5523 22 13 21.5523 13 21V20Z" fill="currentColor" stroke="none"/>
+  <path d="M17 14C17 13.4477 16.5523 13 16 13C15.4477 13 15 13.4477 15 14V16C15 16.5523 15.4477 17 16 17C16.5523 17 17 16.5523 17 16V14Z" fill="currentColor" stroke="none"/>
+  <path d="M17 19C17 18.4477 16.5523 18 16 18C15.4477 18 15 18.4477 15 19V20C15 20.5523 15.4477 21 16 21C16.5523 21 17 20.5523 17 20V19Z" fill="currentColor" stroke="none"/>
+  <path d="M9 14C9 13.4477 8.55228 13 8 13C7.44772 13 7 13.4477 7 14V16C7 16.5523 7.44772 17 8 17C8.55228 17 9 16.5523 9 16V14Z" fill="currentColor" stroke="none"/>
+  <path d="M9 19C9 18.4477 8.55228 18 8 18C7.44772 18 7 18.4477 7 19V20C7 20.5523 7.44772 21 8 21C8.55228 21 9 20.5523 9 20V19Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

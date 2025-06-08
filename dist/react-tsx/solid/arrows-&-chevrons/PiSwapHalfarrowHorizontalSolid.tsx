@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiSwapHalfarrowHorizontalSolid icon from the solid style in arrows-&-chevrons category.
+ */
+interface PiSwapHalfarrowHorizontalSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiSwapHalfarrowHorizontalSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'swap-halfarrow-horizontal icon',
+  ...props
+}: PiSwapHalfarrowHorizontalSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M16.6301 5.12437C16.9724 4.93556 17.3934 4.96353 17.7077 5.19599C19.1791 6.28421 20.5011 7.55575 21.6408 8.97863C21.879 9.27597 22 9.63753 22 10C22 10.5523 21.5523 11 21 11H6C5.44772 11 5 10.5523 5 10C5 9.44772 5.44772 9 6 9H16.3222C16.312 8.76563 16.2982 8.53137 16.2809 8.29732L16.1158 6.07403C16.0869 5.68417 16.2878 5.31319 16.6301 5.12437Z" fill="currentColor" stroke="none"/>
+  <path d="M6.29233 18.804C6.60665 19.0365 7.0276 19.0644 7.36992 18.8756C7.71223 18.6868 7.91313 18.3158 7.88419 17.926L7.71915 15.7027C7.70177 15.4686 7.68799 15.2344 7.67779 15H18C18.5523 15 19 14.5523 19 14C19 13.4477 18.5523 13 18 13H3C2.44771 13 2 13.4477 2 14C2 14.3625 2.12102 14.724 2.35919 15.0214C3.49888 16.4443 4.82086 17.7158 6.29233 18.804Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

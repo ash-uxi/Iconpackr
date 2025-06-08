@@ -1,0 +1,36 @@
+import React from 'react';
+
+/**
+ * PiCloudLightningSolid icon from the solid style in weather category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiCloudLightningSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'cloud-lightning icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12.5 2C15.6592 2 18.36 3.95271 19.4654 6.71458C21.5626 7.79159 23 9.97693 23 12.5C23 15.7489 20.6164 18.4411 17.5026 18.9232C18.0777 17.8749 18.0402 16.6426 17.4921 15.6546C16.919 14.6215 15.9216 14.0456 14.9443 13.8872L14.7464 13.8551L15.5408 12.6869C16.4724 11.3169 16.117 9.45091 14.7469 8.51923C13.3769 7.58756 11.5109 7.94296 10.5792 9.31305L7.53794 13.7855C6.76645 14.8833 6.73718 16.2639 7.33421 17.3581C7.79087 18.1951 8.52553 18.7357 9.30524 19H6.5C3.46243 19 1 16.5376 1 13.5C1 10.94 2.74832 8.78945 5.11656 8.17566C5.41101 6.52295 6.24679 5.0576 7.43401 3.96951C8.76853 2.74641 10.5471 2 12.5 2Z" fill="currentColor" stroke="none"/>
+  <path d="M13.8869 11.5623C14.1975 11.1056 14.079 10.4836 13.6223 10.1731C13.1656 9.86252 12.5436 9.98099 12.2331 10.4377L9.1812 14.9257C8.85516 15.3823 8.84319 15.9481 9.08988 16.4002C9.3272 16.8352 9.75791 17.0984 10.2138 17.1724L13.4445 17.6962L10.5747 21.3861C10.2356 21.822 10.3142 22.4503 10.7501 22.7894C11.1861 23.1284 11.8143 23.0499 12.1534 22.6139L15.6309 18.1428C15.6385 18.133 15.646 18.123 15.6532 18.1129C15.986 17.6504 15.9947 17.0781 15.7432 16.6248C15.5047 16.1948 15.0767 15.9348 14.6241 15.8614L11.3271 15.3268L13.8869 11.5623Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

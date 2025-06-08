@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piarrowbigdownduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piarrowbigdownduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "arrow big down icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M19 14.1953C17.1852 16.6493 15.0651 18.8533 12.6934 20.753C12.4899 20.916 12.245 20.9974 12 20.9974C11.755 20.9974 11.5101 20.916 11.3066 20.753C8.93491 18.8533 6.81482 16.6493 5 14.1953"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M19 14.1958C17.6698 14.3501 16.3357 14.4602 15 14.5262V4.60293C15 4.04288 15 3.76285 14.891 3.54894C14.7951 3.36078 14.6421 3.2078 14.454 3.11192C14.2401 3.00293 13.96 3.00293 13.4 3.00293H10.6C10.0399 3.00293 9.75992 3.00293 9.54601 3.11192C9.35784 3.2078 9.20486 3.36078 9.10899 3.54894C9 3.76285 9 4.04288 9 4.60293V14.5262C7.6643 14.4602 6.33024 14.3501 5 14.1958"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Piarrowbigdownduostroke;

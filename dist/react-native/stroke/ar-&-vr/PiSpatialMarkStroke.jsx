@@ -1,0 +1,45 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pispatialmarkstroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pispatialmarkstroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "spatial mark icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M11.9988 15.9993L8.39881 13.9993M11.9988 15.9993L15.5988 13.9993M11.9988 15.9993L6.70267 19.057M8.39881 13.9993L8.39881 9.99932M8.39881 13.9993L3 10.8823M8.39881 9.99932L11.9988 7.99932M8.39881 9.99932L8.39882 4.00067M11.9988 7.99932L15.5988 9.99932M11.9988 7.99932L17.2949 4.94162M15.5988 9.99932V13.9993M15.5988 9.99932L21 13.1177M15.5988 13.9993L15.5988 20.0007M17.2949 4.94162L13.4569 2.80941C12.5509 2.30604 11.4491 2.30604 10.5431 2.80941L8.39882 4.00067M17.2949 4.94162L19.4569 6.14275C20.4093 6.67185 21 7.67572 21 8.76522V13.1177M21 13.1177V15.2348C21 16.3243 20.4093 17.3282 19.4569 17.8573L15.5988 20.0007M15.5988 20.0007L13.4569 21.1906C12.5509 21.694 11.4491 21.694 10.5431 21.1906L6.70267 19.057M6.70267 19.057L4.54307 17.8573C3.59068 17.3282 3 16.3243 3 15.2348V10.8823M3 10.8823V8.76522C3 7.67572 3.59068 6.67185 4.54307 6.14275L8.39882 4.00067"
+      stroke={color}
+      strokeWidth="2"
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pispatialmarkstroke;

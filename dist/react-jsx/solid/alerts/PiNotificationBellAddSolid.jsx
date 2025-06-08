@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiNotificationBellAddSolid icon from the solid style in alerts category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiNotificationBellAddSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'notification-bell-add icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12.0005 2C7.73203 2 4.17613 5.2719 3.82165 9.52563L3.46665 13.7856C3.43551 14.1593 3.31676 14.5205 3.14641 15.0315C2.62544 16.5944 3.67849 18.2394 5.31544 18.4213C6.27278 18.5276 7.23206 18.6111 8.19244 18.6716C8.44352 20.5507 10.0528 22 12.0005 22C13.9483 22 15.5576 20.5506 15.8086 18.6714C16.7687 18.6109 17.7277 18.5274 18.6848 18.421C20.3205 18.2392 21.3729 16.5965 20.8543 15.0345C20.6844 14.5228 20.5657 14.1618 20.5345 13.788L20.1793 9.52563C19.8249 5.2719 16.269 2 12.0005 2ZM12.0005 20C11.1964 20 10.5126 19.4848 10.2613 18.7665C11.3225 18.797 12.3844 18.7995 13.4457 18.7742C13.5437 18.7718 13.6417 18.7692 13.7397 18.7664C13.4884 19.4848 12.8046 20 12.0005 20ZM12.9999 8V10H14.9999C15.5522 10 15.9999 10.4477 15.9999 11C15.9999 11.5523 15.5522 12 14.9999 12H12.9999V14C12.9999 14.5523 12.5522 15 11.9999 15C11.4476 15 10.9999 14.5523 10.9999 14V12H8.99988C8.44759 12 7.99988 11.5523 7.99988 11C7.99988 10.4477 8.44759 10 8.99988 10H10.9999V8C10.9999 7.44772 11.4476 7 11.9999 7C12.5522 7 12.9999 7.44772 12.9999 8Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

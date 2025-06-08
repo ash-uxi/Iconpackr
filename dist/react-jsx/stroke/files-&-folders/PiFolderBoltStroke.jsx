@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiFolderBoltStroke icon from the stroke style in files-&-folders category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiFolderBoltStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'folder-bolt icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M12.0001 10L10.1981 12.4026C9.824 12.9014 9.63696 13.1508 9.65006 13.3368C9.66142 13.4981 9.75008 13.6439 9.88804 13.7282C10.0471 13.8255 10.3546 13.7742 10.9696 13.6717L13.0305 13.3283C13.6455 13.2258 13.953 13.1745 14.1121 13.2718C14.25 13.3561 14.3387 13.5019 14.35 13.6632C14.3631 13.8492 14.1761 14.0986 13.802 14.5974L12.0001 17M22 12.4V14.6C22 16.8402 22 17.9603 21.564 18.816C21.1805 19.5686 20.5686 20.1805 19.816 20.564C18.9603 21 17.8402 21 15.6 21H8.4C6.15979 21 5.03968 21 4.18404 20.564C3.43139 20.1805 2.81947 19.5686 2.43597 18.816C2 17.9603 2 16.8402 2 14.6V9.4C2 7.15979 2 6.03968 2.43597 5.18404C2.81947 4.43139 3.43139 3.81947 4.18404 3.43597C5.03968 3 6.15979 3 8.4 3H8.71556C9.18517 3 9.41997 3 9.6331 3.06473C9.82179 3.12203 9.99732 3.21597 10.1497 3.34118C10.3217 3.48262 10.452 3.67798 10.7125 4.06872L11.2875 4.93128C11.548 5.32202 11.6783 5.51739 11.8503 5.65882C12.0027 5.78403 12.1782 5.87797 12.3669 5.93527C12.58 6 12.8148 6 13.2844 6H15.6C17.8402 6 18.9603 6 19.816 6.43597C20.5686 6.81947 21.1805 7.43139 21.564 8.18404C22 9.03969 22 10.1598 22 12.4Z" stroke="currentColor" strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

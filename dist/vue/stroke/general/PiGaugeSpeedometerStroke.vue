@@ -1,0 +1,43 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M5.24201 19.1502C4.09114 17.8252 3.34561 16.1972 3.0943 14.4602C2.84299 12.7233 3.09651 10.9507 3.82462 9.35389C4.55274 7.75704 5.72473 6.40327 7.20086 5.454C8.67699 4.50472 10.395 4 12.15 4C13.905 4 15.623 4.50472 17.0991 5.454C18.5753 6.40327 19.7473 7.75704 20.4754 9.35389C21.2035 10.9507 21.457 12.7233 21.2057 14.4602C20.9544 16.1972 20.2089 17.8252 19.058 19.1502M8.41501 10.4152L12.522 13.2182C12.6363 13.2958 12.7321 13.3978 12.8024 13.5167C12.8728 13.6357 12.916 13.7687 12.9291 13.9063C12.9421 14.0438 12.9246 14.1826 12.8779 14.3126C12.8311 14.4427 12.7562 14.5608 12.6585 14.6586C12.5608 14.7563 12.4428 14.8313 12.3128 14.8782C12.1827 14.9251 12.044 14.9427 11.9064 14.9297C11.7688 14.9168 11.6358 14.8736 11.5168 14.8034C11.3978 14.7331 11.2958 14.6374 11.218 14.5232L8.41501 10.4152Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiGaugeSpeedometerStroke icon from the stroke style in general category.
+ */
+export default {
+  name: 'PiGaugeSpeedometerStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'gauge-speedometer icon'
+    }
+  }
+}
+</script>

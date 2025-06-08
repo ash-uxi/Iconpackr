@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiCryptoCurrencySolanaSolid icon from the solid style in web3-&-crypto category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiCryptoCurrencySolanaSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'crypto-currency-solana icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M2.22658 10.3334C2.30735 10.4957 2.404 10.6391 2.5028 10.7698C2.65014 10.9646 2.8418 11.1807 3.04875 11.414L5.04664 13.6667H21.7736C21.6929 13.5044 21.5962 13.3609 21.4974 13.2303C21.3501 13.0355 21.1584 12.8194 20.9515 12.5861L18.9536 10.3334H2.22658Z" fill="currentColor" stroke="none"/>
+  <path d="M21.7736 15.6667H5.04661L3.87677 16.9858C3.5673 17.3347 3.29155 17.6456 3.09578 17.9103C2.90799 18.1643 2.6594 18.5451 2.63719 19.0218C2.6102 19.601 2.84707 20.1692 3.29323 20.5528C3.66463 20.8721 4.12341 20.9414 4.43301 20.9701C4.75689 21.0001 5.16716 21.0001 5.62333 21L15.6012 21.0001C15.9652 21.0006 16.3135 21.0011 16.6506 20.9126C16.9456 20.8352 17.2249 20.7079 17.4772 20.537C17.7642 20.3426 17.9954 20.0812 18.2416 19.8029L20.9514 16.7474C21.1583 16.5141 21.35 16.2979 21.4974 16.1031C21.5962 15.9724 21.6929 15.829 21.7736 15.6667Z" fill="currentColor" stroke="none"/>
+  <path d="M8.39902 2.99995L18.3768 3.00002C18.833 2.99999 19.2433 2.99996 19.5672 3.02998C19.8768 3.05867 20.3356 3.12794 20.707 3.44724C21.1531 3.83082 21.39 4.39904 21.363 4.97822C21.3408 5.45495 21.0922 5.8357 20.9044 6.0897C20.7086 6.3545 20.4329 6.66535 20.1234 7.01427L18.9536 8.33337H2.22656C2.30733 8.17103 2.40399 8.02761 2.5028 7.89696C2.65015 7.70212 2.84182 7.48604 3.04878 7.25272L5.75862 4.19711C6.00479 3.91884 6.23602 3.65746 6.52299 3.46305C6.77528 3.29213 7.05455 3.16489 7.34961 3.08746C7.6867 2.99899 8.03498 2.99946 8.39902 2.99995Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

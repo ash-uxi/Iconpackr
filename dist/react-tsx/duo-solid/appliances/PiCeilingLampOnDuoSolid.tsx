@@ -1,0 +1,37 @@
+import React from 'react';
+
+/**
+ * PiCeilingLampOnDuoSolid icon from the duo-solid style in appliances category.
+ */
+interface PiCeilingLampOnDuoSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiCeilingLampOnDuoSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'ceiling-lamp-on icon',
+  ...props
+}: PiCeilingLampOnDuoSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M13.0002 20C13.0002 19.4477 12.5525 19 12.0002 19C11.4479 19 11.0002 19.4477 11.0002 20V21C11.0002 21.5523 11.4479 22 12.0002 22C12.5525 22 13.0002 21.5523 13.0002 21V20Z" fill={color || "currentColor"} /> <path d="M13.0002 2C13.0002 1.44772 12.5525 1 12.0002 1C11.4479 1 11.0002 1.44772 11.0002 2V4.04937C11.3291 4.01672 11.6626 4 12.0001 4C12.3376 4 12.6712 4.01672 13.0002 4.04938V2Z" fill={color || "currentColor"} /> <path d="M16.8662 18.5C16.59 18.0217 15.9785 17.8578 15.5002 18.134C15.0219 18.4101 14.858 19.0217 15.1341 19.5L15.6341 20.366C15.9103 20.8443 16.5219 21.0082 17.0002 20.7321C17.4785 20.4559 17.6423 19.8443 17.3662 19.366L16.8662 18.5Z" fill={color || "currentColor"} /> <path d="M3 15C2.44772 15 2 14.5523 2 14C2 8.47715 6.47715 4 12 4C17.5228 4 22 8.47715 22 14C22 14.5523 21.5523 15 21 15H3Z" fill={color || "currentColor"} opacity="0.28" fillRule="evenodd" clipRule="evenodd" /> <path d="M8.12619 15C8.57023 16.7252 10.1363 18 12.0002 18C13.864 18 15.4301 16.7252 15.8741 15H13.7326C13.3868 15.5978 12.7404 16 12.0002 16C11.2599 16 10.6135 15.5978 10.2677 15L8.12619 15Z" fill={color || "currentColor"} /> <path d="M8.86619 19.5C9.14233 19.0217 8.97846 18.4101 8.50017 18.134C8.02187 17.8578 7.41028 18.0217 7.13414 18.5L6.63414 19.366C6.358 19.8443 6.52187 20.4559 7.00017 20.7321C7.47846 21.0082 8.09005 20.8443 8.36619 20.366L8.86619 19.5Z" fill={color || "currentColor"} />
+    </svg>
+  );
+}

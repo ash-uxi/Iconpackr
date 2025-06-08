@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pigiftdefaultduostroke icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pigiftdefaultduostroke = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "gift default icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M14.5 7C15.8807 7 17 5.88071 17 4.5C17 3.11929 15.8807 2 14.5 2C13.1193 2 12 3.11929 12 4.5M14.5 7H12M14.5 7H19.5C19.9647 7 20.197 7 20.3902 7.03843C21.1836 7.19624 21.8038 7.81644 21.9616 8.60982C22 8.80302 22 9.03535 22 9.5C22 9.96465 22 10.197 21.9616 10.3902C21.8038 11.1836 21.1836 11.8038 20.3902 11.9616C20.2831 11.9829 20.164 11.9924 20 11.9966C19.8681 12 19.7071 12 19.5 12H4.5C4.29291 12 4.13189 12 4 11.9966C3.83599 11.9924 3.7169 11.9829 3.60982 11.9616C2.81644 11.8038 2.19624 11.1836 2.03843 10.3902C2 10.197 2 9.96465 2 9.5C2 9.03535 2 8.80302 2.03843 8.60982C2.19624 7.81644 2.81644 7.19624 3.60982 7.03843C3.80302 7 4.03534 7 4.5 7H9.5M12 4.5C12 3.11929 10.8807 2 9.5 2C8.11929 2 7 3.11929 7 4.5C7 5.88071 8.11929 7 9.5 7M12 4.5V7M9.5 7H12"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      fill="none"
+    />
+    <path
+      d="M20 11.9966V16.2C20 17.8802 20 18.7202 19.673 19.362C19.3854 19.9265 18.9265 20.3854 18.362 20.673C17.7202 21 16.8802 21 15.2 21H12M4 11.9966V16.2C4 17.8802 4 18.7202 4.32698 19.362C4.6146 19.9265 5.07354 20.3854 5.63803 20.673C6.27976 21 7.11984 21 8.8 21H12M12 21V7"
+      stroke={color || "#000"}
+      strokeWidth="2"
+      opacity={0.28}
+      fill="none"
+    />
+  </Svg>
+);
+
+export default Pigiftdefaultduostroke;

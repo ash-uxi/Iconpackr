@@ -208,6 +208,7 @@ export function processSvgForTheming(svgContent, forcedStyle) {
 export function getSvgThemingProps(svgContent, format) {
   const isReactNative = format === 'react-native';
   const isVue = format === 'vue';
+  const isSvelte = format === 'svelte';
   
   // Analyze SVG to determine needed props
   const analysis = analyzeSvgAttributes(svgContent);
@@ -223,6 +224,9 @@ export function getSvgThemingProps(svgContent, format) {
   // Configure props based on analysis and format
   if (isVue) {
     props.styleAttribute = `:style="{color: color || 'currentColor'}"`;
+  } else if (isSvelte) {
+    // Svelte uses similar syntax to Vue but without the colon prefix
+    props.styleAttribute = '';
   } else if (isReactNative) {
     // For React Native, we need to be explicit about which attribute gets the color
     if (analysis.hasStroke && !analysis.visibleFillCount) {

@@ -1,0 +1,48 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pisupabaseduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pisupabaseduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "supabase icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M10.4496 0.975099C10.8249 0.958515 11.1934 1.08307 11.4809 1.32471L11.6176 1.45557L11.725 1.58936C11.9484 1.91132 11.9814 2.27776 11.9955 2.4458C12.0165 2.6956 12.016 3.01651 12.016 3.35694V16.0005H6.76117C5.73898 16.0005 4.90267 16.0016 4.25726 15.9429C3.70687 15.8927 3.14325 15.7895 2.66839 15.4946L2.47015 15.356C1.80411 14.8307 1.39397 14.0495 1.33538 13.2085L1.32757 13.0396C1.31909 12.3884 1.61313 11.7991 1.95062 11.2651C2.29688 10.7174 2.80686 10.0545 3.42913 9.24365L8.78753 2.26123L9.08734 1.87354C9.1829 1.75297 9.2745 1.64297 9.35882 1.55029C9.48865 1.40762 9.79542 1.0748 10.2621 0.994631L10.4496 0.975099Z"
+      fill={color || "#000"}
+    />{" "}
+    <path
+      d="M17.2461 8C18.2674 8 19.1031 7.99892 19.7481 8.05762C20.2983 8.10774 20.8622 8.21012 21.3369 8.50488L21.5342 8.64356C22.2449 9.20365 22.6656 10.0552 22.6778 10.96C22.6864 11.6109 22.3927 12.1995 22.0557 12.7334C21.7099 13.2812 21.2007 13.944 20.5791 14.7549L15.2285 21.7363L14.9287 22.124C14.8333 22.2446 14.7424 22.3546 14.6582 22.4473C14.5286 22.5899 14.2217 22.9233 13.7549 23.0039L13.5664 23.0244C13.1913 23.0411 12.8227 22.9163 12.5352 22.6748L12.3985 22.5439L12.2901 22.4092C12.0668 22.0872 12.0336 21.7207 12.0196 21.5527C11.9986 21.3029 12 20.9823 12 20.6416V8H17.2461Z"
+      fill={color || "#000"}
+      opacity={0.28}
+    />
+  </Svg>
+);
+
+export default Pisupabaseduosolid;

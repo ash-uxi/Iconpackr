@@ -1,0 +1,38 @@
+import React from 'react';
+
+/**
+ * PiNotificationBellOffSolid icon from the solid style in alerts category.
+ */
+interface PiNotificationBellOffSolidProps extends React.SVGProps<SVGSVGElement> {
+  size?: number;
+  color?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export default function PiNotificationBellOffSolid({
+  size = 24,
+  color,
+  className,
+  ariaLabel = 'notification-bell-off icon',
+  ...props
+}: PiNotificationBellOffSolidProps): JSX.Element {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M19.5425 8.85718C19.9081 8.99111 20.1628 9.32508 20.1951 9.71312L20.5347 13.788C20.5658 14.1618 20.6845 14.5228 20.8544 15.0345C21.373 16.5965 20.3206 18.2392 18.6849 18.421C17.7278 18.5274 16.7688 18.6109 15.8087 18.6714C15.5577 20.5506 13.9484 22 12.0006 22C10.5335 22 9.26003 21.1774 8.61359 19.9729C8.40499 19.5842 8.47569 19.1048 8.7876 18.7929L18.4914 9.08906C18.7668 8.81372 19.1769 8.72325 19.5425 8.85718ZM13.7398 18.7664C13.0329 18.7867 12.3258 18.7947 11.6187 18.7902L10.8291 19.5798C11.148 19.8428 11.5562 20 12.0006 20C12.8047 20 13.4885 19.4848 13.7398 18.7664Z" fill="currentColor" stroke="none"/>
+  <path d="M3.82177 9.52563C4.17625 5.2719 7.73215 2 12.0006 2C14.3527 2 16.4879 2.99382 17.9899 4.59586L20.2929 2.29289C20.6834 1.90237 21.3166 1.90237 21.7071 2.29289C22.0976 2.68342 22.0976 3.31658 21.7071 3.70711L18.624 6.79018L18.6212 6.79303L7.17339 18.2408L7.17063 18.2436L3.70711 21.7071C3.31658 22.0976 2.68342 22.0976 2.29289 21.7071C1.90237 21.3166 1.90237 20.6834 2.29289 20.2929L4.42823 18.1576C3.32645 17.5981 2.72762 16.2883 3.14653 15.0315C3.31689 14.5205 3.43563 14.1593 3.46677 13.7856L3.82177 9.52563Z" fill="currentColor" stroke="none"/>
+    </svg>
+  );
+}

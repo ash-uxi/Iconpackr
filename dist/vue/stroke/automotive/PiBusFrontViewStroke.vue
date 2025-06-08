@@ -1,0 +1,47 @@
+<template>
+  <svg
+    :width="size"
+    :height="size"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    :class="className"
+    fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" :style="{color: color || 'currentColor'}"
+    role="img"
+    :aria-label="ariaLabel"
+    v-bind="$attrs"
+  >
+    <path d="M16 16H17" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M4 13H20" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M4 9.00002H2.5C2.22386 9.00002 2 8.77617 2 8.50002V8.00002C2 6.51353 3.08114 5.27954 4.5 5.0415M20 9.00002H21.5C21.7761 9.00002 22 8.77617 22 8.50002V8.00002C22 6.51353 20.9189 5.27954 19.5 5.0415" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M4 9.33333C4 7.156 4 6.06733 4.41251 5.23085C4.80196 4.44112 5.44112 3.80196 6.23085 3.41251C7.06733 3 8.156 3 10.3333 3H13.6667C15.844 3 16.9327 3 17.7692 3.41251C18.5589 3.80196 19.198 4.44112 19.5875 5.23085C20 6.06733 20 7.156 20 9.33333V20.5C20 21.3284 19.3284 22 18.5 22C17.6716 22 17 21.3284 17 20.5V19H7V20.5C7 21.3284 6.32843 22 5.5 22C4.67157 22 4 21.3284 4 20.5V9.33333Z" stroke="currentColor" stroke-width="2" fill="none"/>
+  <path d="M7 16H8" stroke="currentColor" stroke-width="2" fill="none"/>
+  </svg>
+</template>
+
+<script>
+/**
+ * PiBusFrontViewStroke icon from the stroke style in automotive category.
+ */
+export default {
+  name: 'PiBusFrontViewStroke',
+  props: {
+    size: {
+      type: Number,
+      default: 24
+    },
+    color: {
+      type: String,
+      default: undefined
+    },
+    className: {
+      type: String,
+      default: undefined
+    },
+    ariaLabel: {
+      type: String,
+      default: 'bus-front-view icon'
+    }
+  }
+}
+</script>

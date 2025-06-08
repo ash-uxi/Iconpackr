@@ -1,0 +1,47 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Piusercirclesolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Piusercirclesolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "user circle icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12C23.5 15.2198 22.1748 18.1328 20.0439 20.2187C17.9716 22.2471 15.1306 23.5 12 23.5C8.86937 23.5 6.02838 22.2471 3.95613 20.2187C1.82522 18.1328 0.5 15.2198 0.5 12ZM8.49998 15C6.86552 15 5.40245 15.8494 4.61393 17.1442C4.93698 17.607 5.30249 18.0382 5.7049 18.4321C7.32887 20.0217 9.54919 21 12 21C14.4508 21 16.6711 20.0217 18.2951 18.4321C18.6975 18.0382 19.063 17.607 19.386 17.1442C18.5975 15.8495 17.1345 15 15.5 15H8.49998ZM8.5 10C8.5 8.067 10.067 6.5 12 6.5C13.933 6.5 15.5 8.067 15.5 10C15.5 11.933 13.933 13.5 12 13.5C10.067 13.5 8.5 11.933 8.5 10Z"
+      fill={color}
+      fillRule="evenodd"
+      clipRule="evenodd"
+      stroke="none"
+    />
+    <rect width="24" height="24" fill={color} stroke="none" />
+  </Svg>
+);
+
+export default Piusercirclesolid;

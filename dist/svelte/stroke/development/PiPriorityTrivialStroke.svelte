@@ -1,0 +1,24 @@
+<script>
+  /**
+   * PiPriorityTrivialStroke icon from the stroke style in development category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'priority-trivial icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M11.3066 19.8403C9.25473 18.7664 7.39117 17.5437 5.75069 16.1952C5.26196 15.7934 5 15.2228 5 14.6311L5 4C6.81482 5.6034 8.93491 7.04349 11.3066 8.28473C11.5101 8.39121 11.755 8.44444 12 8.44444C12.245 8.44444 12.4899 8.39121 12.6934 8.28473C15.0651 7.04349 17.1852 5.6034 19 4L19 14.6311C19 15.2228 18.738 15.7935 18.2493 16.1952C16.6088 17.5437 14.7453 18.7664 12.6934 19.8403C12.4899 19.9468 12.245 20 12 20C11.755 20 11.5101 19.9468 11.3066 19.8403Z" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg>

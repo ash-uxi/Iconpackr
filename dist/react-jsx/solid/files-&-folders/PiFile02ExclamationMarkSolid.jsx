@@ -1,0 +1,36 @@
+import React from 'react';
+
+/**
+ * PiFile02ExclamationMarkSolid icon from the solid style in files-&-folders category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiFile02ExclamationMarkSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'file-02-exclamation-mark icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M14.9558 2.74817C14.9167 2.26895 14.8392 1.82273 14.664 1.4008C17.4921 2.27596 19.724 4.50788 20.5992 7.33598C20.1773 7.16076 19.731 7.08335 19.2518 7.04419C18.7106 6.99998 18.0463 6.99999 17.2413 7H17.2C16.6234 7 16.2512 6.99922 15.9678 6.97607C15.6962 6.95388 15.5955 6.9162 15.546 6.89101C15.3578 6.79513 15.2049 6.64215 15.109 6.45399C15.0838 6.40455 15.0461 6.30383 15.0239 6.03216C15.0008 5.74883 15 5.37655 15 4.8V4.75872C15 3.95376 15 3.28936 14.9558 2.74817Z" fill="currentColor" stroke="none"/>
+  <path d="M8 1H9.2C10.0566 1 10.6389 1.00078 11.089 1.03755C11.5274 1.07337 11.7516 1.1383 11.908 1.21799C12.2843 1.40973 12.5903 1.71569 12.782 2.09202C12.8617 2.24842 12.9266 2.47262 12.9624 2.91104C12.9992 3.36113 13 3.94342 13 4.8L13 4.83854C13 5.36569 13 5.82046 13.0306 6.19503C13.0629 6.59037 13.1342 6.98359 13.327 7.36197C13.6146 7.92646 14.0735 8.3854 14.638 8.67302C15.0164 8.86581 15.4096 8.93713 15.805 8.96943C16.1795 9.00003 16.6343 9.00002 17.1614 9L17.2 9C18.0566 9 18.6389 9.00078 19.089 9.03755C19.5274 9.07337 19.7516 9.1383 19.908 9.21799C20.2843 9.40973 20.5903 9.71569 20.782 10.092C20.8617 10.2484 20.9266 10.4726 20.9624 10.911C20.9992 11.3611 21 11.9434 21 12.8V18C21 20.7614 18.7614 23 16 23H8C5.23858 23 3 20.7614 3 18V6C3 3.23858 5.23858 1 8 1ZM13 11C13 10.4477 12.5523 10 12 10C11.4477 10 11 10.4477 11 11V15C11 15.5523 11.4477 16 12 16C12.5523 16 13 15.5523 13 15V11ZM13 18C13 17.4477 12.5523 17 12 17C11.4477 17 11 17.4477 11 18C11 18.5523 11.4477 19.001 12 19.001C12.5523 19.001 13 18.5523 13 18Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

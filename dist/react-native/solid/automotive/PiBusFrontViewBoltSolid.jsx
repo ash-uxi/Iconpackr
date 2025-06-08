@@ -1,0 +1,46 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pibusfrontviewboltsolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pibusfrontviewboltsolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "bus front view bolt icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M13.7083 2H10.2917C9.23836 1.99999 8.38871 1.99998 7.70006 2.05471C6.99117 2.11104 6.36776 2.23001 5.78856 2.51564C5.02179 2.89376 4.36858 3.4602 3.887 4.15689C2.2194 4.63899 1 6.17709 1 8V8.5C1 9.32843 1.67157 10 2.5 10H3V20.5C3 21.8807 4.11929 23 5.5 23C6.88071 23 8 21.8807 8 20.5V20H16V20.5C16 21.8807 17.1193 23 18.5 23C19.8807 23 21 21.8807 21 20.5V10H21.5C22.3284 10 23 9.32843 23 8.5V8C23 6.17709 21.7806 4.639 20.113 4.15689C19.6314 3.46021 18.9782 2.89376 18.2114 2.51564C17.6322 2.23001 17.0088 2.11104 16.2999 2.05471C15.6113 1.99998 14.7616 1.99999 13.7083 2ZM12.8517 9.0241C13.1411 8.55374 12.9945 7.93779 12.5241 7.64834C12.0537 7.35889 11.4378 7.50554 11.1483 7.9759L8.9945 11.4759C8.80463 11.7844 8.79648 12.1715 8.97321 12.4878C9.14993 12.8041 9.48388 13 9.84616 13H12.3643L11.1483 14.9759C10.8589 15.4463 11.0056 16.0622 11.4759 16.3517C11.9463 16.6411 12.5622 16.4945 12.8517 16.0241L15.0055 12.5241C15.1954 12.2156 15.2035 11.8285 15.0268 11.5122C14.8501 11.1959 14.5161 11 14.1539 11H11.6357L12.8517 9.0241Z"
+      fill={color}
+      fillRule="evenodd"
+      clipRule="evenodd"
+      stroke="none"
+    />
+  </Svg>
+);
+
+export default Pibusfrontviewboltsolid;

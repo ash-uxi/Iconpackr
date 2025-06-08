@@ -1,0 +1,36 @@
+import React from 'react';
+
+/**
+ * PiVisionProDuoStroke icon from the duo-stroke style in ar-&-vr category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiVisionProDuoStroke({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'vision-pro icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M11.9999 6.5C16.0876 6.49999 21.9089 6.64174 21.9768 12C22.0088 14.5242 20.8645 17.1718 18.0789 17.4753C15.5041 17.7559 14.3939 15.0921 11.9999 15.0937C9.63506 15.0953 8.52625 17.7102 5.99985 17.4832C3.17732 17.2295 1.99079 14.5517 2.0231 12C2.09096 6.64182 7.91218 6.50001 11.9999 6.5Z" stroke={color || "currentColor"} strokeWidth="2" opacity="0.28" fill="none"/>
+  <path d="M18 7.08022C16.1174 6.52985 13.876 6.5 11.9999 6.5C10.1238 6.5 7.88249 6.52988 5.99988 7.08025M9.00003 16.4167C9.90988 15.7786 10.7907 15.0945 11.9999 15.0937C13.2143 15.0929 14.0984 15.778 15.0109 16.4167" stroke={color || "currentColor"} strokeWidth="2" fill="none"/>
+    </svg>
+  );
+}

@@ -1,0 +1,24 @@
+<script>
+  /**
+   * PiEnvelopeArrowUpStroke icon from the stroke style in communication category.
+   */
+  export let size = 24;
+  export let color = undefined;
+  export let className = undefined;
+  export let ariaLabel = 'envelope-arrow-up icon';
+</script>
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+  fill="none"
+  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: {color || 'currentColor'}"
+  role="img"
+  aria-label={ariaLabel}
+  {...$$restProps}
+>
+  <path d="M17.4284 17.4116C18.0629 16.5656 18.799 15.8016 19.6197 15.1366C19.7306 15.0467 19.8653 15.0017 19.9999 15.0017M22.5713 17.4116C21.9368 16.5656 21.2007 15.8016 20.3801 15.1366C20.2691 15.0467 20.1345 15.0017 19.9999 15.0017M19.9999 15.0017V21.0017M21.8032 7.76159L16.295 11.2668C14.7385 12.2573 13.9602 12.7526 13.1238 12.9455C12.3843 13.1161 11.6157 13.1161 10.8762 12.9455C10.0398 12.7526 9.26153 12.2573 7.70499 11.2668L2.19678 7.76159M21.8032 7.76159C21.7237 7.37332 21.6119 7.03798 21.455 6.73005C20.9757 5.78924 20.2108 5.02433 19.27 4.54497C18.2004 4 16.8003 4 14 4H10C7.19974 4 5.79961 4 4.73005 4.54497C3.78924 5.02433 3.02433 5.78924 2.54497 6.73005C2.38807 7.03798 2.27634 7.37332 2.19678 7.76159M21.8032 7.76159C21.9818 8.63311 21.9984 9.7713 22 11.4648M2.19678 7.76159C2 8.72189 2 10.006 2 12C2 14.8003 2 16.2004 2.54497 17.27C3.02433 18.2108 3.78924 18.9757 4.73005 19.455C5.79961 20 7.19974 20 10 20L14.3789 19.9999" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg>

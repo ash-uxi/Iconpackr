@@ -1,0 +1,35 @@
+import React from 'react';
+
+/**
+ * PiFaceSmileUpsideDownSolid icon from the solid style in general category.
+ * @param {Object} props - Component props
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.color] - Icon color
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
+ */
+export default function PiFaceSmileUpsideDownSolid({ 
+  size = 24, 
+  color,
+  className,
+  ariaLabel = 'face-smile-upside-down icon',
+  ...props 
+}) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      
+       style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      <path d="M1.8501 12.1959C1.8501 6.59021 6.39441 2.0459 12.0001 2.0459C17.6058 2.0459 22.1501 6.59021 22.1501 12.1959C22.1501 17.8016 17.6058 22.3459 12.0001 22.3459C6.39441 22.3459 1.8501 17.8016 1.8501 12.1959ZM16.2708 10.6106C15.8764 10.9972 15.2433 10.9909 14.8567 10.5965C14.1295 9.8548 13.1192 9.39648 12 9.39648C10.8809 9.39648 9.87055 9.8548 9.14342 10.5965C8.7568 10.9909 8.12366 10.9972 7.72928 10.6106C7.33489 10.224 7.3286 9.59083 7.71522 9.19644C8.80301 8.08681 10.3218 7.39648 12 7.39648C13.6783 7.39648 15.1971 8.08681 16.2849 9.19644C16.6715 9.59083 16.6652 10.224 16.2708 10.6106ZM7.99995 14.5962C7.99995 15.1485 8.44767 15.5962 8.99995 15.5962C9.55224 15.5962 9.99995 15.1485 9.99995 14.5962V13.5962C9.99995 13.0439 9.55224 12.5962 8.99995 12.5962C8.44767 12.5962 7.99995 13.0439 7.99995 13.5962V14.5962ZM14 14.5962C14 15.1485 14.4477 15.5962 15 15.5962C15.5522 15.5962 16 15.1485 16 14.5962L16 13.5962C16 13.0439 15.5522 12.5962 15 12.5962C14.4477 12.5962 14 13.0439 14 13.5962V14.5962Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" stroke="none"/>
+    </svg>
+  );
+}

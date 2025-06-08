@@ -1,0 +1,52 @@
+import React from "react";
+import Svg, {
+  Path,
+  Rect,
+  Circle,
+  Ellipse,
+  Line,
+  Polygon,
+  Polyline,
+} from "react-native-svg";
+
+/**
+ * Pinotificationbellcancelduosolid icon component for React Native
+ * @param {Object} props - Component props
+ * @param {string} [props.color='#000'] - Icon color
+ * @param {number} [props.size=24] - Icon size
+ * @param {string} [props.accessibilityLabel] - Accessibility label
+ * @param {Object} [props.style] - Additional styles
+ */
+const Pinotificationbellcancelduosolid = ({
+  color = "#000",
+  size = 24,
+  accessibilityLabel = "notification bell cancel icon",
+  style,
+  ...props
+}) => (
+  <Svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    accessibilityRole="image"
+    accessibilityLabel={accessibilityLabel}
+    style={style}
+    {...props}
+  >
+    <path
+      d="M10.2323 8.29289C9.84173 7.90237 9.20856 7.90237 8.81804 8.29289C8.42752 8.68342 8.42752 9.31658 8.81804 9.70711L10.5858 11.4749L8.81804 13.2426C8.42752 13.6332 8.42752 14.2663 8.81804 14.6569C9.20856 15.0474 9.84173 15.0474 10.2323 14.6569L12 12.8891L13.7678 14.6569C14.1583 15.0474 14.7915 15.0474 15.182 14.6569C15.5725 14.2663 15.5725 13.6332 15.182 13.2426L13.4142 11.4749L15.182 9.70711C15.5725 9.31658 15.5725 8.68342 15.182 8.29289C14.7915 7.90237 14.1583 7.90237 13.7678 8.29289L12 10.0607L10.2323 8.29289Z"
+      fill={color || "#000"}
+    />{" "}
+    <path
+      d="M12.0007 2C7.73227 2 4.17637 5.2719 3.82189 9.52563L3.4669 13.7856C3.43575 14.1593 3.31701 14.5205 3.14665 15.0315C2.62569 16.5944 3.67874 18.2394 5.31568 18.4213C6.57802 18.5615 7.84373 18.6619 9.11089 18.7225C11.0363 18.8145 12.9651 18.8144 14.8906 18.7223C16.1575 18.6618 17.423 18.5613 18.6851 18.421C20.3207 18.2392 21.3731 16.5965 20.8545 15.0345C20.6846 14.5228 20.5659 14.1618 20.5348 13.788L20.1796 9.52563C19.8251 5.2719 16.2692 2 12.0007 2Z"
+      fill={color || "#000"}
+      opacity={0.28}
+    />{" "}
+    <path
+      d="M9.11084 18.7224C8.80468 18.7078 8.4986 18.6908 8.19263 18.6716C8.4437 20.5506 10.0529 22 12.0007 22C13.9485 22 15.5578 20.5505 15.8088 18.6714C15.5028 18.6907 15.1967 18.7077 14.8905 18.7223C14.4092 18.7453 13.9276 18.7626 13.4459 18.7741C13.5439 18.7718 13.6419 18.7692 13.7399 18.7664C13.4886 19.4847 12.8048 20 12.0007 20C11.1966 20 10.5128 19.4847 10.2615 18.7664C9.87784 18.7554 9.49428 18.7407 9.11084 18.7224Z"
+      fill={color || "#000"}
+    />
+  </Svg>
+);
+
+export default Pinotificationbellcancelduosolid;

@@ -1,348 +1,133 @@
-import { parseSync, stringify } from 'svgson';
-import SVGPathCommander from 'svg-path-commander';
-import memoize from 'lodash/memoize.js';
+import { optimize } from 'svgo';
 
 /**
- * SVG optimization options
+ * Conservative SVGO configuration to prevent malformed output
+ * Focuses on safe optimizations that won't break icon structure
  */
-export const defaultSvgOptimizationOptions = {
-  filterAttributes: true,
-  sortAttributes: true,
-  sortNodes: true,
-  filterNodes: true,
-  standardizeViewBox: true,
-  normalizePathData: false
-};
-
-/**
- * Essential attributes for each SVG element type
- */
-const ESSENTIAL_ATTRIBUTES = {
-  rect: ['x', 'y', 'width', 'height', 'rx', 'ry', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  circle: ['cx', 'cy', 'r', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  ellipse: ['cx', 'cy', 'rx', 'ry', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  polygon: ['points', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  polyline: ['points', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  line: ['x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width', 'opacity', 'stroke-opacity'],
-  path: ['d', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity', 'fill-rule', 'clip-rule']
-};
-
-/**
- * Attribute order for consistent sorting
- */
-const ATTRIBUTE_ORDER = {
-  rect: ['x', 'y', 'width', 'height', 'rx', 'ry', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  circle: ['cx', 'cy', 'r', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  ellipse: ['cx', 'cy', 'rx', 'ry', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  polygon: ['points', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  polyline: ['points', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity'],
-  line: ['x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width', 'opacity', 'stroke-opacity'],
-  path: ['d', 'fill', 'stroke', 'stroke-width', 'opacity', 'fill-opacity', 'stroke-opacity', 'fill-rule', 'clip-rule']
-};
-
-/**
- * Drawable SVG element types
- */
-const DRAWABLE_ELEMENTS = ['rect', 'circle', 'ellipse', 'polygon', 'polyline', 'line', 'path'];
-
-/**
- * Container SVG element types that can contain drawable elements
- */
-const CONTAINER_ELEMENTS = ['g', 'defs', 'clipPath', 'mask'];
-
-/**
- * All SVG element types we should preserve
- */
-const PROCESSABLE_ELEMENTS = [...DRAWABLE_ELEMENTS, ...CONTAINER_ELEMENTS];
-
-/**
- * Process and standardize SVG attributes for a given element
- * @param {Object} element - SVG element object from svgson
- * @param {Object} options - Processing options
- * @returns {Object} Processed element with standardized attributes
- */
-function processElementAttributes(element, options) {
-  const { name, attributes = {} } = element;
-  let processedAttributes = { ...attributes };
-
-  // For drawable elements, filter attributes if enabled
-  if (options.filterAttributes && ESSENTIAL_ATTRIBUTES[name]) {
-    const essentialAttrs = ESSENTIAL_ATTRIBUTES[name];
-    processedAttributes = Object.keys(processedAttributes)
-      .filter(key => essentialAttrs.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = processedAttributes[key];
-        return obj;
-      }, {});
-  }
+const svgoConfig = {
+  multipass: false,       // Single pass to prevent conflicts
+  floatPrecision: 2,      // Conservative precision
   
-  // For group elements, preserve important attributes like opacity, transform, etc.
-  if (name === 'g' && options.filterAttributes) {
-    const groupEssentialAttrs = ['opacity', 'fill-opacity', 'stroke-opacity', 'transform', 'id', 'class'];
-    processedAttributes = Object.keys(processedAttributes)
-      .filter(key => groupEssentialAttrs.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = processedAttributes[key];
-        return obj;
-      }, {});
-  }
-
-  // Sort attributes if enabled
-  if (options.sortAttributes && ATTRIBUTE_ORDER[name]) {
-    const order = ATTRIBUTE_ORDER[name];
-    const sortedAttributes = {};
+  plugins: [
+    // Safe cleanup plugins
+    'removeDoctype',
+    'removeXMLProcInst', 
+    'removeComments',
+    'removeMetadata',
+    'removeEditorsNSData',
+    'removeEmptyAttrs',
+    'removeHiddenElems',
+    'removeEmptyText',
+    'removeEmptyContainers',
     
-    // Add attributes in the specified order
-    order.forEach(attr => {
-      if (processedAttributes[attr] !== undefined) {
-        sortedAttributes[attr] = processedAttributes[attr];
+    // Basic cleanup
+    'cleanupAttrs',
+    'removeUnusedNS',
+    
+    // DISABLED aggressive plugins that cause issues:
+    // 'cleanupIds' - can break references
+    // 'removeUnknownsAndDefaults' - too aggressive
+    // 'inlineStyles' - can break theming
+    // 'minifyStyles' - can break theming
+    // 'convertStyleToAttrs' - can break theming
+    // 'convertColors' - we handle colors ourselves
+    // 'convertPathData' - can break complex paths
+    // 'convertShapeToPath' - can break intended shapes
+    // 'moveGroupAttrsToElems' - can break duo-tone icons
+    // 'collapseGroups' - can break duo-tone icons
+    // 'mergePaths' - can break multi-path icons
+    
+    // Safe optimizations
+    'removeRasterImages',
+    'sortAttrs',
+    
+    // Keep dimensions and viewBox as-is initially
+    'removeDimensions',
+    // Don't remove viewBox - preserve it
+    
+    // Add consistent attributes without overriding existing ones
+    {
+      name: 'addAttributesToSVGElement',
+      params: {
+        attributes: [
+          { width: '24' },
+          { height: '24' },
+          { viewBox: '0 0 24 24' }
+          // Don't add fill="none" here - let the theming handle it
+        ]
       }
-    });
-    
-    // Add any remaining attributes not in the order
-    Object.keys(processedAttributes).forEach(attr => {
-      if (!order.includes(attr)) {
-        sortedAttributes[attr] = processedAttributes[attr];
-      }
-    });
-    
-    processedAttributes = sortedAttributes;
-  }
-
-  return {
-    ...element,
-    attributes: processedAttributes
-  };
-}
+    }
+  ]
+};
 
 /**
- * Normalize and split path data
- * @param {string} pathData - SVG path data string
- * @returns {string[]} Array of normalized path data strings
+ * Simple SVG processor with comprehensive optimization and theming
+ * @param {string} svgContent - Raw SVG content
+ * @returns {string} Optimized and themed SVG
  */
-function normalizeAndSplitPath(pathData) {
+export function processSvg(svgContent) {
   try {
-    // Convert to absolute coordinates
-    const absolutePath = SVGPathCommander.toAbsolute(pathData);
+    // Optimize with SVGO
+    const result = optimize(svgContent, svgoConfig);
     
-    // Split on moveTo commands to separate multiple shapes
-    const pathSegments = absolutePath.split(/(?=M)/g).filter(segment => segment.trim());
-    
-    return pathSegments.map(segment => segment.trim());
-  } catch (error) {
-    console.warn('Path normalization failed, using original:', error.message);
-    return [pathData];
-  }
-}
-
-/**
- * Recursively process SVG elements
- * @param {Object} node - SVG node from svgson
- * @param {Object} options - Processing options
- * @returns {Object[]} Array of processed SVG element objects (not strings)
- */
-function processElements(node, options) {
-  if (!node) return [];
-
-  // Handle group elements - preserve their structure and attributes
-  if (node.name === 'g') {
-    const processedGroup = processElementAttributes(node, options);
-    
-    // Process children recursively
-    let processedChildren = [];
-    if (node.children && Array.isArray(node.children)) {
-      node.children.forEach(child => {
-        processedChildren.push(...processElements(child, options));
-      });
+    if (result.error) {
+      console.warn('SVGO optimization failed:', result.error);
+      return svgContent;
     }
     
-    // If group has attributes (like opacity), preserve the group structure
-    if (Object.keys(processedGroup.attributes).length > 0) {
-      return [{
-        ...processedGroup,
-        children: processedChildren
-      }];
-    } else {
-      // If group has no important attributes, just return the children
-      return processedChildren;
-    }
-  }
-
-  // Process current node if it's a drawable element
-  if (DRAWABLE_ELEMENTS.includes(node.name)) {
-    const processedElement = processElementAttributes(node, options);
-
-    // Special handling for path elements
-    if (node.name === 'path' && options.normalizePathData && processedElement.attributes.d) {
-      const pathSegments = normalizeAndSplitPath(processedElement.attributes.d);
+    // Get the optimized SVG
+    let processedSvg = result.data;
+    
+    // Fix common malformed syntax patterns that can occur during processing
+    processedSvg = processedSvg
+      // Fix malformed closing tags with extra attributes
+      .replace(/("[\d.]+")\/\s*([a-zA-Z-]+="[^"]*")>/g, '$1" $2>')  // "0.28"/ fill="none"> -> "0.28" fill="none">
+      .replace(/("[\d.]+")\/\s*>/g, '$1"/>')  // "0.28"/> -> "0.28"/>
       
-      return pathSegments.map(pathData => ({
-        ...processedElement,
-        attributes: {
-          ...processedElement.attributes,
-          d: pathData
-        }
-      }));
-    } else {
-      return [processedElement];
-    }
-  }
-
-  // For other elements, process children recursively
-  const processedChildren = [];
-  if (node.children && Array.isArray(node.children)) {
-    node.children.forEach(child => {
-      processedChildren.push(...processElements(child, options));
-    });
-  }
-
-  return processedChildren;
-}
-
-/**
- * Extract dimensions from SVG
- * @param {Object} svgNode - Root SVG node from svgson
- * @returns {Object} Width and height dimensions
- */
-function extractDimensions(svgNode) {
-  const { attributes = {} } = svgNode;
-  let width = 24;
-  let height = 24;
-
-  // Try to get dimensions from viewBox first
-  if (attributes.viewBox) {
-    const viewBoxMatch = attributes.viewBox.match(/^[\d\s]*\s+([\d.]+)\s+([\d.]+)$/);
-    if (viewBoxMatch) {
-      width = parseFloat(viewBoxMatch[1]);
-      height = parseFloat(viewBoxMatch[2]);
-    }
-  }
-  
-  // Fallback to width/height attributes
-  if (attributes.width && attributes.height) {
-    const widthNum = parseFloat(attributes.width);
-    const heightNum = parseFloat(attributes.height);
-    if (!isNaN(widthNum) && !isNaN(heightNum)) {
-      width = widthNum;
-      height = heightNum;
-    }
-  }
-
-  return { width, height };
-}
-
-/**
- * Core SVG formatting function
- * @param {string} svgString - Raw SVG string
- * @param {Object} options - Processing options
- * @returns {string} Processed and standardized SVG string
- */
-function formatSvgString(svgString, options = {}) {
-  const opts = { ...defaultSvgOptimizationOptions, ...options };
-  
-  try {
-    // Ensure we have a complete SVG element
-    let completeSvg = svgString.trim();
-    if (!completeSvg.startsWith('<svg')) {
-      completeSvg = `<svg xmlns="http://www.w3.org/2000/svg">${completeSvg}</svg>`;
-    }
-
-    // Parse SVG to object tree
-    const svgObject = parseSync(completeSvg);
+      // Fix malformed self-closing path tags
+      .replace(/<path([^>]*?)\/\s*([a-zA-Z-]+="[^"]*")>/g, '<path$1 $2/>')  // <path.../ fill="none"> -> <path... fill="none"/>
+      
+      // Fix any remaining malformed patterns
+      .replace(/\/\s*([a-zA-Z-]+="[^"]*")>/g, ' $1>')  // / fill="none"> -> fill="none">
+      .replace(/\/\s*>/g, '/>')  // Ensure proper self-closing syntax
+      
+      // Clean up any double spaces or malformed spacing
+      .replace(/\s+/g, ' ')
+      .replace(/\s*\/\s*>/g, '/>')
+      .replace(/\s*>\s*/g, '>')
+      
+      // Fix double quotes issue: opacity="0.28""/ -> opacity="0.28"
+      .replace(/("[\d.]+")"+/g, '$1')  // Remove extra quotes
+      .replace(/""+/g, '"');  // Clean up any remaining double quotes
     
-    // Extract dimensions
-    const { width, height } = extractDimensions(svgObject);
+    // Only apply basic color theming - preserve opacity and special attributes  
+    processedSvg = processedSvg
+      // Replace common hardcoded colors but preserve hex colors that might be intentional
+      .replace(/fill="#111111"/g, 'fill="currentColor"')
+      .replace(/stroke="#111111"/g, 'stroke="currentColor"')
+      .replace(/fill="#000000"/g, 'fill="currentColor"')
+      .replace(/stroke="#000000"/g, 'stroke="currentColor"')
+      .replace(/fill="#000"/g, 'fill="currentColor"')
+      .replace(/stroke="#000"/g, 'stroke="currentColor"')
+      .replace(/fill="black"/g, 'fill="currentColor"')
+      .replace(/stroke="black"/g, 'stroke="currentColor"');
     
-    // Process all elements and get objects back
-    const processedElementObjects = processElements(svgObject, opts);
-    
-    // Convert objects to strings
-    const processedElements = processedElementObjects.map(element => {
-      const elementString = stringify(element);
-      // For group elements, don't convert to self-closing
-      if (element.name === 'g') {
-        return elementString.split('\n').map(line => line.trim() ? `  ${line}` : line).join('\n');
-      }
-      // Convert to self-closing if it's an empty element (only for non-group elements)
-      const selfClosing = elementString.replace(/><\/[^>]+>$/, '/>');
-      // Add proper indentation
-      return selfClosing.split('\n').map(line => line.trim() ? `  ${line}` : line).join('\n');
-    });
-    
-    // Sort elements if enabled
-    if (opts.sortNodes) {
-      processedElements.sort((a, b) => {
-        // Paths first, then alphabetical
-        const aIsPath = a.includes('<path');
-        const bIsPath = b.includes('<path');
-        
-        if (aIsPath && !bIsPath) return -1;
-        if (!aIsPath && bIsPath) return 1;
-        return a.localeCompare(b);
-      });
-    }
-    
-    // Remove duplicates if enabled
-    let uniqueElements = processedElements;
-    if (opts.filterNodes) {
-      uniqueElements = [...new Set(processedElements)];
-    }
-    
-    // Assemble final SVG
-    const svgContent = uniqueElements.join('\n');
-    
-    const finalSvg = `<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="${width}"
-  height="${height}"
-  viewBox="0 0 ${width} ${height}"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-${svgContent}
-</svg>`;
-
-    return finalSvg;
+    return processedSvg;
     
   } catch (error) {
-    console.error('SVG processing error:', error.message);
-    return svgString; // Return original on error
+    console.warn('SVG processing failed:', error.message);
+    return svgContent;
   }
-}
-
-/**
- * Memoized SVG optimization function
- * @param {string} svgString - Raw SVG string
- * @param {Object} options - Processing options
- * @returns {string} Optimized SVG string
- */
-export const optimizeSvg = memoize(formatSvgString, (svgString, options = {}) => {
-  // Create cache key from SVG content and options
-  return `${svgString}__${JSON.stringify(options)}`;
-});
-
-/**
- * Process SVG with custom options
- * @param {string} svgString - Raw SVG string
- * @param {Object} customOptions - Custom processing options
- * @returns {string} Processed SVG string
- */
-export function processSvg(svgString, customOptions = {}) {
-  return optimizeSvg(svgString, customOptions);
 }
 
 /**
  * Batch process multiple SVGs
  * @param {Array} svgData - Array of {content, filename} objects
- * @param {Object} options - Processing options
  * @returns {Array} Array of processed {content, filename} objects
  */
-export function batchProcessSvgs(svgData, options = {}) {
+export function batchProcessSvgs(svgData) {
   return svgData.map(({ content, filename }) => ({
-    content: processSvg(content, options),
+    content: processSvg(content),
     filename
   }));
-}
+} 

@@ -1,9 +1,9 @@
 import path from 'path';
-import fs from 'fs-extra';
+import fs from 'fs';
 import { glob } from 'glob';
 import chalk from 'chalk';
 import ora from 'ora';
-import { processSvg, defaultSvgOptimizationOptions } from './svg-processor.js';
+import { processSvg } from './svg-processor.js';
 import { detectIconStyle } from './style-handler.js';
 import { processSvgForTheming } from './svg-attribute-handler.js';
 
@@ -56,15 +56,9 @@ export async function preprocessSvgs(options) {
     errors: []
   };
   
-  // Merge processing options with defaults
-  const svgProcessingOptions = {
-    ...defaultSvgOptimizationOptions,
-    ...processingOptions
-  };
-  
-  if (verbose) {
+  if (verbose && Object.keys(processingOptions).length > 0) {
     console.log(chalk.cyan('SVG Processing Options:'));
-    console.log(chalk.gray(JSON.stringify(svgProcessingOptions, null, 2)));
+    console.log(chalk.gray(JSON.stringify(processingOptions, null, 2)));
   }
   
   // Process each SVG file
@@ -81,10 +75,10 @@ export async function preprocessSvgs(options) {
       }
       
       // Read raw SVG content
-      const rawSvgContent = await fs.readFile(svgFile, 'utf8');
+      const rawSvgContent = await fs.promises.readFile(svgFile, 'utf8');
       
       // Process the SVG (structural optimization)
-      let processedSvgContent = processSvg(rawSvgContent, svgProcessingOptions);
+      let processedSvgContent = processSvg(rawSvgContent);
       
       // Detect icon style and apply theming
       const detectedStyle = detectIconStyle(rawSvgContent);
@@ -103,8 +97,8 @@ export async function preprocessSvgs(options) {
       } else {
         // Write processed SVG if not dry run
         if (!dryRun) {
-          await fs.ensureDir(path.dirname(outputPath));
-          await fs.writeFile(outputPath, processedSvgContent);
+          await fs.promises.mkdir(path.dirname(outputPath), { recursive: true });
+                      await fs.promises.writeFile(outputPath, processedSvgContent);
         }
         
         if (verbose) {
@@ -187,8 +181,8 @@ export async function checkProcessedSvgs(inputDir, processedDir) {
       status.needsProcessing = true;
     } else {
       // Check if raw file is newer than processed file
-      const rawStat = await fs.stat(rawFile);
-      const processedStat = await fs.stat(processedFile);
+      const rawStat = await fs.promises.stat(rawFile);
+      const processedStat = await fs.promises.stat(processedFile);
       
       if (rawStat.mtime > processedStat.mtime) {
         status.outdatedFiles.push(relativePath);

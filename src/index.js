@@ -1,12 +1,11 @@
 import path from 'path';
-import fs from 'fs-extra';
+import fs from 'fs';
 import { glob } from 'glob';
 import chalk from 'chalk';
 import ora from 'ora';
-import { optimizeSvg } from './utils/svgo.js';
+import { processSvg } from './utils/svg-processor.js';
 import { generateComponent } from './utils/generate-component.js';
 import { detectIconStyle } from './utils/style-handler.js';
-import { processSvgForTheming } from './utils/svg-attribute-handler.js';
 import { toPascalCase } from './utils/text-utils.js';
 
 /**
@@ -21,6 +20,7 @@ import { toPascalCase } from './utils/text-utils.js';
  * @param {boolean} options.autoDetectStyle - Whether to auto-detect icon styles
  * @param {boolean} options.includeProcessedSvgs - Whether to include processed SVGs in output
  * @param {string} options.processedSvgsDir - Directory containing processed SVGs
+ * @param {boolean} options.cleanupProcessedSvgs - Whether to clean up processed SVGs directory after generation
  * @returns {Promise<void>}
  */
 export async function processIcons(options) {
@@ -33,7 +33,8 @@ export async function processIcons(options) {
     verbose, 
     autoDetectStyle = false,
     includeProcessedSvgs = true,
-    processedSvgsDir = null
+    processedSvgsDir = null,
+    cleanupProcessedSvgs = false
   } = options;
   
   // Validate input directory exists
@@ -134,7 +135,7 @@ export async function processIcons(options) {
       componentName = toPascalCase(iconName);
       
       // Read SVG content for potential style detection
-      let svgContent = await fs.readFile(svgFile, 'utf8');
+              let svgContent = await fs.promises.readFile(svgFile, 'utf8');
       
       // Auto-detect style if needed - only run if we don't have a valid folder-based style
       const validStyles = ['stroke', 'solid', 'contrast', 'duo-stroke', 'duo-solid'];
@@ -164,20 +165,13 @@ export async function processIcons(options) {
         console.log(chalk.blue(`Processing: ${svgFile} (Style: ${style}, Category: ${category})`));
       }
       
-      // Optimize SVG
+      // Process SVG with aggressive optimization and theming
       if (optimize) {
         try {
-          svgContent = await optimizeSvg(svgContent, { style });
+          svgContent = processSvg(svgContent);
         } catch (error) {
-          console.error(chalk.red(`SVGO optimization error: ${error.message}`));
+          console.error(chalk.red(`SVG processing error: ${error.message}`));
         }
-      }
-      
-      // Apply theming based on style
-      if (style && style !== 'auto') {
-        svgContent = processSvgForTheming(svgContent, style);
-      } else if (autoDetectStyle) {
-        svgContent = processSvgForTheming(svgContent, style);
       }
       
       // Generate and write components for each format
@@ -204,8 +198,8 @@ export async function processIcons(options) {
         }
         
         if (!dryRun) {
-          await fs.ensureDir(path.dirname(outputFilePath));
-          await fs.writeFile(outputFilePath, componentContent);
+          await fs.promises.mkdir(path.dirname(outputFilePath), { recursive: true });
+                      await fs.promises.writeFile(outputFilePath, componentContent);
         }
       }
       
@@ -232,8 +226,8 @@ export async function processIcons(options) {
           const relativePath = path.relative(processedSvgsDir, svgFile);
           const outputPath = path.join(svgsOutputDir, relativePath);
           
-          await fs.ensureDir(path.dirname(outputPath));
-          await fs.copy(svgFile, outputPath);
+          await fs.promises.mkdir(path.dirname(outputPath), { recursive: true });
+                      await fs.promises.copyFile(svgFile, outputPath);
         }
         
         console.log(chalk.green(`✅ Processed SVGs copied successfully (${svgFiles.length} files)`));
@@ -258,6 +252,19 @@ export async function processIcons(options) {
     });
     if (stats.byStyle.auto > 0) {
       console.log(chalk.cyan(`  Auto-detected: ${stats.byStyle.auto} icons`));
+    }
+    
+    // Clean up processed SVGs directory if requested
+    if (options.cleanupProcessedSvgs) {
+      console.log(chalk.cyan('🧹 Cleaning up processed SVGs directory...'));
+      try {
+        if (fs.existsSync(processedSvgsDir || './processed-svgs')) {
+          await fs.remove(processedSvgsDir || './processed-svgs');
+          console.log(chalk.green('✅ Processed SVGs directory cleaned up'));
+        }
+      } catch (error) {
+        console.error(chalk.yellow(`⚠️ Warning: Could not clean up processed SVGs directory: ${error.message}`));
+      }
     }
   } else {
     console.log(chalk.yellow(`Would generate ${svgFiles.length * formats.length} components (dry run)`));

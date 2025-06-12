@@ -28,8 +28,8 @@ export function cli(args) {
 
   // Main command for full processing (preprocess + generate)
   program
-    .argument('<input>', 'Input directory containing SVG icons')
-    .argument('[output]', 'Output directory for generated components', './dist')
+    .argument('[input]', 'Input directory containing SVG icons', './iconpack/input')
+    .argument('[output]', 'Output directory for generated components', './iconpack/output')
     .option('-f, --formats <formats>', 'Comma-separated list of output formats (react-jsx,react-tsx,vue,react-native,svelte)', 'react-jsx,react-tsx,vue,react-native,svelte')
     .option('--no-optimize', 'Skip SVG optimization')
     .option('-d, --dry-run', 'Preview without writing files', false)
@@ -45,6 +45,18 @@ export function cli(args) {
     .option('--no-format', 'Skip prettier formatting of generated files', false)
     .action(async (input, output, options) => {
       try {
+        // Check if default folders exist, create them if they don't
+        if (input === './iconpack/input' && !fs.existsSync(input)) {
+          console.log(chalk.cyan('📁 Creating default input folder...'));
+          fs.mkdirSync(input, { recursive: true });
+          fs.writeFileSync(path.join(input, '.gitkeep'), '# Place your SVG files here\n\n# IconPackr will process all SVG files in this directory\n# and maintain the folder structure in the output.');
+        }
+        
+        if (output === './iconpack/output' && !fs.existsSync(output)) {
+          console.log(chalk.cyan('📁 Creating default output folder...'));
+          fs.mkdirSync(output, { recursive: true });
+        }
+        
         console.log(chalk.yellow('CLI action triggered'));
         console.log(chalk.yellow(`Input: ${input}`));
         console.log(chalk.yellow(`Output: ${output}`));
@@ -131,6 +143,12 @@ export function cli(args) {
           cleanupProcessedSvgs: options.cleanupAfter,
           formatOutput: options.format
         });
+        
+        // Auto-cleanup processed SVGs for simplified workflow
+        if (input === './iconpack/input' && output === './iconpack/output') {
+          console.log(chalk.cyan('🧹 Cleaning up processed SVGs...'));
+          await cleanProcessedSvgs(options.processedDir, options.dryRun);
+        }
         
         console.log(chalk.green('✅ Completed successfully'));
       } catch (error) {

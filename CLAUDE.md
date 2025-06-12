@@ -30,9 +30,30 @@ node framework-tests/test-runner.js
 
 ## CLI Usage
 
+### 🚀 **Simplified Workflow** (Recommended)
+
 ```bash
-# Basic usage
-iconpackr <input> [output]
+# Super simple: Just run iconpackr!
+iconpackr
+
+# This automatically:
+# - Uses input: ./iconpack/input/
+# - Uses output: ./iconpack/output/
+# - Generates all frameworks: React JSX/TSX, Vue, React Native, Svelte
+# - Cleans up temporary files automatically
+```
+
+**Quick Setup:**
+1. Place your SVG files in `./iconpack/input/`
+2. Run `iconpackr`
+3. Get your components from `./iconpack/output/`
+4. No cleanup needed - temporary files auto-removed! 🧹
+
+### 🔧 **Advanced Usage**
+
+```bash
+# Custom paths
+iconpackr ./icons ./dist
 
 # Generate specific framework components
 iconpackr ./icons ./dist --formats react-jsx,react-tsx
@@ -47,6 +68,18 @@ iconpackr ./icons ./dist --no-optimize # Skip optimization
 iconpackr preprocess <input> [processed]  # Preprocess only
 iconpackr check <input> [processed]       # Check status
 iconpackr clean [processed]               # Clean processed SVGs
+```
+
+### 📦 **NPM Scripts**
+
+```bash
+npm run iconpackr      # Simple command
+npm run build          # Build with verbose output
+npm run build-dry      # Preview build
+npm run build-react    # React components only
+npm run build-vue      # Vue components only
+npm run build-native   # React Native only
+npm run build-svelte   # Svelte components only
 ```
 
 ## Architecture Overview

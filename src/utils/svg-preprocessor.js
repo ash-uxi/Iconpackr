@@ -208,7 +208,7 @@ export async function cleanProcessedSvgs(processedDir, dryRun = false) {
   if (dryRun) {
     console.log(chalk.yellow(`Would remove processed SVG directory: ${processedDir}`));
   } else {
-    await fs.remove(processedDir);
+    await fs.promises.rm(processedDir, { recursive: true, force: true });
     console.log(chalk.green(`Cleaned processed SVG directory: ${processedDir}`));
   }
 }

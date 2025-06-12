@@ -1,0 +1,14 @@
+# Place your SVG files here
+#
+# Example structure:
+# input/
+# ├── icons/
+# │   ├── arrow-left.svg
+# │   ├── arrow-right.svg
+# │   └── home.svg
+# ├── logos/
+# │   ├── brand-logo.svg
+# │   └── app-icon.svg
+# └── social/
+#     ├── twitter.svg
+#     └── github.svg

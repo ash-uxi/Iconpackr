@@ -10,6 +10,7 @@ build/
 
 # Processed files
 processed-svgs/
+svg/
 
 # Testing
 coverage/
@@ -24,6 +25,7 @@ test-generated.js
 test-opacity.mjs
 simple-test.js
 memory.md
+CLAUDE.md
 
 # IDE and Editor files
 .vscode/

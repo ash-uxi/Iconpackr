@@ -1,0 +1,10 @@
+# Generated components will appear here
+#
+# Output structure:
+# output/
+# ├── react-jsx/
+# ├── react-tsx/
+# ├── react-native/
+# ├── vue/
+# ├── svelte/
+# └── svgs/ (optimized)

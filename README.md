@@ -1,447 +1,345 @@
 # IconPackr
 
-Transform SVG icon collections into optimized component libraries for multiple frameworks.
+Transform SVG icon collections into optimized, theme-aware component libraries for multiple frameworks with intelligent style detection and seamless developer experience.
 
-## Table of Contents
+## 🎯 The Story Behind IconPackr
 
-- [Features](#features)
-- [Installation](#installation)
-- [CLI Usage](#cli-usage)
-  - [Basic Command](#basic-command)
-  - [Getting Help](#getting-help)
-  - [Quick Start Examples](#quick-start-examples)
-  - [All Available Options](#all-available-options)
-  - [Subcommands](#subcommands)
-  - [Best Practices & Workflows](#best-practices--workflows)
-  - [Common Use Cases](#common-use-cases)
-  - [Troubleshooting](#troubleshooting)
-- [Expected Input Structure](#expected-input-structure)
-- [Output Structure](#output-structure)
-- [Supported Frameworks](#supported-frameworks)
-- [Component Usage Examples](#component-usage-examples)
-- [License](#license)
+IconPackr was born out of a real need while building **[PikaIcons](https://pikaicons.com)** - a comprehensive icon library project. As the icon collection grew to thousands of SVGs across multiple styles (stroke, solid, duotone, contrast), manually converting them into framework-specific components became impossible.
 
-## Features
+**The Challenge:**
+- 5000+ SVG icons across 5 different styles
+- Need for React, Vue, React Native, and Svelte components
+- Consistent theming and accessibility requirements
+- Maintaining folder structure and naming conventions
+- Optimizing for performance while preserving visual quality
 
-- Converts SVG icons to framework-specific components (React, Vue, React Native)
-- Preserves your folder structure
-- Optimizes SVGs for web use with SVGO
-  - Removes unnecessary attributes and metadata
-  - Converts colors to currentColor for theming
-  - Improves accessibility with ARIA attributes
-  - Reduces file size without affecting visual quality
-- Supports various icon styles (stroke, solid, duotone, etc.)
-- Handles component naming automatically
+**The Solution:**
+What started as a personal script to automate Pikaicons component generation evolved into IconPackr - a sophisticated tool that understands icon semantics, applies intelligent optimizations, and generates production-ready components.
 
-## Installation
+**Why Open Source:**
+After seeing how much time and effort this saved in the PikaIcons workflow, I realized other developers and icon library creators could benefit from the same automation. IconPackr represents months of refinement in SVG processing, component generation, and developer experience optimization.
+
+## 🚀 Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/iconpackr.git
-cd iconpackr
-
-# Install dependencies
+# 1. Install dependencies
 npm install
 
-# Link the package globally (optional)
+# 2. Place your SVG files in the input folder
+# (folder will be auto-created if it doesn't exist)
+
+# 3. Generate components for all frameworks
+iconpackr
+
+# That's it! Your components are ready in ./iconpack/output/
+```
+
+## ✨ Features
+
+- **🎯 Zero Configuration** - Works out of the box with sensible defaults
+- **🧠 Intelligent Style Detection** - Auto-detects stroke, solid, contrast, and duotone icons
+- **🎨 Advanced Theming** - Converts colors to `currentColor` while preserving visual intent
+- **⚡ Multi-Framework Support** - React JSX/TSX, Vue, React Native, Svelte
+- **📁 Structure Preservation** - Maintains your folder organization
+- **🔧 Powerful CLI** - Comprehensive options with subcommands
+- **♿ Accessibility Built-in** - ARIA attributes and semantic markup
+- **🧹 Auto-Cleanup** - Manages temporary files automatically
+- **🏭 Production Ready** - Battle-tested on 5000+ icons in Pikaicons
+
+## 📦 Installation
+
+```bash
+# Clone and install
+git clone https://github.com/ash-uxi/iconpackr.git
+cd iconpackr
+npm install
+
+# Optional: Link globally
 npm link
 ```
 
-## CLI Usage
+## 🎯 Simple Usage
 
-### Basic Command
-
-```bash
-iconpackr <input> [output] [options]
-```
-
-**Arguments:**
-- `<input>` - Input directory containing SVG icons (required)
-- `[output]` - Output directory for generated components (default: `./dist`)
-
-### Getting Help
+### Default Workflow (Recommended)
 
 ```bash
-# General help
-iconpackr --help
+# Uses ./iconpack/input/ and outputs to ./iconpack/output/
+iconpackr
 
-# Help for specific subcommands
-iconpackr preprocess --help
-iconpackr check --help
-iconpackr clean --help
+# Custom paths
+iconpackr ./my-icons ./my-components
 
-# Version information
-iconpackr --version
-```
-
-### Quick Start Examples
-
-```bash
-# Simplest usage - process all icons with default settings
-iconpackr ./icons
-
-# Specify custom output directory
-iconpackr ./icons ./my-components
-
-# Generate only React components
-iconpackr ./icons ./dist --formats react-jsx,react-tsx
-
-# Process with verbose output
-iconpackr ./icons ./dist --verbose
-
-# Preview what would be generated (dry run)
-iconpackr ./icons ./dist --dry-run
-```
-
-### All Available Options
-
-#### Format Options
-```bash
-# Generate specific frameworks only
---formats, -f <formats>
-# Available: react-jsx, react-tsx, vue, react-native
-# Default: react-jsx,react-tsx,vue,react-native
-iconpackr ./icons ./dist --formats react-jsx,vue
-```
-
-#### Style Processing Options
-```bash
-# Auto-detect icon styles from SVG content
---auto-detect-style, -a
-iconpackr ./icons ./dist --auto-detect-style
-
-# Set default style when not specified in path
---style, -s <style>
-# Available: stroke, solid, contrast, duo-stroke, duo-solid, auto
-# Default: auto
-iconpackr ./icons ./dist --style stroke
-
-# Process multiple styles explicitly
-iconpackr ./icons ./dist --style stroke --style solid --style contrast
-```
-
-#### Processing Control Options
-```bash
-# Skip SVG optimization (faster, larger files)
---no-optimize
-iconpackr ./icons ./dist --no-optimize
+# Specific frameworks only
+iconpackr --formats react-jsx,vue
 
 # Preview without writing files
---dry-run, -d
-iconpackr ./icons ./dist --dry-run
-
-# Enable detailed output
---verbose, -v
-iconpackr ./icons ./dist --verbose
-
-# Clean processed directory before starting
---clean-processed
-iconpackr ./icons ./dist --clean-processed
+iconpackr --dry-run
 ```
 
-#### Advanced Processing Options
-```bash
-# Only preprocess SVGs, don't generate components
---preprocess-only
-iconpackr ./icons ./dist --preprocess-only
-
-# Skip preprocessing, use existing processed SVGs
---skip-preprocess
-iconpackr ./icons ./dist --skip-preprocess
-
-# Custom processed SVGs directory
---processed-dir <dir>
-# Default: ./processed-svgs
-iconpackr ./icons ./dist --processed-dir ./my-processed-svgs
-
-# Include processed SVGs in output
---include-processed
-# Default: true
-iconpackr ./icons ./dist --include-processed
-```
-
-### Subcommands
-
-#### Preprocess Only
-Process raw SVGs without generating components:
+### Quick Examples
 
 ```bash
-iconpackr preprocess <input> [processed] [options]
+# Generate React components only
+iconpackr --formats react-jsx,react-tsx
 
-# Examples:
-iconpackr preprocess ./raw-icons ./processed-svgs
-iconpackr preprocess ./raw-icons ./processed-svgs --verbose
-iconpackr preprocess ./raw-icons ./processed-svgs --clean --dry-run
+# Process with detailed output
+iconpackr --verbose
+
+# Skip optimization for faster processing
+iconpackr --no-optimize
+
+# Auto-detect icon styles from content
+iconpackr --auto-detect-style
 ```
 
-**Options:**
-- `--clean` - Clean processed directory before processing
-- `--dry-run, -d` - Preview without writing files
-- `--verbose, -v` - Enable verbose output
+## 🔧 Advanced Usage
 
-#### Check Status
-Check if processed SVGs are up to date:
+### Framework Selection
 
 ```bash
-iconpackr check <input> [processed]
-
-# Examples:
-iconpackr check ./raw-icons
-iconpackr check ./raw-icons ./processed-svgs
+# Available formats: react-jsx, react-tsx, vue, react-native, svelte
+iconpackr --formats react-jsx,vue
+iconpackr --formats react-native
+iconpackr --formats svelte
 ```
 
-#### Clean Processed
-Remove all processed SVGs:
+### Style Processing
 
 ```bash
-iconpackr clean [processed] [options]
+# Auto-detect styles from SVG content (recommended)
+iconpackr --auto-detect-style
 
-# Examples:
-iconpackr clean
-iconpackr clean ./processed-svgs
-iconpackr clean ./processed-svgs --dry-run
+# Set default style for unclear cases
+iconpackr --style stroke
+iconpackr --style solid
+
+# Available styles: stroke, solid, contrast, duo-stroke, duo-solid
 ```
 
-**Options:**
-- `--dry-run, -d` - Preview without removing files
+### Processing Control
 
-### Best Practices & Workflows
-
-#### 1. **Development Workflow**
 ```bash
-# First run: Full processing with verbose output
-iconpackr ./icons ./dist --verbose
+# Two-stage processing
+iconpackr preprocess ./icons          # Stage 1: Optimize SVGs
+iconpackr --skip-preprocess           # Stage 2: Generate components
 
-# Subsequent runs: Skip preprocessing for speed
-iconpackr ./icons ./dist --skip-preprocess
-
-# When adding new icons: Clean and reprocess
-iconpackr ./icons ./dist --clean-processed --verbose
+# Status and cleanup
+iconpackr check ./icons               # Check processed status
+iconpackr clean                       # Clean temporary files
 ```
 
-#### 2. **Production Workflow**
+### Performance Options
+
 ```bash
-# Full optimization for production
-iconpackr ./icons ./dist --formats react-jsx,react-tsx,vue --verbose
+# Skip SVG optimization (faster, larger files)
+iconpackr --no-optimize
 
-# Generate only what you need for smaller bundles
-iconpackr ./icons ./dist --formats react-jsx --style stroke,solid
+# Clean processed files before starting
+iconpackr --clean-processed
+
+# Auto-cleanup after completion
+iconpackr --cleanup-after
 ```
 
-#### 3. **Quality Assurance**
-```bash
-# Always dry-run first to preview
-iconpackr ./icons ./dist --dry-run --verbose
+## 📂 Input Structure
 
-# Check status before processing
-iconpackr check ./icons
-
-# Clean processing when needed
-iconpackr clean --dry-run  # Preview
-iconpackr clean            # Execute
-```
-
-#### 4. **Style-Specific Processing**
-```bash
-# Process specific styles only
-iconpackr ./icons ./dist --style stroke
-iconpackr ./icons ./dist --style solid,contrast
-
-# Auto-detect styles from SVG content
-iconpackr ./icons ./dist --auto-detect-style
-
-# Mixed approach: auto-detect with fallback
-iconpackr ./icons ./dist --auto-detect-style --style stroke
-```
-
-#### 5. **Performance Optimization**
-```bash
-# Fastest: Skip optimization
-iconpackr ./icons ./dist --no-optimize --skip-preprocess
-
-# Balanced: Cache preprocessing
-iconpackr preprocess ./icons  # Run once
-iconpackr ./icons ./dist --skip-preprocess  # Use multiple times
-
-# Thorough: Full processing with cleaning
-iconpackr ./icons ./dist --clean-processed --verbose
-```
-
-### Common Use Cases
-
-#### Framework-Specific Generation
-```bash
-# React projects only
-iconpackr ./icons ./src/components/icons --formats react-jsx,react-tsx
-
-# Vue projects only  
-iconpackr ./icons ./src/components/icons --formats vue
-
-# Mobile projects only
-iconpackr ./icons ./src/components/icons --formats react-native
-
-# Multi-platform projects
-iconpackr ./icons ./dist --formats react-jsx,vue,react-native
-```
-
-#### Style-Specific Generation
-```bash
-# Design system with multiple styles
-iconpackr ./icons ./dist --style stroke,solid,contrast
-
-# Minimalist icon set (stroke only)
-iconpackr ./icons ./dist --style stroke --formats react-jsx
-
-# Full duotone support
-iconpackr ./icons ./dist --style duo-stroke,duo-solid
-```
-
-#### Development vs Production
-```bash
-# Development: Fast iteration
-iconpackr ./icons ./dist --skip-preprocess --no-optimize --formats react-jsx
-
-# Production: Full optimization
-iconpackr ./icons ./dist --clean-processed --verbose
-
-# CI/CD: Reliable and thorough
-iconpackr ./icons ./dist --clean-processed --verbose --dry-run  # Validate
-iconpackr ./icons ./dist --clean-processed --verbose            # Execute
-```
-
-### Troubleshooting
-
-#### Common Issues and Solutions
-
-**"No SVGs found"**
-```bash
-# Check your directory structure
-iconpackr check ./icons
-
-# Try auto-detection
-iconpackr ./icons ./dist --auto-detect-style --verbose
-```
-
-**"Processing seems slow"**
-```bash
-# Skip optimization for speed
-iconpackr ./icons ./dist --no-optimize
-
-# Skip preprocessing if already done
-iconpackr ./icons ./dist --skip-preprocess
-```
-
-**"Generated components look wrong"**
-```bash
-# Clean and reprocess everything
-iconpackr clean
-iconpackr ./icons ./dist --clean-processed --verbose
-
-# Check specific style processing
-iconpackr ./icons ./dist --style stroke --verbose
-```
-
-**"Need to update icons"**
-```bash
-# Check what needs updating
-iconpackr check ./icons
-
-# Clean and reprocess
-iconpackr ./icons ./dist --clean-processed
-```
-
-### Expected Input Structure
-
-The tool expects your SVG icons to be organized in the following structure:
+Flexible folder organization is supported:
 
 ```
 icons/
-  stroke/category/icon.svg
-  solid/category/icon.svg
-  contrast/category/icon.svg
-  duo-stroke/category/icon.svg
-  duo-solid/category/icon.svg
+  stroke/category/icon.svg          # Style/category/icon
+  category/icon.svg                 # Category/icon (style auto-detected)
+  icon.svg                          # Flat structure (auto-categorized)
 ```
 
-### Output Structure
+**Supported Icon Styles:**
+- `stroke` - Outline icons with stroke attributes
+- `solid` - Filled icons with fill attributes  
+- `contrast` - Icons with both stroke and fill
+- `duo-stroke` - Two-tone outline icons
+- `duo-solid` - Two-tone filled icons
 
-The generated components will be organized as follows:
+## 📁 Output Structure
 
 ```
-dist/
-  svgs/style/category/icon.svg
-  react-jsx/style/category/Icon.jsx  
-  react-tsx/style/category/Icon.tsx
-  vue/style/category/Icon.vue
-  react-native/style/category/Icon.jsx
+output/
+  svgs/style/category/icon.svg       # Optimized SVGs
+  react-jsx/style/category/PiIconNameStyle.jsx
+  react-tsx/style/category/PiIconNameStyle.tsx
+  vue/style/category/PiIconNameStyle.vue
+  react-native/style/category/PiIconNameStyle.jsx
+  svelte/style/category/PiIconNameStyle.svelte
 ```
 
-**Structure Details:**
-- `svgs/` - Processed and optimized SVG files
-- `react-jsx/` - React JSX components
-- `react-tsx/` - React TypeScript components  
-- `vue/` - Vue.js components
-- `react-native/` - React Native components
+**Component Naming:**
+- Prefix: `Pi` (inspired by PikaIcons, customizable)
+- Format: `Pi[IconName][Style]` (e.g., `PiHomeStroke`, `PiHeartSolid`)
 
-Each framework folder contains the same `style/category/` structure with appropriately named component files.
+## 🧩 Component API
 
-## Supported Frameworks
+All generated components support consistent props:
 
-- React JSX (`.jsx`)
-- React TypeScript (`.tsx`)
-- Vue (`.vue`)
-- React Native (`.jsx`)
-
-## Component Usage Examples
-
-### React
+### React/React Native
 
 ```jsx
-import HomeIcon from './dist/react-jsx/stroke/navigation/Home';
+import { PiHomeStroke } from './components/icons';
 
-function App() {
-  return (
-    <div>
-      <HomeIcon size={32} color="#4F46E5" />
-    </div>
-  );
-}
+<PiHomeStroke 
+  size={24}              // number - Icon size
+  color="#4F46E5"        // string - Icon color
+  className="icon"       // string - CSS class
+  ariaLabel="Home icon"  // string - Accessibility label
+/>
 ```
 
 ### Vue
 
 ```vue
 <template>
-  <div>
-    <HomeIcon size="32" color="#4F46E5" />
-  </div>
+  <PiHomeStroke 
+    :size="24"
+    color="#4F46E5"
+    class="icon"
+    aria-label="Home icon"
+  />
 </template>
 
-<script>
-import HomeIcon from './dist/vue/stroke/navigation/Home';
-
-export default {
-  components: {
-    HomeIcon
-  }
-}
+<script setup>
+import PiHomeStroke from './components/icons/PiHomeStroke.vue';
 </script>
 ```
 
-### React Native
+### Svelte
 
-```jsx
-import HomeIcon from './dist/react-native/stroke/navigation/Home';
+```svelte
+<script>
+  import PiHomeStroke from './components/icons/PiHomeStroke.svelte';
+</script>
 
-function App() {
-  return (
-    <View>
-      <HomeIcon size={32} color="#4F46E5" />
-    </View>
-  );
+<PiHomeStroke 
+  size={24}
+  color="#4F46E5"
+  class="icon"
+  ariaLabel="Home icon"
+/>
+```
+
+## 🎨 Theming & Styling
+
+IconPackr automatically optimizes SVGs for theming:
+
+```css
+/* CSS custom properties */
+.icon {
+  color: var(--icon-color, currentColor);
+  width: var(--icon-size, 1em);
+  height: var(--icon-size, 1em);
+}
+
+/* Dark mode example */
+@media (prefers-color-scheme: dark) {
+  .icon {
+    --icon-color: #E5E7EB;
+  }
 }
 ```
 
-## License
+## 🛠️ NPM Scripts
 
-MIT 
+```bash
+npm run iconpackr        # Basic generation
+npm run build           # Verbose generation
+npm run build-dry       # Preview build
+npm run build-react     # React only
+npm run build-vue       # Vue only
+npm run build-native    # React Native only
+npm run clean           # Clean outputs
+```
+
+## 🧪 Testing
+
+```bash
+npm test                 # Run all tests
+npm run test:react       # Test React components
+npm run test:vue         # Test Vue components
+npm run test:performance # Performance tests
+npm run test:html-report # Generate HTML report
+```
+
+## ⚙️ Configuration
+
+### CLI Options Reference
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `--formats` | Output formats | `react-jsx,react-tsx,vue,react-native,svelte` |
+| `--auto-detect-style` | Auto-detect icon styles | `false` |
+| `--style` | Default style when unclear | `auto` |
+| `--verbose` | Detailed output | `false` |
+| `--dry-run` | Preview without writing | `false` |
+| `--no-optimize` | Skip SVG optimization | `false` |
+| `--clean-processed` | Clean before processing | `false` |
+| `--cleanup-after` | Auto-cleanup after completion | `false` |
+
+### Advanced Workflows
+
+#### Development
+```bash
+# Fast iteration - skip optimization
+iconpackr --no-optimize --formats react-jsx
+
+# Style development - auto-detect everything
+iconpackr --auto-detect-style --verbose
+```
+
+#### Production
+```bash
+# Full optimization pipeline
+iconpackr --clean-processed --verbose
+
+# Specific production formats
+iconpackr --formats react-jsx,react-tsx --cleanup-after
+```
+
+#### CI/CD
+```bash
+# Validation
+iconpackr --dry-run --verbose
+
+# Production build
+iconpackr --clean-processed --verbose --formats react-jsx,vue
+```
+
+## 🏗️ Architecture
+
+IconPackr uses a sophisticated two-stage pipeline:
+
+1. **SVG Preprocessing** - SVGO optimization with style-aware transformations
+2. **Component Generation** - Framework-specific component creation with theming
+
+**Key Technologies:**
+- **SVGO** - Advanced SVG optimization
+- **Commander.js** - Comprehensive CLI interface
+- **Chalk & Ora** - Beautiful terminal output
+- **Glob** - Flexible file discovery
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make your changes and add tests
+4. Commit: `git commit -am 'Add new feature'`
+5. Push: `git push origin feature-name`
+6. Submit a pull request
+
+## 📝 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+Built with modern Node.js practices and a focus on developer experience. Special thanks to the SVGO team for excellent SVG optimization capabilities.
+
+---
+
+**Made with ❤️ for developers who love clean, efficient icon workflows.** 

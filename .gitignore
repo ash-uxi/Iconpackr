@@ -7,10 +7,18 @@ yarn-error.log*
 # Build outputs
 dist/
 build/
+*.zip
+
+# Generated output (keep structure, ignore generated files)
+iconpack/output/*
+!iconpack/output/.gitkeep
+
+# Generated output (keep structure, ignore generated files)
+iconpack/output/*
+!iconpack/output/.gitkeep
 
 # Processed files
 processed-svgs/
-svg/
 
 # Testing
 coverage/

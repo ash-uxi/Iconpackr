@@ -3,7 +3,7 @@ import fs from 'fs';
 import { glob } from 'glob';
 import chalk from 'chalk';
 import ora from 'ora';
-import { processSvg } from './svg-processor.js';
+import { optimizeSvg } from './svgo.js';
 import { detectIconStyle } from './style-handler.js';
 import { processSvgForTheming } from './svg-attribute-handler.js';
 
@@ -77,12 +77,11 @@ export async function preprocessSvgs(options) {
       // Read raw SVG content
       const rawSvgContent = await fs.promises.readFile(svgFile, 'utf8');
       
-      // Process the SVG (structural optimization)
-      let processedSvgContent = processSvg(rawSvgContent);
-      
-      // Detect icon style and apply theming
+      // Detect icon style first
       const detectedStyle = detectIconStyle(rawSvgContent);
-      processedSvgContent = processSvgForTheming(processedSvgContent, detectedStyle);
+      
+      // Process the SVG with advanced optimization and theming
+      let processedSvgContent = await optimizeSvg(rawSvgContent, { style: detectedStyle });
       
       if (verbose) {
         console.log(chalk.gray(`    Style: ${detectedStyle}`));

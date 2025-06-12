@@ -3,10 +3,11 @@ import fs from 'fs';
 import { glob } from 'glob';
 import chalk from 'chalk';
 import ora from 'ora';
-import { processSvg } from './utils/svg-processor.js';
+import { optimizeSvg } from './utils/svgo.js';
 import { generateComponent } from './utils/generate-component.js';
 import { detectIconStyle } from './utils/style-handler.js';
 import { toPascalCase } from './utils/text-utils.js';
+import { formatGeneratedFiles, isPrettierAvailable } from './utils/prettier-formatter.js';
 
 /**
  * Process SVG icons and generate framework components
@@ -21,6 +22,7 @@ import { toPascalCase } from './utils/text-utils.js';
  * @param {boolean} options.includeProcessedSvgs - Whether to include processed SVGs in output
  * @param {string} options.processedSvgsDir - Directory containing processed SVGs
  * @param {boolean} options.cleanupProcessedSvgs - Whether to clean up processed SVGs directory after generation
+ * @param {boolean} options.formatOutput - Whether to format output files with prettier
  * @returns {Promise<void>}
  */
 export async function processIcons(options) {
@@ -34,7 +36,8 @@ export async function processIcons(options) {
     autoDetectStyle = false,
     includeProcessedSvgs = true,
     processedSvgsDir = null,
-    cleanupProcessedSvgs = false
+    cleanupProcessedSvgs = false,
+    formatOutput = true
   } = options;
   
   // Validate input directory exists
@@ -165,12 +168,12 @@ export async function processIcons(options) {
         console.log(chalk.blue(`Processing: ${svgFile} (Style: ${style}, Category: ${category})`));
       }
       
-      // Process SVG with aggressive optimization and theming
+      // Process SVG with advanced optimization and theming
       if (optimize) {
         try {
-          svgContent = processSvg(svgContent);
+          svgContent = await optimizeSvg(svgContent, { style });
         } catch (error) {
-          console.error(chalk.red(`SVG processing error: ${error.message}`));
+          console.error(chalk.red(`SVG optimization error: ${error.message}`));
         }
       }
       
@@ -242,6 +245,23 @@ export async function processIcons(options) {
   if (!dryRun) {
     const componentsCount = stats.processed * formats.length;
     console.log(chalk.green(`Generated ${componentsCount} components`));
+    
+    // Format output files with prettier if requested and available
+    if (formatOutput && isPrettierAvailable()) {
+      console.log(chalk.cyan('\n🎨 Formatting generated files...'));
+      const formatResult = await formatGeneratedFiles(outputDir, verbose);
+      
+      if (formatResult.success) {
+        console.log(chalk.green(`✅ Formatted ${formatResult.formatted} files with prettier`));
+        if (formatResult.errors.length > 0 && verbose) {
+          formatResult.errors.forEach(error => console.log(chalk.yellow(`  ⚠ ${error}`)));
+        }
+      } else {
+        console.log(chalk.yellow(`⚠️ Prettier formatting failed, but components were generated successfully`));
+      }
+    } else if (formatOutput && !isPrettierAvailable()) {
+      console.log(chalk.yellow('⚠️ Prettier not available, skipping formatting'));
+    }
     
     // Print style statistics
     console.log(chalk.cyan('\nIcon Style Statistics:'));

@@ -2,7 +2,7 @@ import { Command } from 'commander';
 import chalk from 'chalk';
 import { processIcons } from './index.js';
 import { preprocessSvgs, checkProcessedSvgs, cleanProcessedSvgs } from './utils/svg-preprocessor.js';
-import fs from 'fs-extra';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -41,6 +41,8 @@ export function cli(args) {
     .option('--processed-dir <dir>', 'Directory for processed SVGs', './processed-svgs')
     .option('--include-processed', 'Include processed SVGs in the final output', true)
     .option('--clean-processed', 'Clean processed SVGs directory before processing', false)
+    .option('--cleanup-after', 'Automatically clean up processed SVGs directory after successful generation', false)
+    .option('--no-format', 'Skip prettier formatting of generated files', false)
     .action(async (input, output, options) => {
       try {
         console.log(chalk.yellow('CLI action triggered'));
@@ -125,7 +127,9 @@ export function cli(args) {
           autoDetectStyle: options.autoDetectStyle || options.style === 'auto',
           defaultStyle: options.style,
           includeProcessedSvgs: options.includeProcessed,
-          processedSvgsDir: options.processedDir
+          processedSvgsDir: options.processedDir,
+          cleanupProcessedSvgs: options.cleanupAfter,
+          formatOutput: options.format
         });
         
         console.log(chalk.green('✅ Completed successfully'));

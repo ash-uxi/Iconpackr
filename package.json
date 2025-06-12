@@ -10,11 +10,21 @@
   },
   "scripts": {
     "start": "node bin/iconpackr.js",
-    "test": "node simple-test.js",
+    "test": "node tests/test-runner.js",
+    "test:all": "node tests/test-runner.js all",
+    "test:performance": "node tests/test-runner.js performance",
+    "test:regression": "node tests/test-runner.js regression",
+    "test:react": "node tests/test-runner.js suite \"React JSX\"",
+    "test:vue": "node tests/test-runner.js suite \"Vue\"",
+    "test:react-native": "node tests/test-runner.js suite \"React Native\"",
+    "test:svelte": "node tests/test-runner.js suite \"Svelte\"",
+    "test:edge-cases": "node tests/test-runner.js suite \"Edge Cases\"",
+    "test:html-report": "HTML_REPORT=1 node tests/test-runner.js",
     "dev": "node bin/iconpackr.js --help",
     "clean": "rm -rf dist processed-svgs",
-    "process": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --verbose",
+    "process": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --verbose --cleanup-after",
     "process-dry": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --dry-run",
+    "process-no-cleanup": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --verbose",
     "process-react": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --formats react-jsx,react-tsx",
     "process-vue": "node bin/iconpackr.js /Users/ashishkashyap/Desktop/svg ./dist --formats vue"
   },
@@ -32,13 +42,9 @@
   "dependencies": {
     "chalk": "^5.3.0",
     "commander": "^11.1.0",
-    "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
-    "lodash": "^4.17.21",
     "ora": "^7.0.1",
-    "svg-path-commander": "^2.0.6",
-    "svgo": "^3.0.5",
-    "svgson": "^5.3.1"
+    "svgo": "^3.0.5"
   },
   "devDependencies": {
     "prettier": "^3.0.0"

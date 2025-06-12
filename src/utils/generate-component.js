@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs-extra';
+import fs from 'fs';
 import { getSvgThemingProps } from './svg-attribute-handler.js';
 import prettier from 'prettier';
 import babelParser from 'prettier/parser-babel';
@@ -123,12 +123,14 @@ function cleanupInnerSvgContent(innerContent) {
   
   // First, fix missing self-closing tags for elements that should be self-closing
   // But only if they don't already end with /> or have a proper closing tag
-  cleanedContent = cleanedContent.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*[^\/])>(?!\s*<\/\1>)/g, (match, tagName, attributes) => {
-    // Only convert to self-closing if it's not already self-closing
-    if (attributes.endsWith('/')) {
-      return match; // Already self-closing
+  cleanedContent = cleanedContent.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*?)>(?!\s*<\/\1>)/g, (match, tagName, attributes) => {
+    // Check if it's already self-closing by looking at the original match
+    if (match.includes('/>')) {
+      return match; // Already self-closing, don't modify
     }
-    return `<${tagName}${attributes}/>`;
+    // Ensure attributes are properly spaced
+    const cleanAttributes = attributes.trim();
+    return `<${tagName}${cleanAttributes ? ' ' + cleanAttributes : ''}/>`;
   });
   
   // Remove any double slashes that might have been created
@@ -213,11 +215,11 @@ function processDuoToneSvelteSvgContent(svgContent, style) {
 function processDuoToneReactNativeSvgContent(svgContent, style) {
   if (style === 'duo-stroke') {
     // For duo-stroke: all elements use the same stroke color, opacity is preserved
-    return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "#000"}');
+    return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "currentColor"}');
   } else if (style === 'duo-solid') {
     // For duo-solid: all elements use the same color, remove stroke attributes (solid style)
     return svgContent
-      .replace(/fill="[^"]*"/g, 'fill={color || "#000"}')
+      .replace(/fill="[^"]*"/g, 'fill={color || "currentColor"}')
       .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
       .replace(/\s+/g, ' ') // Clean up extra spaces
       .replace(/\s+>/g, '>'); // Clean up spaces before closing >
@@ -582,6 +584,24 @@ function generateReactNative(name, svgContent, themingProps) {
   processedContent = processedContent.replace(/strokeOpacity="([\d\.]+)"/g, 'strokeOpacity={$1}');
   processedContent = processedContent.replace(/opacity="([\d\.]+)"/g, 'opacity={$1}');
 
+  // Convert lowercase SVG elements to React Native SVG components (Path, Circle, etc.)
+  processedContent = processedContent.replace(/<path\b/g, '<Path');
+  processedContent = processedContent.replace(/<\/path>/g, '</Path>');
+  processedContent = processedContent.replace(/<circle\b/g, '<Circle');
+  processedContent = processedContent.replace(/<\/circle>/g, '</Circle>');
+  processedContent = processedContent.replace(/<rect\b/g, '<Rect');
+  processedContent = processedContent.replace(/<\/rect>/g, '</Rect>');
+  processedContent = processedContent.replace(/<ellipse\b/g, '<Ellipse');
+  processedContent = processedContent.replace(/<\/ellipse>/g, '</Ellipse>');
+  processedContent = processedContent.replace(/<line\b/g, '<Line');
+  processedContent = processedContent.replace(/<\/line>/g, '</Line>');
+  processedContent = processedContent.replace(/<polygon\b/g, '<Polygon');
+  processedContent = processedContent.replace(/<\/polygon>/g, '</Polygon>');
+  processedContent = processedContent.replace(/<polyline\b/g, '<Polyline');
+  processedContent = processedContent.replace(/<\/polyline>/g, '</Polyline>');
+  processedContent = processedContent.replace(/<g\b/g, '<G');
+  processedContent = processedContent.replace(/<\/g>/g, '</G>');
+
   // Remove <svg> wrapper and its props, Svg component will provide them
   processedContent = processedContent.replace(/<svg[^>]*>/, '').replace(/<\/svg>/, '');
 
@@ -593,37 +613,39 @@ function generateReactNative(name, svgContent, themingProps) {
   
   const template = `
 import React from 'react';
-import Svg, { Path, Rect, Circle, Ellipse, Line, Polygon, Polyline } from 'react-native-svg';
+import Svg, { Path, Circle, Rect, Ellipse, Line, Polygon, Polyline, G } from 'react-native-svg';
 
 /**
- * ${componentName} icon component for React Native
+ * ${componentName} icon from the ${style} style.
  * @param {Object} props - Component props
- * @param {string} [props.color='#000'] - Icon color
+ * @param {string} [props.color] - Icon color
  * @param {number} [props.size=24] - Icon size
- * @param {string} [props.accessibilityLabel] - Accessibility label
- * @param {Object} [props.style] - Additional styles
+ * @param {string} [props.className] - Additional CSS class
+ * @param {string} [props.ariaLabel] - Accessibility label
  */
-const ${componentName} = ({ 
-  color = '#000', 
+export default function ${componentName}({ 
   size = 24, 
-  accessibilityLabel = '${accessibleName} icon',
-  style,
+  color,
+  className,
+  ariaLabel = '${accessibleName} icon',
   ...props 
-}) => (
-  <Svg 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    accessibilityRole="image"
-    accessibilityLabel={accessibilityLabel}
-    style={style}
-    {...props}
-  >
-    ${processedContent.trim()}
-  </Svg>
-);
-
-export default ${componentName};
+}) {
+  return (
+    <Svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{color: color || "currentColor"}}
+      
+      role="img"
+      aria-label={ariaLabel}
+      {...props}
+    >
+      ${processedContent.trim()}
+    </Svg>
+  );
+}
   `;
   return prettier.format(template, { parser: 'babel', plugins: [babelParser] });
 }

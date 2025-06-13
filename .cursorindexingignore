@@ -1,0 +1,3 @@
+# Ignore all contents inside any directory named 'input' or 'output'
+**/input/**
+**/output/** 

@@ -154,10 +154,11 @@ function processDuoToneSvgContent(svgContent, style) {
     // For duo-stroke: all elements use the same stroke color, opacity is preserved
     return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "currentColor"}');
   } else if (style === 'duo-solid') {
-    // For duo-solid: all fill elements use the same color, remove stroke attributes (solid style)
+    // For duo-solid: preserve strokes but ensure stroke elements have fill="none"
     return svgContent
-      .replace(/fill="[^"]*"/g, 'fill={color || "currentColor"}')
-      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/fill="none"/g, 'fill="none"') // Preserve existing fill="none" first
+      .replace(/fill="(?!none)[^"]*"/g, 'fill={color || "currentColor"}') // Only convert non-none fills
+      .replace(/stroke="([^"]*(?!none))"/g, 'stroke={color || "currentColor"}')
       .replace(/\s+/g, ' ') // Clean up extra spaces
       .replace(/\s+>/g, '>'); // Clean up spaces before closing >
   }
@@ -175,10 +176,11 @@ function processDuoToneVueSvgContent(svgContent, style) {
     // For duo-stroke: all elements use the same stroke color, opacity is preserved
     return svgContent.replace(/stroke="[^"]*"/g, ':stroke="color || \'currentColor\'"');
   } else if (style === 'duo-solid') {
-    // For duo-solid: all elements use the same color, remove stroke attributes (solid style)
+    // For duo-solid: preserve strokes but ensure stroke elements have fill="none"
     return svgContent
-      .replace(/fill="[^"]*"/g, ':fill="color || \'currentColor\'"')
-      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/fill="none"/g, 'fill="none"') // Preserve existing fill="none" first
+      .replace(/fill="(?!none)[^"]*"/g, ':fill="color || \'currentColor\'"') // Only convert non-none fills
+      .replace(/stroke="([^"]*(?!none))"/g, ':stroke="color || \'currentColor\'"')
       .replace(/\s+/g, ' ') // Clean up extra spaces
       .replace(/\s+>/g, '>'); // Clean up spaces before closing >
   }
@@ -196,10 +198,11 @@ function processDuoToneSvelteSvgContent(svgContent, style) {
     // For duo-stroke: all elements use the same stroke color, opacity is preserved
     return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "currentColor"}');
   } else if (style === 'duo-solid') {
-    // For duo-solid: all elements use the same color, remove stroke attributes (solid style)
+    // For duo-solid: preserve strokes but ensure stroke elements have fill="none"
     return svgContent
-      .replace(/fill="[^"]*"/g, 'fill={color || "currentColor"}')
-      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/fill="none"/g, 'fill="none"') // Preserve existing fill="none" first
+      .replace(/fill="(?!none)[^"]*"/g, 'fill={color || "currentColor"}') // Only convert non-none fills
+      .replace(/stroke="([^"]*(?!none))"/g, 'stroke={color || "currentColor"}')
       .replace(/\s+/g, ' ') // Clean up extra spaces
       .replace(/\s+>/g, '>'); // Clean up spaces before closing >
   }
@@ -217,10 +220,11 @@ function processDuoToneReactNativeSvgContent(svgContent, style) {
     // For duo-stroke: all elements use the same stroke color, opacity is preserved
     return svgContent.replace(/stroke="[^"]*"/g, 'stroke={color || "currentColor"}');
   } else if (style === 'duo-solid') {
-    // For duo-solid: all elements use the same color, remove stroke attributes (solid style)
+    // For duo-solid: preserve strokes but ensure stroke elements have fill="none"
     return svgContent
-      .replace(/fill="[^"]*"/g, 'fill={color || "currentColor"}')
-      .replace(/stroke="[^"]*"/g, '') // Remove stroke attributes completely
+      .replace(/fill="none"/g, 'fill="none"') // Preserve existing fill="none" first
+      .replace(/fill="(?!none)[^"]*"/g, 'fill={color || "currentColor"}') // Only convert non-none fills
+      .replace(/stroke="([^"]*(?!none))"/g, 'stroke={color || "currentColor"}')
       .replace(/\s+/g, ' ') // Clean up extra spaces
       .replace(/\s+>/g, '>'); // Clean up spaces before closing >
   }

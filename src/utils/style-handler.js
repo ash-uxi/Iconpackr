@@ -1,94 +1,74 @@
 /**
  * Style-specific SVG attribute handler
- * This module provides functions to detect icon styles and apply style-specific transformations
+ * Provides utilities to detect icon styles and apply style-specific attribute transformations.
+ *
+ * Exported API:
+ *   - detectIconStyle(svgString): string
+ *   - applyStyleTransformations(svgString, style): string
+ *   - getSvgoConfigForStyle(style): object
  */
 
+/* -------------------------------------------------------------------------
+ * Style detection
+ * ---------------------------------------------------------------------- */
+
 /**
- * Detect the style category of an SVG based on its content
- * @param {string} svgContent - The SVG content to analyze
- * @returns {string} The detected style (stroke, solid, contrast, duo-stroke, duo-solid)
+ * Analyses an SVG string and returns the most likely style category.
+ * The heuristics look at the presence of fill / stroke attributes, whether
+ * they are set to "none", the number of visible fills / strokes, colour
+ * diversity and the presence of opacity attributes.
+ *
+ * @param {string} svgContent Raw SVG markup
+ * @returns {"stroke"|"solid"|"contrast"|"duo-stroke"|"duo-solid"} Detected style
  */
 export function detectIconStyle(svgContent) {
-  // Count elements with fill and stroke attributes
+  // Count attributes
   const fillCount = (svgContent.match(/fill="[^"]*"/g) || []).length;
   const strokeCount = (svgContent.match(/stroke="[^"]*"/g) || []).length;
   const fillNoneCount = (svgContent.match(/fill="none"/g) || []).length;
   const strokeNoneCount = (svgContent.match(/stroke="none"/g) || []).length;
-  
-  // Count visible fills (fills that aren't "none")
   const visibleFillCount = fillCount - fillNoneCount;
-  
-  // Debug log
-  console.log(`Style detection: Fill=${fillCount}, Stroke=${strokeCount}, FillNone=${fillNoneCount}, StrokeNone=${strokeNoneCount}, VisibleFill=${visibleFillCount}`);
-  
-  // Check for different opacities or multiple colors (indicators of duotone)
-  const opacityAttr = svgContent.includes('opacity="') || svgContent.includes('fill-opacity="') || svgContent.includes('stroke-opacity="');
-  
-  // Extract all fill colors that aren't "none"
-  const fillColors = new Set(
+
+  // Other indicators
+  const hasOpacity = /opacity="|fill-opacity="|stroke-opacity="/.test(svgContent);
+
+  // Distinct colours (excluding none)
+  const fillColours = new Set(
     (svgContent.match(/fill="[^"]*"/g) || [])
-      .map(attr => attr.match(/="([^"]*)"/)[1])
-      .filter(color => color !== 'none')
+      .map(a => a.match(/="([^"]*)"/)[1])
+      .filter(c => c !== 'none'),
   );
-  
-  // Extract all stroke colors that aren't "none"
-  const strokeColors = new Set(
+  const strokeColours = new Set(
     (svgContent.match(/stroke="[^"]*"/g) || [])
-      .map(attr => attr.match(/="([^"]*)"/)[1])
-      .filter(color => color !== 'none')
+      .map(a => a.match(/="([^"]*)"/)[1])
+      .filter(c => c !== 'none'),
   );
-  
-  const hasMultipleFillColors = fillColors.size > 1;
-  const hasMultipleStrokeColors = strokeColors.size > 1;
-  const multipleColors = hasMultipleFillColors || hasMultipleStrokeColors;
-  
-  // Debug log
-  console.log(`Style detection: Opacity=${opacityAttr}, MultipleColors=${multipleColors}, FillColors=${fillColors.size}, StrokeColors=${strokeColors.size}`);
-  
-  // Make determination based on pattern analysis
-  let detectedStyle;
-  
-  // Check for contrast style first - if it has both visible fills and strokes
-  if (strokeCount > 0 && visibleFillCount > 0) {
-    // Has both strokes and visible fills - this is a contrast icon
-    detectedStyle = 'contrast';
+  const multipleColours = fillColours.size > 1 || strokeColours.size > 1;
+
+  // Heuristic decision tree (matches the one we had before)
+  let style;
+  if (strokeCount > 0 && visibleFillCount > 0 && hasOpacity) {
+    style = 'duo-solid';
+  } else if (strokeCount > 0 && visibleFillCount > 0) {
+    style = 'contrast';
   } else if (strokeCount > 0 && visibleFillCount === 0) {
-    // Primarily stroke-based with no visible fills
-    if (opacityAttr || hasMultipleStrokeColors) {
-      detectedStyle = 'duo-stroke';
-    } else {
-      detectedStyle = 'stroke';
-    }
+    style = hasOpacity || strokeColours.size > 1 ? 'duo-stroke' : 'stroke';
   } else if (visibleFillCount > 0 && strokeCount === 0) {
-    // Primarily fill-based with no strokes
-    if (opacityAttr || hasMultipleFillColors) {
-      detectedStyle = 'duo-solid';
-    } else {
-      detectedStyle = 'solid';
-    }
-  } else if ((opacityAttr || multipleColors) && strokeCount > 0) {
-    // Has strokes with different opacities or colors
-    detectedStyle = 'duo-stroke';
-  } else if ((opacityAttr || multipleColors) && visibleFillCount > 0) {
-    // Has fills with different opacities or colors
-    detectedStyle = 'duo-solid';
+    style = hasOpacity || fillColours.size > 1 ? 'duo-solid' : 'solid';
+  } else if (hasOpacity || multipleColours) {
+    style = strokeCount > 0 ? 'duo-stroke' : 'duo-solid';
   } else {
-    // Default to stroke if we can't determine
-    detectedStyle = 'stroke';
+    style = 'stroke';
   }
-  
-  console.log(`Style detection result: ${detectedStyle}`);
-  return detectedStyle;
+  return style;
 }
 
-/**
- * Apply style-specific transformations to an SVG string
- * @param {string} svgContent - The SVG content to transform
- * @param {string} style - The icon style (stroke, solid, contrast, duo-stroke, duo-solid)
- * @returns {string} The transformed SVG content
- */
+/* -------------------------------------------------------------------------
+ * Style transformations
+ * ---------------------------------------------------------------------- */
+
 export function applyStyleTransformations(svgContent, style) {
-  switch(style) {
+  switch (style) {
     case 'stroke':
       return handleStrokeIcon(svgContent);
     case 'solid':
@@ -104,260 +84,114 @@ export function applyStyleTransformations(svgContent, style) {
   }
 }
 
-/**
- * Transform stroke icon attributes
- * @param {string} svgContent - The SVG content to transform
- * @returns {string} The transformed SVG content
- */
-function handleStrokeIcon(svgContent) {
-  let result = svgContent;
-  
-  // Apply currentColor to all stroke attributes
-  result = result.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
-  
-  // Set fill="none" for elements with stroke attributes but no fill
-  result = result.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)(stroke="[^"]*")([^>]*)(fill="[^"]*")?([^>]*)>/g, 
-    (match, tag, before, stroke, after, fill, end) => {
-      if (!fill) {
-        return `<${tag}${before}${stroke}${after} fill="none"${end}>`;
-      }
-      return match;
-    });
-  
-  // Remove fill attributes that aren't "none"
-  result = result.replace(/fill="(?!none)([^"]*)"/g, 'fill="none"');
-  
-  // Explicitly add fill="none" to any elements with stroke but without a fill attribute
-  result = result.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)(stroke=[^>]*)(fill=[^>]*)?([^>]*)>/g,
-    (match, tag, before, stroke, fill, after) => {
-      if (!fill) {
-        return `<${tag}${before}${stroke} fill="none"${after}>`;
-      }
-      return match;
-    });
-    
-  // Fix any malformed fill attributes that got appended to the end of path data (common SVG error)
-  result = result.replace(/(\/>| >)(fill="none")/g, ' fill="none"$1');
-  
-  // Fix malformed XML with attributes after closing slash
-  result = result.replace(/\/\s*([a-zA-Z-]+="[^"]*")/g, ' $1/>');
-  
-  return result;
+// --- helpers -------------------------------------------------------------
+
+function handleStrokeIcon(svg) {
+  let res = svg;
+  // normalise stroke colour
+  res = res.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
+  // ensure fill="none" where stroke present
+  res = res.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)(stroke="[^"]*")([^>]*)(fill="[^"]*")?([^>]*)>/g,
+    (m, tag, before, stroke, after, fill, end) => fill ? m : `<${tag}${before}${stroke}${after} fill="none"${end}>`,
+  );
+  // remove other fills
+  res = res.replace(/fill="(?!none)([^"]*)"/g, 'fill="none"');
+  // final sanity fix for misplaced fill attr
+  res = res.replace(/(\/?>)(fill="none")/g, ' fill="none"$1');
+  return removeDuplicateAttributes(res);
 }
 
-/**
- * Transform solid icon attributes
- * @param {string} svgContent - The SVG content to transform
- * @returns {string} The transformed SVG content
- */
-function handleSolidIcon(svgContent) {
-  let result = svgContent;
-  
-  // Apply currentColor to all fill attributes
-  result = result.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
-  
-  // Remove stroke attributes or set stroke="none"
-  result = result.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="none"');
-  
-  // Add fill="currentColor" to elements with no fill attribute
-  result = result.replace(/<(path|circle|rect|polygon|ellipse)([^>]*)(fill="[^"]*")?([^>]*)>/g, 
-    (match, tag, before, fill, after) => {
-      if (!fill) {
-        return `<${tag}${before} fill="currentColor"${after}>`;
-      }
-      return match;
-    });
-  
-  return result;
+function handleSolidIcon(svg) {
+  let res = svg;
+  res = res.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
+  res = res.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="none"');
+  res = res.replace(/<(path|circle|rect|polygon|ellipse)([^>]*)(fill="[^"]*")?([^>]*)>/g,
+    (m, tag, before, fill, after) => fill ? m : `<${tag}${before} fill="currentColor"${after}>`,
+  );
+  return removeDuplicateAttributes(res);
 }
 
-/**
- * Transform contrast icon attributes
- * @param {string} svgContent - The SVG content to transform
- * @returns {string} The transformed SVG content
- */
-function handleContrastIcon(svgContent) {
-  let result = svgContent;
-  
-  // Apply currentColor to stroke attributes
-  result = result.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
-  
-  // Apply currentColor to all non-none fill attributes too
-  result = result.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
-  
-  // Ensure all elements have explicit fill and stroke attributes
-  result = result.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*?)(fill=|stroke=)?([^>]*)>/g, 
-    (match, tag, beforeAttrs, hasAttr, afterAttrs) => {
-      let newElement = match;
-      
-      // If there's no fill attribute, add fill="none"
-      if (!newElement.includes('fill=')) {
-        newElement = newElement.replace('>', ' fill="none">');
-      }
-      
-      // If there's no stroke attribute, add stroke="currentColor"
-      if (!newElement.includes('stroke=')) {
-        newElement = newElement.replace('>', ' stroke="currentColor">');
-      }
-      
-      return newElement;
-    });
-  
-  return result;
+function handleContrastIcon(svg) {
+  let res = svg;
+  res = res.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
+  res = res.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
+  res = res.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*?)>/g,
+    element => {
+      let out = element;
+      if (!/fill=/.test(out)) out = out.replace('>', ' fill="none">');
+      if (!/stroke=/.test(out)) out = out.replace('>', ' stroke="currentColor">');
+      return out;
+    },
+  );
+  return removeDuplicateAttributes(res);
 }
 
-/**
- * Transform duo-stroke icon attributes
- * @param {string} svgContent - The SVG content to transform
- * @returns {string} The transformed SVG content
- */
-function handleDuoStrokeIcon(svgContent) {
-  let result = svgContent;
-  
-  // Apply currentColor to all stroke attributes
-  result = result.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
-  
-  // Ensure fill="none" throughout
-  result = result.replace(/fill="(?!none)([^"]*)"/g, 'fill="none"');
-  
-  // Ensure all elements have explicit fill attributes
-  result = result.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*?)(fill=)?([^>]*)>/g, 
-    (match, tag, beforeAttrs, hasAttr, afterAttrs) => {
-      if (!match.includes('fill=')) {
-        return match.replace('>', ' fill="none">');
-      }
-      return match;
-    });
-  
-  return result;
+function handleDuoStrokeIcon(svg) {
+  let res = svg;
+  res = res.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
+  res = res.replace(/fill="(?!none)([^"]*)"/g, 'fill="none"');
+  res = res.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*?)>/g,
+    e => /fill=/.test(e) ? e : e.replace('>', ' fill="none">'),
+  );
+  return removeDuplicateAttributes(res);
 }
 
-/**
- * Transform duo-solid icon attributes
- * @param {string} svgContent - The SVG content to transform
- * @returns {string} The transformed SVG content
- */
-function handleDuoSolidIcon(svgContent) {
-  let result = svgContent;
-  
-  // Apply currentColor to all fill attributes
-  result = result.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
-  
-  // Remove stroke attributes or set stroke="none"
-  result = result.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="none"');
-  
-  // Add fill="currentColor" to elements with no fill attribute
-  result = result.replace(/<(path|circle|rect|polygon|ellipse)([^>]*)(fill=\"[^\"]*\")?([^>]*)>/g, 
-    (match, tag, before, fill, after) => {
-      if (!fill) {
-        return `<${tag}${before} fill="currentColor"${after}>`;
+function handleDuoSolidIcon(svg) {
+  let res = svg;
+  res = res.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
+  res = res.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
+  // ensure stroke elems have fill="none"
+  res = res.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*?)(\/?)>/g,
+    (m, tag, attrs, self) => {
+      if (attrs.includes('stroke="currentColor"') && !/fill=/.test(attrs)) {
+        const upd = attrs.replace(/stroke="currentColor"/, 'stroke="currentColor" fill="none"');
+        return `<${tag}${upd}${self}>`;
       }
-      return match;
-    });
-  
-  return result;
+      return m;
+    },
+  );
+  res = res.replace(/<(path|circle|rect|polygon|ellipse)([^>]*?)>/g,
+    (m, tag, attrs) => /fill=/.test(attrs) || /stroke=/.test(attrs) ? m : `<${tag} fill="currentColor" ${attrs}>`,
+  );
+  return removeDuplicateAttributes(res);
 }
 
-/**
- * Get SVGO configuration for a specific icon style 
- * @param {string} style - The icon style
- * @returns {Object} SVGO configuration object
- */
+// Utility to ensure no duplicate attributes inside an element string
+function removeDuplicateAttributes(svgString) {
+  // Remove any repeated fill="currentColor" after the first within the same tag
+  svgString = svgString.replace(/(\sfill="currentColor")(?=[^>]*\sfill="currentColor")/g, '');
+  // Remove repeated fill="none"
+  svgString = svgString.replace(/(\sfill="none")(?=[^>]*\sfill="none")/g, '');
+  // Remove repeated stroke="currentColor"
+  svgString = svgString.replace(/(\sstroke="currentColor")(?=[^>]*\sstroke="currentColor")/g, '');
+  return svgString;
+}
+
+/* -------------------------------------------------------------------------
+ * SVGO configuration helper (unchanged)
+ * ---------------------------------------------------------------------- */
+
 export function getSvgoConfigForStyle(style) {
-  // Base configuration
-  const config = {
-    multipass: false, 
+  const cfg = {
+    multipass: false,
     plugins: [
       {
         name: 'preset-default',
         params: {
           overrides: {
-            // Keep viewBox attribute
             removeViewBox: false,
-            
-            // Keep the fill/stroke attributes for styling
             removeUselessStrokeAndFill: false,
-            
-            // Convert colors to currentColor for theming
-            convertColors: {
-              currentColor: true,
-              names2hex: true,
-              rgb2hex: true,
-              shorthex: true,
-              shortname: true
-            },
-            
-            // Preserve more details in paths
-            mergePaths: false,
-            
-            // Don't collapse groups
-            collapseGroups: false,
-            
-            // Don't remove elements that might seem hidden but are needed
-            removeHiddenElems: false,
-            
-            // Don't merge styles that might be needed separately
-            inlineStyles: false,
-            
-            // Don't remove non-standard attributes that might be needed
-            removeUnknownsAndDefaults: {
-              keepRoleAttr: true,
-              keepAriaAttrs: true
-            }
-          }
-        }
+            convertColors: { currentColor: true },
+          },
+        },
       },
-      // Add role="img" and aria-hidden="true" for accessibility
-      {
-        name: 'addAttributesToSVGElement',
-        params: {
-          attributes: [
-            { role: 'img' },
-            { 'aria-hidden': 'true' }
-          ]
-        }
-      },
-      // Remove width and height attributes to make SVG scalable
-      {
-        name: 'removeAttrs',
-        params: {
-          attrs: ['width', 'height']
-        }
-      }
-    ]
+      { name: 'removeDimensions', active: true },
+    ],
   };
-  
-  // Style-specific configuration
-  switch (style) {
-    case 'stroke':
-      // No specific additions needed - will be handled by applyStyleTransformations
-      break;
-      
-    case 'solid':
-      // No specific additions needed - will be handled by applyStyleTransformations
-      break;
-      
-    case 'contrast':
-      // Disable plugins that might remove necessary attributes
-      config.plugins[0].params.overrides.removeUselessStrokeAndFill = false;
-      config.plugins[0].params.overrides.removeNonInheritableGroupAttrs = false;
-      break;
-      
-    case 'duo-stroke':
-    case 'duo-solid':
-      // For duotone icons, prefix IDs to avoid conflicts
-      config.plugins.push({
-        name: 'prefixIds',
-        params: {
-          prefix: 'icon-',
-          delim: '-'
-        }
-      });
-      
-      // Preserve opacity and other attributes needed for duotone effect
-      config.plugins[0].params.overrides.removeUselessStrokeAndFill = false;
-      break;
+
+  // tweak per-style if needed
+  if (style === 'solid' || style === 'duo-solid') {
+    cfg.plugins.push({ name: 'convertShapeToPath', active: true });
   }
-  
-  return config;
+  return cfg;
 } 

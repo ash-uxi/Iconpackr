@@ -124,81 +124,97 @@ export function processSvgForTheming(svgContent, forcedStyle) {
   // console.log(`SVG processing: Using style=${iconStyle} (forced: ${forcedStyle}, fill: ${analysis.hasFill}, stroke: ${analysis.hasStroke}, visFill: ${analysis.visibleFillCount}, multiFill: ${analysis.hasMultipleFillColors}, multiStroke: ${analysis.hasMultipleStrokeColors}, opacity: ${analysis.hasOpacity})`);
 
   // Regex to find both opening and self-closing elements
-  const elementPattern = /<([a-zA-Z0-9:]+)([^>]*?)(\/?)\s*>/g;
+  const elementPattern = /<([a-zA-Z0-9:]+)([^>]*?)(\s*\/?)>/g;
   
   result = result.replace(elementPattern, (match, tagName, attributesString, selfClosing) => {
-    if (tagName.startsWith('svg') || tagName.startsWith('defs') || tagName.startsWith('clipPath') || tagName.startsWith('mask')) return match; // Skip svg, defs, clipPath, mask tags themselves
+    if (tagName.startsWith('svg') || tagName.startsWith('defs') || tagName.startsWith('clipPath') || tagName.startsWith('mask')) return match;
 
-    let newAttributesString = attributesString;
-    let originalFill = attributesString.match(/fill="([^"]*)"/)?.[1];
-    let originalStroke = attributesString.match(/stroke="([^"]*)"/)?.[1];
-    let hasOpacity = /opacity="([^"]*)"/.test(attributesString) || /fill-opacity="([^"]*)"/.test(attributesString) || /stroke-opacity="([^"]*)"/.test(attributesString);
-
-    const isPrimaryElement = !hasOpacity; // Simplified assumption: elements with opacity are secondary
+    // Parse attributes into a map for safe manipulation
+    const attributes = new Map();
+    
+    // Extract all attributes safely
+    const attrPattern = /(\w+(?:-\w+)*)="([^"]*)"/g;
+    let attrMatch;
+    while ((attrMatch = attrPattern.exec(attributesString)) !== null) {
+      attributes.set(attrMatch[1], attrMatch[2]);
+    }
+    
+    const originalFill = attributes.get('fill');
+    const originalStroke = attributes.get('stroke');
+    const hasOpacity = attributes.has('opacity') || attributes.has('fill-opacity') || attributes.has('stroke-opacity');
+    const isPrimaryElement = !hasOpacity;
 
     switch (iconStyle) {
       case 'stroke':
-        newAttributesString = newAttributesString.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
-        if (originalFill !== 'none') {
-            newAttributesString = newAttributesString.replace(/fill="([^"]*)"/g, ''); // Remove fill if not none
-            if (!/fill="/.test(newAttributesString)) newAttributesString += ' fill="none"'; // Add fill none if no fill exists
-        } else if (!/fill="/.test(newAttributesString)) {
-            newAttributesString += ' fill="none"'; // Ensure fill none if no fill present
+        // Set stroke to currentColor if it exists and isn't 'none'
+        if (attributes.has('stroke') && attributes.get('stroke') !== 'none') {
+          attributes.set('stroke', 'currentColor');
         }
+        // Ensure fill is 'none'
+        attributes.set('fill', 'none');
         break;
+        
       case 'solid':
-        newAttributesString = newAttributesString.replace(/fill="(?!none)([^"]*)"/g, 'fill="currentColor"');
-        if (originalStroke !== 'none') {
-            newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/g, '');
-            if (!/stroke="/.test(newAttributesString)) newAttributesString += ' stroke="none"';
-        } else if (!/stroke="/.test(newAttributesString)) {
-             newAttributesString += ' stroke="none"';
+        // Set fill to currentColor if it exists and isn't 'none'
+        if (attributes.has('fill') && attributes.get('fill') !== 'none') {
+          attributes.set('fill', 'currentColor');
         }
+        // Ensure stroke is 'none'
+        attributes.set('stroke', 'none');
         break;
+        
       case 'contrast':
         if (originalFill && originalFill !== 'none') {
-          newAttributesString = newAttributesString.replace(/fill="([^"]*)"/, 'fill="currentColor"');
+          attributes.set('fill', 'currentColor');
         }
         if (originalStroke && originalStroke !== 'none') {
-          newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/, 'stroke="currentColor"');
+          attributes.set('stroke', 'currentColor');
         }
         break;
+        
       case 'duo-stroke':
-        // Primary stroke: currentColor. Secondary stroke: original color (if different) + opacity.
-        // Fill: always none.
         if (isPrimaryElement && originalStroke && originalStroke !== 'none') {
-          newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/, 'stroke="currentColor"');
+          attributes.set('stroke', 'currentColor');
         }
-        // Ensure fill is none for all parts of a duo-stroke icon
-        newAttributesString = newAttributesString.replace(/fill="([^"]*)"/g, '');
-        if (!/fill="/.test(newAttributesString)) newAttributesString += ' fill="none"';
+        // Ensure fill is always 'none' for duo-stroke
+        attributes.set('fill', 'none');
         break;
+        
       case 'duo-solid':
-        // Primary fill: currentColor. Secondary fill: original color (if different) + opacity.
-        // Stroke: always none.
         if (isPrimaryElement && originalFill && originalFill !== 'none') {
-          newAttributesString = newAttributesString.replace(/fill="([^"]*)"/, 'fill="currentColor"');
-        }
-        // Ensure stroke is none for all parts of a duo-solid icon
-        newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/g, '');
-        if (!/stroke="/.test(newAttributesString)) newAttributesString += ' stroke="none"';
-        break;
-      default:
-        // For any other unknown style, or if logic is incomplete, apply currentColor generally
-        if (originalFill && originalFill !== 'none') {
-          newAttributesString = newAttributesString.replace(/fill="([^"]*)"/, 'fill="currentColor"');
+          attributes.set('fill', 'currentColor');
         }
         if (originalStroke && originalStroke !== 'none') {
-          newAttributesString = newAttributesString.replace(/stroke="([^"]*)"/, 'stroke="currentColor"');
+          attributes.set('stroke', 'currentColor');
+        }
+        break;
+        
+      default:
+        if (originalFill && originalFill !== 'none') {
+          attributes.set('fill', 'currentColor');
+        }
+        if (originalStroke && originalStroke !== 'none') {
+          attributes.set('stroke', 'currentColor');
         }
         break;
     }
     
-    // Preserve self-closing format for self-closing tags
-    if (selfClosing) {
-      return `<${tagName}${newAttributesString}/>`;
+    // Reconstruct attributes string safely
+    const attributePairs = [];
+    for (const [name, value] of attributes) {
+      attributePairs.push(`${name}="${value}"`);
+    }
+    
+    const newAttributesString = attributePairs.join(' ');
+    const attributeString = newAttributesString ? ` ${newAttributesString}` : '';
+    
+    // Check if original was self-closing
+    const isSelfClosing = selfClosing.includes('/');
+    
+    if (isSelfClosing) {
+      return `<${tagName}${attributeString}/>`;
     } else {
-      return `<${tagName}${newAttributesString}>`;
+      return `<${tagName}${attributeString}>`;
     }
   });
 

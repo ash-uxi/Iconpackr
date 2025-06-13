@@ -45,6 +45,7 @@ iconpackr
 - **♿ Accessibility Built-in** - ARIA attributes and semantic markup
 - **🧹 Auto-Cleanup** - Manages temporary files automatically
 - **🏭 Production Ready** - Battle-tested on 5000+ icons in Pikaicons
+- **🛡 Robust Sanitisation** - Fixes malformed SVG tags & removes duplicate attributes automatically
 
 ## 📦 Installation
 

@@ -310,9 +310,9 @@ export function getOptimizedSvgoConfig(svgContent) {
             
             // Configure path optimization for better compression
             convertPathData: {
-              floatPrecision: isHighComplexity ? 3 : 2,
+              floatPrecision: isHighComplexity ? 4 : 3,
               transformPrecision: 5,
-              removeUseless: true,
+              removeUseless: false, // Preserve small path segments
               collapseRepeated: true,
               utilizeAbsolute: true,
               leadingZero: true,
@@ -323,7 +323,7 @@ export function getOptimizedSvgoConfig(svgContent) {
             
             // Optimize numeric values aggressively
             cleanupNumericValues: {
-              floatPrecision: isHighComplexity ? 3 : 2,
+              floatPrecision: isHighComplexity ? 4 : 3,
               leadingZero: true,
               defaultAttrs: true,
               degPrecision: 1
@@ -334,8 +334,8 @@ export function getOptimizedSvgoConfig(svgContent) {
             moveElemsAttrsToGroup: !isMediumComplexity,
             moveGroupAttrsToElems: false,
             
-            // Path merging only for simple icons
-            mergePaths: !isComplexIcon,
+            // Path merging disabled to preserve small vectors
+            mergePaths: false,
             
             // Clean up IDs aggressively
             cleanupIds: {

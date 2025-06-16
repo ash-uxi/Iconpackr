@@ -88,16 +88,28 @@ export function applyStyleTransformations(svgContent, style) {
 
 function handleStrokeIcon(svg) {
   let res = svg;
-  // normalise stroke colour
+  
+  // Normalize stroke colour
   res = res.replace(/stroke="(?!none)([^"]*)"/g, 'stroke="currentColor"');
-  // ensure fill="none" where stroke present
-  res = res.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)(stroke="[^"]*")([^>]*)(fill="[^"]*")?([^>]*)>/g,
-    (m, tag, before, stroke, after, fill, end) => fill ? m : `<${tag}${before}${stroke}${after} fill="none"${end}>`,
-  );
-  // remove other fills
+  
+  // Convert any non-none fill values to "none"
   res = res.replace(/fill="(?!none)([^"]*)"/g, 'fill="none"');
-  // final sanity fix for misplaced fill attr
-  res = res.replace(/(\/?>)(fill="none")/g, ' fill="none"$1');
+  
+  // Ensure stroke elements have fill="none" (only add if missing)
+  res = res.replace(/<(path|circle|rect|line|polyline|polygon|ellipse)([^>]*)>/g, (match, tag, attrs) => {
+    // Skip if already has fill attribute
+    if (/fill=/.test(attrs)) {
+      return match;
+    }
+    
+    // Only add fill="none" if element has stroke (indicating it's a stroked element)
+    if (/stroke=/.test(attrs)) {
+      return `<${tag}${attrs} fill="none">`;
+    }
+    
+    return match;
+  });
+  
   return removeDuplicateAttributes(res);
 }
 
@@ -158,13 +170,42 @@ function handleDuoSolidIcon(svg) {
 
 // Utility to ensure no duplicate attributes inside an element string
 function removeDuplicateAttributes(svgString) {
-  // Remove any repeated fill="currentColor" after the first within the same tag
-  svgString = svgString.replace(/(\sfill="currentColor")(?=[^>]*\sfill="currentColor")/g, '');
-  // Remove repeated fill="none"
-  svgString = svgString.replace(/(\sfill="none")(?=[^>]*\sfill="none")/g, '');
-  // Remove repeated stroke="currentColor"
-  svgString = svgString.replace(/(\sstroke="currentColor")(?=[^>]*\sstroke="currentColor")/g, '');
-  return svgString;
+  return svgString.replace(/<([^\/][^>]*)>/g, (match, elementContent) => {
+    // Skip if this doesn't contain attributes
+    if (!elementContent.includes('=')) {
+      return match;
+    }
+    
+    // Use regex to properly parse all attributes including complex ones
+    const tagNameMatch = elementContent.match(/^(\S+)/);
+    if (!tagNameMatch) return match;
+    
+    const tagName = tagNameMatch[1];
+    const attributeMap = new Map();
+    let isSelfClosing = elementContent.endsWith('/');
+    
+    // Match all attribute="value" pairs, handling quoted values with spaces
+    const attributeRegex = /(\S+)="([^"]*)"/g;
+    let attrMatch;
+    
+    while ((attrMatch = attributeRegex.exec(elementContent)) !== null) {
+      const [, attrName, attrValue] = attrMatch;
+      // Keep the last occurrence of each attribute name
+      attributeMap.set(attrName, attrValue);
+    }
+    
+    // Reconstruct the element with unique attributes
+    const attributes = Array.from(attributeMap.entries())
+      .map(([name, value]) => `${name}="${value}"`)
+      .join(' ');
+    
+    const selfClosingSlash = isSelfClosing ? ' /' : '';
+    const result = attributes 
+      ? `<${tagName} ${attributes}${selfClosingSlash}>`
+      : `<${tagName}${selfClosingSlash}>`;
+    
+    return result;
+  });
 }
 
 /* -------------------------------------------------------------------------

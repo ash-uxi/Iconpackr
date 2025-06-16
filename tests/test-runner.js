@@ -108,7 +108,7 @@ class TestRunner {
     });
 
     // Test style detection
-    const { detectIconStyle } = await import('../src/utils/style-handler.js');
+    const { detectIconStyle, applyStyleTransformations } = await import('../src/utils/style-handler.js');
     await this.runTest('style-detection', async () => {
       const strokeSvg = '<svg><path stroke="currentColor" fill="none"/></svg>';
       const style = detectIconStyle(strokeSvg);
@@ -118,6 +118,68 @@ class TestRunner {
       }
       
       return { message: `Detected style: ${style}` };
+    });
+
+    // Test stroke icon duplication fix
+    await this.runTest('stroke-duplication-fix', async () => {
+      // Test various duplicate scenarios
+      const testCases = [
+        {
+          name: 'duplicate fill attributes',
+          input: '<svg><path stroke="red" fill="blue" fill="blue" d="M0 0L10 10"/></svg>',
+          maxFillCount: 1,
+          maxStrokeCount: 1
+        },
+        {
+          name: 'duplicate fill="none" attributes',
+          input: '<svg><path fill="none" stroke="currentColor" fill="none" d="M0 0L10 10"/></svg>',
+          maxFillCount: 1,
+          maxStrokeCount: 1
+        },
+        {
+          name: 'duplicate stroke attributes',
+          input: '<svg><path stroke="currentColor" stroke="currentColor" d="M0 0L10 10"/></svg>',
+          maxFillCount: 1,
+          maxStrokeCount: 1
+        },
+        {
+          name: 'actual problematic SVG with duplicate at end',
+          input: '<path stroke="currentColor" d="M12 12" fill="none" fill="none">',
+          maxFillCount: 1,
+          maxStrokeCount: 1
+        }
+      ];
+      
+      for (const testCase of testCases) {
+        const result = applyStyleTransformations(testCase.input, 'stroke');
+        
+        // Count fill and stroke attributes per element
+        const pathElements = result.match(/<path[^>]*>/g) || [];
+        
+        for (const pathElement of pathElements) {
+          const fillMatches = (pathElement.match(/fill="[^"]*"/g) || []).length;
+          const strokeMatches = (pathElement.match(/stroke="[^"]*"/g) || []).length;
+          
+          if (fillMatches > testCase.maxFillCount) {
+            throw new Error(`${testCase.name}: Too many fill attributes (${fillMatches}) in path element: ${pathElement}`);
+          }
+          if (strokeMatches > testCase.maxStrokeCount) {
+            throw new Error(`${testCase.name}: Too many stroke attributes (${strokeMatches}) in path element: ${pathElement}`);
+          }
+        }
+      }
+      
+      // Test the user-reported issue - this should be handled correctly now
+      const userReportedSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.766 20H10c-2.8 0-4.2 0-5.27-.545a5 5 0 0 1-2.185-2.185C2 16.2 2 14.8 2 12c0-1.994 0-3.278.197-4.238m19.606 0-5.508 3.505c-1.557.99-2.335 1.486-3.171 1.678a5 5 0 0 1-2.248 0c-.836-.192-1.614-.688-3.171-1.678L2.197 7.762m19.606 0C22 8.722 22 10.006 22 12v.352m-.197-4.59a4 4 0 0 0-.348-1.032 5 5 0 0 0-2.185-2.185C18.2 4 16.8 4 14 4h-4c-2.8 0-4.2 0-5.27.545A5 5 0 0 0 2.545 6.73a4 4 0 0 0-.348 1.032M15 22zm4-7c-.637 1.616-1.34 2.345-3 3 1.66.655 2.363 1.384 3 3 .637-1.616 1.34-2.345 3-3-1.66-.655-2.363-1.384-3-3Z" fill="none"></svg>';
+      
+      const fixed = applyStyleTransformations(userReportedSvg, 'stroke');
+      
+      // The processing should preserve the SVG structure correctly
+      if (!fixed.includes('<path') || !fixed.includes('d="M11.766 20H10')) {
+        throw new Error('User-reported SVG not processed correctly - missing essential content');
+      }
+      
+      return { message: 'Stroke icon duplication fix working correctly for all scenarios' };
     });
   }
 

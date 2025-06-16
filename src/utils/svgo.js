@@ -4,22 +4,48 @@ import { processSvgForTheming, getOptimizedSvgoConfig } from './svg-attribute-ha
 import fs from 'fs';
 
 /**
- * Fix known malformed self-closing tag patterns produced by some icon sources
- * where the self-closing slash appears *before* an attribute, e.g.
- *   <path d="…"/ fill="none">  ->  <path d="…" fill="none"/>
+ * Comprehensive SVG sanitization to fix various malformed patterns commonly
+ * found in SVG files from different sources.
  *
- * This helper moves the slash to the end of the element, just before the
- * closing angle bracket, and removes any accidental duplicate angle brackets.
+ * Handles:
+ * - Misplaced self-closing slashes: <path d="…"/ fill="none"> -> <path d="…" fill="none"/>
+ * - Double angle brackets: L2 7>>v10 -> L2 7>v10  
+ * - Missing quotes on attributes: stroke-width=2 -> stroke-width="2"
+ * - Unclosed self-closing tags: <circle ...> -> <circle .../>
+ * - Malformed path data with extra characters
  *
- * @param {string} content Raw SVG string possibly containing malformed tags
- * @returns {string} Sanitised SVG string
+ * @param {string} content Raw SVG string possibly containing malformed patterns
+ * @returns {string} Sanitized SVG string
  */
-function sanitizeSvgContent(content) {
+export function sanitizeSvgContent(content) {
   if (!content || typeof content !== 'string') {
     return content;
   }
 
-  // Generic fix: if we see a '/' followed by whitespace then attributes before
+  // 1. Fix double angle brackets in path data and other places
+  // Pattern: >>v10 -> >v10, >>M -> >M, etc.
+  content = content.replace(/>>([a-zA-Z])/g, '>$1');
+  
+  // 2. Fix missing quotes around attribute values
+  // Pattern: stroke-width=2 -> stroke-width="2"
+  content = content.replace(/(\s+[a-zA-Z-]+)=([^"'\s][^\s>]*?)(?=[\s>\/])/g, '$1="$2"');
+  
+  // 3. Fix unclosed self-closing tags (for elements that should be self-closing)
+  // Pattern: <circle cx="12" cy="12" r="3" stroke="currentColor"> -> <circle cx="12" cy="12" r="3" stroke="currentColor"/>
+  const selfClosingElements = ['circle', 'ellipse', 'line', 'path', 'polygon', 'polyline', 'rect', 'use', 'image', 'stop'];
+  selfClosingElements.forEach(element => {
+    // Only convert if it's not already self-closing and doesn't have a closing tag
+    const regex = new RegExp(`<${element}([^>]*?)>(?!.*</${element}>)`, 'gi');
+    content = content.replace(regex, (match, attributes) => {
+      // Don't convert if it already ends with /
+      if (attributes.endsWith('/')) {
+        return match;
+      }
+      return `<${element}${attributes}/>`;
+    });
+  });
+
+  // 4. Generic fix: if we see a '/' followed by whitespace then attributes before
   // the closing '>', move that slash to just before '>' and keep the attributes.
   // e.g. <path ... / fill="none">  ⇒  <path ... fill="none"/>
   content = content.replace(/<([^>]*?)\/(\s+[a-zA-Z-]+="[^"]*")(.*?)>/g,
@@ -28,12 +54,29 @@ function sanitizeSvgContent(content) {
     },
   );
 
-  // The previous replacement can create a duplicate '>>' when the original '>'
-  // remains after the inserted '/>'.  Clean up any such occurrences.
+  // 5. Fix specific issue with extra slashes after attribute values FIRST
+  // Pattern: fill="#111111"/// -> fill="#111111"
+  // Pattern: stroke="currentColor"// -> stroke="currentColor"
+  content = content.replace(/="([^"]*)"\/\/+/g, '="$1"');
+  
+  // 5a. Fix triple slashes and other malformed slash patterns (but preserve URLs)
+  // Only replace multiple slashes that are NOT part of URLs (http://, https://)
+  content = content.replace(/(?<!https?:)\/\/\/+/g, '/');
+  content = content.replace(/(?<!https?:)\/\/+(?!\/)/g, '/');
+  
+  // Clean up any remaining duplicate '>>' sequences
   content = content.replace(/\/>>/g, '/>');
+  content = content.replace(/>>+/g, '>');
 
-  // Also collapse any accidental spaces before '/>'
+  // 6. Collapse any accidental spaces before '/>'
   content = content.replace(/\s+\/>/g, '/>');
+
+  // 7. Fix malformed path data sequences (remove invalid characters)
+  content = content.replace(/d="([^"]*)"/, (match, pathData) => {
+    // Remove any invalid characters from path data, keeping only valid SVG path commands and numbers
+    const cleanPathData = pathData.replace(/[^MmLlHhVvCcSsQqTtAaZz0-9\s,.-]/g, '');
+    return `d="${cleanPathData}"`;
+  });
 
   return content;
 }

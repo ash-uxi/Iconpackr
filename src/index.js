@@ -279,7 +279,7 @@ export async function processIcons(options) {
       console.log(chalk.cyan('🧹 Cleaning up processed SVGs directory...'));
       try {
         if (fs.existsSync(processedSvgsDir || './processed-svgs')) {
-          await fs.remove(processedSvgsDir || './processed-svgs');
+          await fs.promises.rm(processedSvgsDir || './processed-svgs', { recursive: true, force: true });
           console.log(chalk.green('✅ Processed SVGs directory cleaned up'));
         }
       } catch (error) {

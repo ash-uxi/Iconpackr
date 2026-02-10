@@ -1,7 +1,6 @@
 import { optimize } from 'svgo';
 import { detectIconStyle, applyStyleTransformations } from './style-handler.js';
 import { processSvgForTheming, getOptimizedSvgoConfig } from './svg-attribute-handler.js';
-import fs from 'fs';
 
 /**
  * Fix known malformed self-closing tag patterns produced by some icon sources
@@ -108,16 +107,6 @@ export async function optimizeSvg(svgContent, options = {}) {
       const nextChar = svgContent.charAt(col);
       console.error(`Character at error: "${charAtError}" (${charAtError.charCodeAt(0)})`);
       console.error(`Next character: "${nextChar}" (${nextChar.charCodeAt(0)})`);
-    }
-    
-    // Save problematic SVG to a temp file for analysis
-    try {
-      const timestamp = Date.now();
-      const errorFile = `./error-svg-${timestamp}.svg`;
-      fs.writeFileSync(errorFile, svgContent);
-      console.error(`Problematic SVG saved to: ${errorFile}`);
-    } catch (writeError) {
-      console.error('Failed to save error SVG:', writeError.message);
     }
     
     // Return original content if optimization fails

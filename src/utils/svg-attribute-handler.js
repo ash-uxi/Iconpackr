@@ -117,9 +117,7 @@ export function processSvgForTheming(svgContent, forcedStyle) {
     } else {
       iconStyle = 'stroke'; // Default fallback
     }
-    if (forcedStyle === 'auto' && verbose) {
-        console.log(chalk.blue(`Auto-detected style for theming: ${iconStyle} (was '${forcedStyle}')`));
-    }
+
   }
   // console.log(`SVG processing: Using style=${iconStyle} (forced: ${forcedStyle}, fill: ${analysis.hasFill}, stroke: ${analysis.hasStroke}, visFill: ${analysis.visibleFillCount}, multiFill: ${analysis.hasMultipleFillColors}, multiStroke: ${analysis.hasMultipleStrokeColors}, opacity: ${analysis.hasOpacity})`);
 

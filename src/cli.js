@@ -17,8 +17,6 @@ const { version } = packageJson;
  * @param {string[]} args - Command line arguments
  */
 export function cli(args) {
-  console.log(chalk.cyan('Starting CLI with args:'), args);
-  
   const program = new Command();
 
   program
@@ -56,11 +54,6 @@ export function cli(args) {
           console.log(chalk.cyan('📁 Creating default output folder...'));
           fs.mkdirSync(output, { recursive: true });
         }
-        
-        console.log(chalk.yellow('CLI action triggered'));
-        console.log(chalk.yellow(`Input: ${input}`));
-        console.log(chalk.yellow(`Output: ${output}`));
-        console.log(chalk.yellow(`Options: ${JSON.stringify(options, null, 2)}`));
         
         const formatsList = options.formats.split(',').map(format => format.trim());
         
@@ -250,11 +243,9 @@ export function cli(args) {
     });
 
   program.parse(args);
-  console.log(chalk.cyan('CLI parsing complete'));
 }
 
 // Automatically run CLI when this file is executed directly
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  console.log(chalk.yellow('Direct execution detected, running CLI...'));
   cli(process.argv);
 }

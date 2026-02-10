@@ -1,6 +1,6 @@
 import { optimize } from 'svgo';
 import { detectIconStyle, applyStyleTransformations } from './style-handler.js';
-import { processSvgForTheming, getOptimizedSvgoConfig } from './svg-attribute-handler.js';
+import { getOptimizedSvgoConfig } from './svg-attribute-handler.js';
 
 /**
  * Fix known malformed self-closing tag patterns produced by some icon sources
@@ -57,8 +57,7 @@ export async function optimizeSvg(svgContent, options = {}) {
     style = detectIconStyle(svgContent);
   }
   
-  // Get dynamic SVGO configuration based on SVG analysis
-  const config = getOptimizedSvgoConfig(svgContent);
+  const config = getOptimizedSvgoConfig(svgContent, style);
   
   // Run SVGO optimization
   try {

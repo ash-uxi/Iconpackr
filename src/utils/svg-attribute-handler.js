@@ -1,7 +1,4 @@
-/**
- * Dynamic SVG Attribute Handler
- * Analyzes and processes SVG attributes to maintain visual intent while enabling theming
- */
+import { detectIconStyle } from './style-handler.js';
 
 /**
  * Analyzes an SVG string to detect which visual attributes are being used
@@ -102,26 +99,9 @@ export function processSvgForTheming(svgContent, forcedStyle) {
   let iconStyle = forcedStyle;
 
   if (!forcedStyle || forcedStyle === 'auto') {
-    if (analysis.hasStroke && analysis.visibleFillCount > 0 && (analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity)) {
-      iconStyle = 'contrast'; // Or could be a duotone variant if opacity/multiple colors dominate
-    } else if (analysis.hasStroke && analysis.visibleFillCount > 0) {
-      iconStyle = 'contrast';
-    } else if (analysis.hasStroke && (analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity)) {
-      iconStyle = 'duo-stroke';
-    } else if (analysis.hasStroke) {
-      iconStyle = 'stroke';
-    } else if (analysis.visibleFillCount > 0 && (analysis.hasMultipleFillColors || analysis.hasOpacity || analysis.hasFillOpacity)) {
-      iconStyle = 'duo-solid';
-    } else if (analysis.visibleFillCount > 0) {
-      iconStyle = 'solid';
-    } else {
-      iconStyle = 'stroke'; // Default fallback
-    }
-
+    iconStyle = detectIconStyle(svgContent);
   }
-  // console.log(`SVG processing: Using style=${iconStyle} (forced: ${forcedStyle}, fill: ${analysis.hasFill}, stroke: ${analysis.hasStroke}, visFill: ${analysis.visibleFillCount}, multiFill: ${analysis.hasMultipleFillColors}, multiStroke: ${analysis.hasMultipleStrokeColors}, opacity: ${analysis.hasOpacity})`);
 
-  // Regex to find both opening and self-closing elements
   const elementPattern = /<([a-zA-Z0-9:]+)([^>]*?)(\s*\/?)>/g;
   
   result = result.replace(elementPattern, (match, tagName, attributesString, selfClosing) => {
@@ -272,21 +252,13 @@ export function getSvgThemingProps(svgContent, format) {
  * @param {string} svgContent - The SVG content to analyze
  * @returns {Object} SVGO configuration
  */
-export function getOptimizedSvgoConfig(svgContent) {
+export function getOptimizedSvgoConfig(svgContent, style = 'auto') {
   const analysis = analyzeSvgAttributes(svgContent);
-  let style = 'auto'; 
-  if (analysis.hasStroke && analysis.visibleFillCount > 0) {
-    style = 'contrast';
-  } else if (analysis.hasStroke && (analysis.visibleFillCount === 0)) {
-    style = 'stroke';
-  } else if (analysis.visibleFillCount > 0 && !analysis.hasStroke) {
-    style = 'solid';
-  } else if ((analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || 
-      analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity)) {
-    style = analysis.hasStroke ? 'duo-stroke' : 'duo-solid';
+
+  if (style === 'auto') {
+    style = detectIconStyle(svgContent);
   }
 
-  // Determine icon complexity for smart conditional optimization
   const isComplexIcon = analysis.hasMultipleFillColors || analysis.hasMultipleStrokeColors || 
                        analysis.hasOpacity || analysis.hasFillOpacity || analysis.hasStrokeOpacity;
   

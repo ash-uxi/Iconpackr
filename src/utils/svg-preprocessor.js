@@ -5,7 +5,6 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { optimizeSvg } from './svgo.js';
 import { detectIconStyle } from './style-handler.js';
-import { processSvgForTheming } from './svg-attribute-handler.js';
 
 /**
  * Process raw SVGs and save them to a processed directory

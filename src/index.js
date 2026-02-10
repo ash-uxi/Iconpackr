@@ -6,7 +6,7 @@ import ora from 'ora';
 import { optimizeSvg } from './utils/svgo.js';
 import { generateComponent } from './utils/generate-component.js';
 import { detectIconStyle } from './utils/style-handler.js';
-import { toPascalCase } from './utils/text-utils.js';
+import { toPascalCase, buildPrefixedComponentName, parseIconPath } from './utils/text-utils.js';
 import { formatGeneratedFiles, isPrettierAvailable } from './utils/prettier-formatter.js';
 
 /**
@@ -78,64 +78,10 @@ export async function processIcons(options) {
   // Process each SVG file
   for (const svgFile of svgFiles) {
     try {
-      // Extract paths
       const relativePath = path.relative(inputDir, svgFile);
-      const pathParts = relativePath.split(path.sep);
-      
-      let style, category, iconName, componentName, prefixedComponentName;
-      
-      // Handle different path structures 
-      if (pathParts.length >= 3) {
-        // Standard [style]/[category]/[icon].svg structure
-        style = pathParts[0];
-        category = pathParts[1];
-        iconName = path.basename(pathParts[2], '.svg');
-      } else if (pathParts.length === 2) {
-        // [category]/[icon].svg structure
-        // Try to extract style from input directory path
-        const inputDirParts = inputDir.split(path.sep);
-        // Look for style keywords in the path
-        const styleKeywords = ['stroke', 'solid', 'contrast', 'duo-stroke', 'duo-solid'];
-        let extractedStyle = null;
-        
-        // Search from the end of the path (most specific) to the beginning
-        for (let i = inputDirParts.length - 1; i >= 0; i--) {
-          if (styleKeywords.includes(inputDirParts[i])) {
-            extractedStyle = inputDirParts[i];
-            break;
-          }
-        }
-        
-        style = extractedStyle || 'auto';
-        category = pathParts[0];
-        iconName = path.basename(pathParts[1], '.svg');
-      } else if (pathParts.length === 1) {
-        // Direct [icon].svg file - try to extract style from input directory path
-        const inputDirParts = inputDir.split(path.sep);
-        // Look for style keywords in the path
-        const styleKeywords = ['stroke', 'solid', 'contrast', 'duo-stroke', 'duo-solid'];
-        let extractedStyle = null;
-        let extractedCategory = null;
-        
-        // Search from the end of the path (most specific) to the beginning
-        for (let i = inputDirParts.length - 1; i >= 0; i--) {
-          if (styleKeywords.includes(inputDirParts[i])) {
-            extractedStyle = inputDirParts[i];
-            // If we found the style and there's a next part in the path, use it as category
-            if (i < inputDirParts.length - 1) {
-              extractedCategory = inputDirParts[i + 1];
-            }
-            break;
-          }
-        }
-        
-        style = extractedStyle || 'auto';
-        category = extractedCategory || 'general';
-        iconName = path.basename(pathParts[0], '.svg');
-      }
-      
-      // Convert to PascalCase component name
-      componentName = toPascalCase(iconName);
+      let { style, category, iconName } = parseIconPath(relativePath, inputDir);
+      const componentName = toPascalCase(iconName);
+      let prefixedComponentName;
       
       // Read SVG content for potential style detection
               let svgContent = await fs.promises.readFile(svgFile, 'utf8');
@@ -156,13 +102,7 @@ export async function processIcons(options) {
         stats.byStyle[style]++;
       }
       
-      // Create prefixed component filename with style suffix
-      let styleSuffix = style.charAt(0).toUpperCase() + style.slice(1);
-      // Replace hyphens with PascalCase (duo-stroke -> DuoStroke)
-      styleSuffix = styleSuffix.split('-').map(part => 
-        part.charAt(0).toUpperCase() + part.slice(1)
-      ).join('');
-      prefixedComponentName = `Pi${componentName}${styleSuffix}`;
+      prefixedComponentName = buildPrefixedComponentName(componentName, style);
       
       if (verbose) {
         console.log(chalk.blue(`Processing: ${svgFile} (Style: ${style}, Category: ${category})`));
